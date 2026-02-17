@@ -67,6 +67,7 @@ git submodule sync --recursive luau
 pushd luau >/dev/null
 git config user.name "github-actions[bot]"
 git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
 if ! git remote get-url upstream >/dev/null 2>&1; then
   git remote add upstream "https://github.com/${UPSTREAM_LUAU_REPO}.git"
 fi
@@ -76,6 +77,10 @@ fi
 
 git fetch upstream --tags --prune
 git fetch origin --prune
+
+if [[ -n "${GH_TOKEN:-}" ]]; then
+  git remote set-url origin "https://x-access-token:${GH_TOKEN}@github.com/${LUAU_FORK_REPO}.git"
+fi
 
 LUAU_BRANCH="${SYNC_BRANCH_PREFIX//\//-}-luau-${TARGET_TAG}"
 git checkout -B "${LUAU_BRANCH}" HEAD
