@@ -40,7 +40,7 @@ jobs:
 
       - name: Run sync script
         env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_TOKEN: ${{ secrets.BOT_GH_TOKEN != '' && secrets.BOT_GH_TOKEN || secrets.GITHUB_TOKEN }}
           GITHUB_REPOSITORY: ${{ github.repository }}
           UPSTREAM_LSP_REPO: JohnnyMorganz/luau-lsp
           UPSTREAM_LUAU_REPO: luau-lang/luau

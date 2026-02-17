@@ -13,6 +13,10 @@ require_cmd curl
 require_cmd node
 require_cmd jq
 
+if [[ -n "${GH_TOKEN:-}" ]]; then
+  git config --global url."https://x-access-token:${GH_TOKEN}@github.com/".insteadOf "https://github.com/"
+fi
+
 UPSTREAM_LSP_REPO="${UPSTREAM_LSP_REPO:-JohnnyMorganz/luau-lsp}"
 UPSTREAM_LUAU_REPO="${UPSTREAM_LUAU_REPO:-luau-lang/luau}"
 LUAU_FORK_REPO="${LUAU_FORK_REPO:?Set LUAU_FORK_REPO (ex: yourname/luau)}"
