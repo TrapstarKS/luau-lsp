@@ -71,7 +71,7 @@ git fetch origin --prune
 LUAU_BRANCH="${SYNC_BRANCH_PREFIX//\//-}-luau-${TARGET_TAG}"
 git checkout -B "${LUAU_BRANCH}" HEAD
 
-node ../automation/luau-lsp-fork/scripts/patch-require-tracer.mjs \
+node ../../automation/luau-lsp-fork/scripts/patch-require-tracer.mjs \
   --file Analysis/src/RequireTracer.cpp \
   --functions "${REQUIRE_LIKE_FUNCTIONS}"
 
