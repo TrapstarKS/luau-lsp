@@ -53,11 +53,16 @@ echo "[sync] Preparing branch: ${SYNC_BRANCH} from tag ${TARGET_TAG}"
 git checkout -B "${SYNC_BRANCH}" "refs/tags/${TARGET_TAG}"
 git submodule update --init --recursive
 
+git config user.name "github-actions[bot]"
+git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
 echo "[sync] Pointing luau submodule URL to your fork: ${LUAU_FORK_REPO}"
 git config -f .gitmodules submodule.luau.url "https://github.com/${LUAU_FORK_REPO}.git"
 git submodule sync --recursive luau
 
 pushd luau >/dev/null
+git config user.name "github-actions[bot]"
+git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
 if ! git remote get-url upstream >/dev/null 2>&1; then
   git remote add upstream "https://github.com/${UPSTREAM_LUAU_REPO}.git"
 fi
