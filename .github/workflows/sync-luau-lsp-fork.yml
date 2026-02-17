@@ -1,0 +1,53 @@
+name: Sync luau-lsp fork (template)
+
+on:
+  workflow_dispatch:
+    inputs:
+      target_tag:
+        description: "Optional luau-lsp tag (ex: 1.62.0). Empty = latest release"
+        required: false
+        default: ""
+  schedule:
+    - cron: "0 */12 * * *"
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout fork repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
+          submodules: recursive
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Install jq
+        run: sudo apt-get update && sudo apt-get install -y jq
+
+      - name: Configure git identity
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+      - name: Run sync script
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_REPOSITORY: ${{ github.repository }}
+          UPSTREAM_LSP_REPO: JohnnyMorganz/luau-lsp
+          UPSTREAM_LUAU_REPO: luau-lang/luau
+          LUAU_FORK_REPO: ${{ secrets.LUAU_FORK_REPO }}
+          BASE_BRANCH: main
+          SYNC_BRANCH_PREFIX: automation/sync-luau-lsp
+          REQUIRE_LIKE_FUNCTIONS: sharedRequire
+          TARGET_TAG: ${{ github.event.inputs.target_tag }}
+        run: |
+          bash automation/luau-lsp-fork/scripts/sync-luau-lsp-fork.sh
