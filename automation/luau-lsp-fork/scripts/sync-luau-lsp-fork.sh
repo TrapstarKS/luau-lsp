@@ -15,6 +15,7 @@ require_cmd jq
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 PATCH_SCRIPT="${SCRIPT_DIR}/patch-require-tracer.mjs"
+PATCH_SCRIPT_RUNTIME=""
 
 log() {
 	echo "[sync] $*"
@@ -85,6 +86,10 @@ if [[ ! -f "${PATCH_SCRIPT}" ]]; then
 	die "patch script not found at ${PATCH_SCRIPT}. Ensure automation files are present in the fork."
 fi
 
+PATCH_SCRIPT_RUNTIME="$(mktemp -t patch-require-tracer.XXXXXX.mjs)"
+cp "${PATCH_SCRIPT}" "${PATCH_SCRIPT_RUNTIME}"
+trap '[[ -n "${PATCH_SCRIPT_RUNTIME}" && -f "${PATCH_SCRIPT_RUNTIME}" ]] && rm -f "${PATCH_SCRIPT_RUNTIME}"' EXIT
+
 if [[ -z "$TARGET_TAG" ]]; then
   TARGET_TAG="$(resolve_latest_tag)"
 fi
@@ -132,7 +137,7 @@ git fetch origin --prune
 LUAU_BRANCH="${SYNC_BRANCH_PREFIX//\//-}-luau-${TARGET_TAG}"
 git checkout -B "${LUAU_BRANCH}" HEAD
 
-node "${PATCH_SCRIPT}" \
+node "${PATCH_SCRIPT_RUNTIME}" \
   --luau-root . \
   --functions "${REQUIRE_LIKE_FUNCTIONS}"
 
