@@ -11,6 +11,21 @@ require_cmd() {
 require_cmd git
 require_cmd jq
 
+set_output() {
+	local key="$1"
+	local value="$2"
+	if [[ -n "${GITHUB_OUTPUT:-}" ]]; then
+		printf '%s=%s\n' "${key}" "${value}" >>"${GITHUB_OUTPUT}"
+	fi
+}
+
+append_summary() {
+	local line="$1"
+	if [[ -n "${GITHUB_STEP_SUMMARY:-}" ]]; then
+		printf '%s\n' "${line}" >>"${GITHUB_STEP_SUMMARY}"
+	fi
+}
+
 TARGET_TAG="${TARGET_TAG:?Set TARGET_TAG (ex: 1.62.0)}"
 BASE_BRANCH="${BASE_BRANCH:-main}"
 SYNC_BRANCH_PREFIX="${SYNC_BRANCH_PREFIX:-automation/sync-luau-lsp}"
@@ -26,9 +41,18 @@ if ! git rev-parse --verify "${REMOTE_SYNC_REF}" >/dev/null 2>&1; then
 fi
 
 if git diff --quiet "${REMOTE_BASE_REF}".."${REMOTE_SYNC_REF}"; then
-	echo "[auto-merge] No changes to merge for ${SYNC_BRANCH}."
+	echo "[auto-merge] No changes to merge/tag for ${SYNC_BRANCH}."
+	echo "::notice::No changes to merge/tag for ${SYNC_BRANCH}."
+	set_output "no_changes" "true"
+	set_output "new_tag" ""
+	append_summary "### Sync result"
+	append_summary "- Status: no changes to merge/tag"
+	append_summary "- Target tag: \`${TARGET_TAG}\`"
+	append_summary "- Sync branch: \`${SYNC_BRANCH}\`"
 	exit 0
 fi
+
+set_output "no_changes" "false"
 
 echo "[auto-merge] Merging ${REMOTE_SYNC_REF} into ${BASE_BRANCH}"
 git checkout "${BASE_BRANCH}"
@@ -79,5 +103,12 @@ NEW_TAG="${TAG_PREFIX}${NEXT_INDEX}"
 echo "[auto-merge] Creating tag ${NEW_TAG}"
 git tag -a "${NEW_TAG}" -m "sharedRequire patched release for ${TARGET_TAG}"
 git push origin "${NEW_TAG}"
+set_output "new_tag" "${NEW_TAG}"
+
+append_summary "### Sync result"
+append_summary "- Status: merged and tagged"
+append_summary "- Target tag: \`${TARGET_TAG}\`"
+append_summary "- Sync branch: \`${SYNC_BRANCH}\`"
+append_summary "- New release tag: \`${NEW_TAG}\`"
 
 echo "[auto-merge] Done. Merged ${SYNC_BRANCH} and pushed ${NEW_TAG}"
