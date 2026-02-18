@@ -1,0 +1,44 @@
+name: Sync upstream main
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "0 */12 * * *"
+
+permissions:
+  contents: write
+
+jobs:
+  sync-main:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout fork repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.BOT_GH_TOKEN }}
+
+      - name: Configure git identity
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+      - name: Sync main from upstream
+        run: |
+          set -euo pipefail
+
+          if ! git remote get-url upstream >/dev/null 2>&1; then
+            git remote add upstream https://github.com/JohnnyMorganz/luau-lsp.git
+          fi
+
+          git fetch upstream main
+          git checkout main
+          git pull --ff-only origin main
+
+          if git merge-base --is-ancestor upstream/main main; then
+            echo "main is already up to date with upstream/main."
+            exit 0
+          fi
+
+          git merge --no-edit upstream/main
+          git push origin main
