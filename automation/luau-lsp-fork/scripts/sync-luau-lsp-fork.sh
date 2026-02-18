@@ -13,31 +13,92 @@ require_cmd curl
 require_cmd node
 require_cmd jq
 
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+PATCH_SCRIPT="${SCRIPT_DIR}/patch-require-tracer.mjs"
+
+log() {
+	echo "[sync] $*"
+}
+
+die() {
+	echo "[sync] $*" >&2
+	exit 1
+}
+
+github_api_get() {
+	local url="$1"
+	local retries="${2:-5}"
+	local attempt=1
+	local delay=2
+	local auth_header=()
+
+	if [[ -n "${GH_TOKEN:-}" ]]; then
+		auth_header=(-H "Authorization: Bearer ${GH_TOKEN}")
+	fi
+
+	while (( attempt <= retries )); do
+		if response="$(curl -fsSL "${auth_header[@]}" -H "Accept: application/vnd.github+json" "${url}")"; then
+			printf '%s\n' "${response}"
+			return 0
+		fi
+
+		if (( attempt == retries )); then
+			break
+		fi
+
+		log "GitHub API request failed (attempt ${attempt}/${retries}). Retrying in ${delay}s..."
+		sleep "${delay}"
+		delay=$((delay * 2))
+		attempt=$((attempt + 1))
+	done
+
+	return 1
+}
+
+resolve_latest_tag() {
+	local latest_json
+	latest_json="$(github_api_get "https://api.github.com/repos/${UPSTREAM_LSP_REPO}/releases/latest")" ||
+		die "Could not fetch latest release from ${UPSTREAM_LSP_REPO}."
+
+	local tag
+	tag="$(printf '%s\n' "${latest_json}" | jq -r '.tag_name')" || true
+	if [[ -z "${tag}" || "${tag}" == "null" ]]; then
+		die "Latest release payload from ${UPSTREAM_LSP_REPO} did not include tag_name."
+	fi
+
+	printf '%s\n' "${tag}"
+}
+
 UPSTREAM_LSP_REPO="${UPSTREAM_LSP_REPO:-JohnnyMorganz/luau-lsp}"
 UPSTREAM_LUAU_REPO="${UPSTREAM_LUAU_REPO:-luau-lang/luau}"
-LUAU_FORK_REPO="${LUAU_FORK_REPO:?Set LUAU_FORK_REPO (ex: yourname/luau)}"
+LUAU_FORK_REPO="${LUAU_FORK_REPO:-}"
 SYNC_BRANCH_PREFIX="${SYNC_BRANCH_PREFIX:-automation/sync-luau-lsp}"
 BASE_BRANCH="${BASE_BRANCH:-main}"
 REQUIRE_LIKE_FUNCTIONS="${REQUIRE_LIKE_FUNCTIONS:-sharedRequire}"
 TARGET_TAG="${TARGET_TAG:-}"
 
+if [[ -z "${LUAU_FORK_REPO}" ]]; then
+	die "LUAU_FORK_REPO is required (example: yourname/luau). Set repo secret LUAU_FORK_REPO."
+fi
+
+if [[ ! -f "${PATCH_SCRIPT}" ]]; then
+	die "patch script not found at ${PATCH_SCRIPT}. Ensure automation files are present in the fork."
+fi
+
 if [[ -z "$TARGET_TAG" ]]; then
-  TARGET_TAG="$(curl -fsSL "https://api.github.com/repos/${UPSTREAM_LSP_REPO}/releases/latest" | jq -r '.tag_name')"
+  TARGET_TAG="$(resolve_latest_tag)"
 fi
 
 if [[ -z "$TARGET_TAG" || "$TARGET_TAG" == "null" ]]; then
-  echo "[sync] Could not resolve TARGET_TAG." >&2
-  exit 1
+  die "Could not resolve TARGET_TAG."
 fi
 
 if ! git rev-parse --is-inside-work-tree >/dev/null 2>&1; then
-  echo "[sync] Run this inside your luau-lsp fork repository." >&2
-  exit 1
+  die "Run this inside your luau-lsp fork repository."
 fi
 
 if [[ ! -f ".gitmodules" ]]; then
-  echo "[sync] .gitmodules not found; this does not look like luau-lsp fork root." >&2
-  exit 1
+  die ".gitmodules not found; this does not look like luau-lsp fork root."
 fi
 
 if ! git remote get-url upstream >/dev/null 2>&1; then
@@ -48,12 +109,12 @@ git fetch upstream --tags --prune
 git fetch origin --prune
 
 SYNC_BRANCH="${SYNC_BRANCH_PREFIX}/${TARGET_TAG}"
-echo "[sync] Preparing branch: ${SYNC_BRANCH} from tag ${TARGET_TAG}"
+log "Preparing branch: ${SYNC_BRANCH} from tag ${TARGET_TAG}"
 
 git checkout -B "${SYNC_BRANCH}" "refs/tags/${TARGET_TAG}"
 git submodule update --init --recursive
 
-echo "[sync] Pointing luau submodule URL to your fork: ${LUAU_FORK_REPO}"
+log "Pointing luau submodule URL to your fork: ${LUAU_FORK_REPO}"
 git config -f .gitmodules submodule.luau.url "https://github.com/${LUAU_FORK_REPO}.git"
 git submodule sync --recursive luau
 
@@ -71,7 +132,7 @@ git fetch origin --prune
 LUAU_BRANCH="${SYNC_BRANCH_PREFIX//\//-}-luau-${TARGET_TAG}"
 git checkout -B "${LUAU_BRANCH}" HEAD
 
-node ../automation/luau-lsp-fork/scripts/patch-require-tracer.mjs \
+node "${PATCH_SCRIPT}" \
   --luau-root . \
   --functions "${REQUIRE_LIKE_FUNCTIONS}"
 
@@ -79,7 +140,7 @@ if ! git diff --quiet; then
   git add Analysis/src/RequireTracer.cpp Analysis/src/ConstraintGenerator.cpp Analysis/src/TypeInfer.cpp Analysis/src/Linter.cpp
   git commit -m "feat(require): treat ${REQUIRE_LIKE_FUNCTIONS} as require-like calls in analysis"
 else
-  echo "[sync] Luau submodule already patched."
+  log "Luau submodule already patched."
 fi
 
 git push --force-with-lease origin "${LUAU_BRANCH}"
@@ -91,13 +152,13 @@ git add .gitmodules luau
 if ! git diff --cached --quiet; then
   git commit -m "chore(sync): ${TARGET_TAG} + require-like patch (${LUAU_SHA:0:8})"
 else
-  echo "[sync] No parent-repo changes staged."
+  log "No parent-repo changes staged."
 fi
 
 git push --force-with-lease origin "${SYNC_BRANCH}"
 
 if [[ -n "${GH_TOKEN:-}" && -n "${GITHUB_REPOSITORY:-}" ]]; then
-  echo "[sync] Attempting to create/update PR in ${GITHUB_REPOSITORY}"
+  log "Attempting to create/update PR in ${GITHUB_REPOSITORY}"
   PR_TITLE="chore: sync luau-lsp ${TARGET_TAG} + sharedRequire patch"
   PR_BODY=$(
     cat <<EOF
@@ -116,7 +177,7 @@ EOF
     -H "Accept: application/vnd.github+json" \
     "https://api.github.com/repos/${GITHUB_REPOSITORY}/pulls" \
     -d "$(jq -nc --arg title "${PR_TITLE}" --arg head "${SYNC_BRANCH}" --arg base "${BASE_BRANCH}" --arg body "${PR_BODY}" '{title:$title, head:$head, base:$base, body:$body}')" \
-    || echo "[sync] PR already exists or could not be created automatically."
+    || log "PR already exists or could not be created automatically."
 fi
 
-echo "[sync] Done. Branch: ${SYNC_BRANCH}"
+log "Done. Branch: ${SYNC_BRANCH}"
