@@ -51,3 +51,15 @@ jobs:
           TARGET_TAG: ${{ github.event.inputs.target_tag }}
         run: |
           bash automation/luau-lsp-fork/scripts/sync-luau-lsp-fork.sh
+
+      - name: Merge sync branch and create release tag
+        env:
+          TARGET_TAG: ${{ github.event.inputs.target_tag }}
+          BASE_BRANCH: main
+          SYNC_BRANCH_PREFIX: automation/sync-luau-lsp
+          PATCH_SUFFIX: sharedrequire
+        run: |
+          if [[ -z "${TARGET_TAG}" ]]; then
+            TARGET_TAG="$(curl -fsSL "https://api.github.com/repos/JohnnyMorganz/luau-lsp/releases/latest" | jq -r '.tag_name')"
+          fi
+          bash automation/luau-lsp-fork/scripts/auto-merge-and-tag.sh
