@@ -59,6 +59,7 @@ jobs:
           SYNC_BRANCH_PREFIX: automation/sync-luau-lsp
           PATCH_SUFFIX: sharedrequire
         run: |
+          git checkout -f "${{ github.sha }}"
           if [[ -z "${TARGET_TAG}" ]]; then
             TARGET_TAG="$(curl -fsSL "https://api.github.com/repos/JohnnyMorganz/luau-lsp/releases/latest" | jq -r '.tag_name')"
           fi
