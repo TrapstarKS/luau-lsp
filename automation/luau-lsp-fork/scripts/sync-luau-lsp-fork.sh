@@ -131,6 +131,9 @@ if ! git remote get-url origin >/dev/null 2>&1; then
   git remote add origin "https://github.com/${LUAU_FORK_REPO}.git"
 fi
 
+git config user.name "${GIT_AUTHOR_NAME:-github-actions[bot]}"
+git config user.email "${GIT_AUTHOR_EMAIL:-41898282+github-actions[bot]@users.noreply.github.com}"
+
 git fetch upstream --tags --prune
 git fetch origin --prune
 
