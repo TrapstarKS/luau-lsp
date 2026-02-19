@@ -116,7 +116,12 @@ git fetch origin --prune
 SYNC_BRANCH="${SYNC_BRANCH_PREFIX}/${TARGET_TAG}"
 log "Preparing branch: ${SYNC_BRANCH} from tag ${TARGET_TAG}"
 
-git checkout -B "${SYNC_BRANCH}" "refs/tags/${TARGET_TAG}"
+if git show-ref --quiet "refs/remotes/origin/${SYNC_BRANCH}"; then
+  log "Reusing existing sync branch baseline: origin/${SYNC_BRANCH}"
+  git checkout -B "${SYNC_BRANCH}" "origin/${SYNC_BRANCH}"
+else
+  git checkout -B "${SYNC_BRANCH}" "refs/tags/${TARGET_TAG}"
+fi
 git submodule update --init --recursive
 
 log "Pointing luau submodule URL to your fork: ${LUAU_FORK_REPO}"
@@ -138,7 +143,12 @@ git fetch upstream --tags --prune
 git fetch origin --prune
 
 LUAU_BRANCH="${SYNC_BRANCH_PREFIX//\//-}-luau-${TARGET_TAG}"
-git checkout -B "${LUAU_BRANCH}" HEAD
+if git show-ref --quiet "refs/remotes/origin/${LUAU_BRANCH}"; then
+  log "Reusing existing luau branch baseline: origin/${LUAU_BRANCH}"
+  git checkout -B "${LUAU_BRANCH}" "origin/${LUAU_BRANCH}"
+else
+  git checkout -B "${LUAU_BRANCH}" HEAD
+fi
 
 node "${PATCH_SCRIPT_RUNTIME}" \
   --luau-root . \

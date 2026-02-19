@@ -40,7 +40,9 @@ if ! git rev-parse --verify "${REMOTE_SYNC_REF}" >/dev/null 2>&1; then
 	exit 1
 fi
 
-if git diff --quiet "${REMOTE_BASE_REF}".."${REMOTE_SYNC_REF}"; then
+# Compare final trees, not commit count/history. This prevents redundant tags
+# when a sync branch is rebased/recreated without real file changes.
+if git diff --quiet "${REMOTE_BASE_REF}" "${REMOTE_SYNC_REF}"; then
 	echo "[auto-merge] No changes to merge/tag for ${SYNC_BRANCH}."
 	echo "::notice::No changes to merge/tag for ${SYNC_BRANCH}."
 	set_output "no_changes" "true"
