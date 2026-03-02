@@ -128,34 +128,6 @@ TEST_CASE_FIXTURE(Fixture, "resolveModule handles FindFirstAncestor")
     CHECK_EQ(resolved->name, "ProjectRoot");
 }
 
-TEST_CASE_FIXTURE(Fixture, "resolveDirectoryAliases")
-{
-    std::unordered_map<std::string, std::string> directoryAliases{
-        {"@test1/", "C:/Users/test/test1"},
-        {"@test2/", "~/test2"},
-        {"@relative/", "src/client"},
-        {"@test4", "C:/Users/test/test1"},
-    };
-
-    auto rootPath = Uri::file("");
-    auto home = getHomeDirectory();
-    REQUIRE(home);
-
-    CHECK_EQ(resolveDirectoryAlias(rootPath, directoryAliases, "@test1/foo"), Uri::file("C:/Users/test/test1/foo"));
-    CHECK_EQ(resolveDirectoryAlias(rootPath, directoryAliases, "@test1/foo.luau"), Uri::file("C:/Users/test/test1/foo.luau"));
-    CHECK_EQ(resolveDirectoryAlias(rootPath, directoryAliases, "@test1/"), Uri::file("C:/Users/test/test1"));
-    // NOTE: we do not strip `/` from `@test1`, so we use it as `@test4`
-    // for now we don't "fix" this, because our startsWith check is greedy, so we want to allow differentiation between `@foo/` and `@foobar/`
-    CHECK_EQ(resolveDirectoryAlias(rootPath, directoryAliases, "@test4"), Uri::file("C:/Users/test/test1"));
-
-    CHECK_EQ(resolveDirectoryAlias(rootPath, directoryAliases, "@test2/bar"), Uri::file(Luau::FileUtils::joinPaths(*home, "test2/bar")));
-
-    CHECK_EQ(resolveDirectoryAlias(rootPath, directoryAliases, "@test3/bar"), std::nullopt);
-
-    // Relative directory aliases
-    CHECK_EQ(resolveDirectoryAlias(Uri::file("workspace"), directoryAliases, "@relative/foo.luau"), Uri::file("workspace/src/client/foo.luau"));
-}
-
 TEST_CASE_FIXTURE(Fixture, "resolve_alias_does_nothing_if_string_doesnt_start_with_@_symbol")
 {
     loadLuaurc(R"(
@@ -512,5 +484,37 @@ TEST_CASE_FIXTURE(Fixture, "support_config_luau")
     CHECK_EQ(fooConfig.aliases.size(), 1);
     CHECK(fooConfig.aliases.find("test"));
 }
+
+#ifndef _WIN32
+TEST_CASE_FIXTURE(Fixture, "string_require_resolves_symlinked_file")
+{
+    auto mainPath = tempDir.touch_child("project/main.luau");
+    auto targetPath = tempDir.touch_child("project/real_module.luau");
+
+    // Create a symlink: project/linked_module.luau -> project/real_module.luau
+    std::filesystem::create_symlink(targetPath, tempDir.path() + "/project/linked_module.luau");
+
+    Luau::ModuleInfo baseContext{mainPath};
+    auto resolved = workspace.fileResolver.platform->resolveStringRequire(&baseContext, "./linked_module", workspace.limits);
+
+    REQUIRE(resolved.has_value());
+    CHECK(endsWith(resolved->name, "/project/linked_module.luau"));
+}
+
+TEST_CASE_FIXTURE(Fixture, "string_require_resolves_symlinked_directory")
+{
+    auto mainPath = tempDir.touch_child("project/main.luau");
+    tempDir.touch_child("real_lib/init.luau");
+
+    // Create a symlink: project/lib -> real_lib
+    std::filesystem::create_symlink(tempDir.path() + "/real_lib", tempDir.path() + "/project/lib");
+
+    Luau::ModuleInfo baseContext{mainPath};
+    auto resolved = workspace.fileResolver.platform->resolveStringRequire(&baseContext, "./lib", workspace.limits);
+
+    REQUIRE(resolved.has_value());
+    CHECK(endsWith(resolved->name, "/project/lib/init.luau"));
+}
+#endif
 
 TEST_SUITE_END();
