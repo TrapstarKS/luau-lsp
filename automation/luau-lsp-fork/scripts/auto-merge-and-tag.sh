@@ -35,14 +35,29 @@ SYNC_BRANCH="${SYNC_BRANCH_PREFIX}/${TARGET_TAG}"
 REMOTE_SYNC_REF="origin/${SYNC_BRANCH}"
 REMOTE_BASE_REF="origin/${BASE_BRANCH}"
 
+git fetch origin --prune
+
 if ! git rev-parse --verify "${REMOTE_SYNC_REF}" >/dev/null 2>&1; then
 	echo "[auto-merge] Sync branch not found: ${REMOTE_SYNC_REF}" >&2
 	exit 1
 fi
 
-# Compare final trees, not commit count/history. This prevents redundant tags
-# when a sync branch is rebased/recreated without real file changes.
-if git diff --quiet "${REMOTE_BASE_REF}" "${REMOTE_SYNC_REF}"; then
+# If sync tip is already reachable from base, there is nothing new to merge.
+if git merge-base --is-ancestor "${REMOTE_SYNC_REF}" "${REMOTE_BASE_REF}"; then
+	echo "[auto-merge] Sync branch already merged into ${BASE_BRANCH}; skipping merge/tag."
+	echo "::notice::Sync branch already merged into ${BASE_BRANCH}; skipping merge/tag."
+	set_output "no_changes" "true"
+	set_output "new_tag" ""
+	append_summary "### Sync result"
+	append_summary "- Status: already merged (no new changes)"
+	append_summary "- Target tag: \`${TARGET_TAG}\`"
+	append_summary "- Sync branch: \`${SYNC_BRANCH}\`"
+	exit 0
+fi
+
+# Compare only changes introduced by sync branch since merge-base.
+# This avoids false positives when base has unrelated commits.
+if git diff --quiet "${REMOTE_BASE_REF}...${REMOTE_SYNC_REF}"; then
 	echo "[auto-merge] No changes to merge/tag for ${SYNC_BRANCH}."
 	echo "::notice::No changes to merge/tag for ${SYNC_BRANCH}."
 	set_output "no_changes" "true"
