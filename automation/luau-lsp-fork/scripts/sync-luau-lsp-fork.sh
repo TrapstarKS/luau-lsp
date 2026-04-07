@@ -26,6 +26,16 @@ die() {
 	exit 1
 }
 
+github_repo_url() {
+	local repo="$1"
+
+	if [[ -n "${GH_TOKEN:-}" ]]; then
+		printf 'https://x-access-token:%s@github.com/%s.git\n' "${GH_TOKEN}" "${repo}"
+	else
+		printf 'https://github.com/%s.git\n' "${repo}"
+	fi
+}
+
 github_api_get() {
 	local url="$1"
 	local retries="${2:-5}"
@@ -132,9 +142,8 @@ pushd luau >/dev/null
 if ! git remote get-url upstream >/dev/null 2>&1; then
   git remote add upstream "https://github.com/${UPSTREAM_LUAU_REPO}.git"
 fi
-if ! git remote get-url origin >/dev/null 2>&1; then
-  git remote add origin "https://github.com/${LUAU_FORK_REPO}.git"
-fi
+git remote remove origin >/dev/null 2>&1 || true
+git remote add origin "$(github_repo_url "${LUAU_FORK_REPO}")"
 
 git config user.name "${GIT_AUTHOR_NAME:-github-actions[bot]}"
 git config user.email "${GIT_AUTHOR_EMAIL:-41898282+github-actions[bot]@users.noreply.github.com}"
