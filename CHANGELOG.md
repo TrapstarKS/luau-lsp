@@ -6,6 +6,31 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ## [Unreleased]
 
+## [1.65.0] - 2026-04-06
+
+### Added
+
+- String requires are now sourcemap-aware when in Roblox mode. Relative requires from sourcemap-managed files walk the DataModel tree instead of the filesystem ([#1141](https://github.com/JohnnyMorganz/luau-lsp/issues/1141))
+- Added built-in `@game` alias for string requires in Roblox mode, resolving from the sourcemap root. User-defined `@game` in `.luaurc` takes precedence ([#1347](https://github.com/JohnnyMorganz/luau-lsp/issues/1347)). This alias is now considered during string require autocomplete when in Roblox mode.
+- Added refactoring code actions: Extract to local variable, Extract to function, Inline variable ([#606](https://github.com/JohnnyMorganz/luau-lsp/issues/606))
+- Added experimental Luau-based plugin system to allow you to perform source code transformations before Luau processes your code. This is useful for implementing features such as custom require resolution. This feature is still experimental and the API is subject to change in future releases. See [Plugin README](src/Plugin/README.md) for more information
+
+### Changed
+
+- Sync to upstream Luau 0.715
+
+### Fixed
+
+- Fixed crash when parsing YAML files with empty values (e.g. `key:` with no value)
+- Find All References, Rename, and auto imports no longer break after a sourcemap update ([#1115](https://github.com/JohnnyMorganz/luau-lsp/issues/1115))
+- Fixed fragment autocomplete incorrectly triggering inside comments when the cursor is positioned before any statement in the file ([#1416](https://github.com/JohnnyMorganz/luau-lsp/issues/1416))
+
+## [1.64.1] - 2026-03-30
+
+### Changed
+
+- Sync to upstream Luau 0.714
+
 ## [1.64.0] - 2026-03-29
 
 ### Changed

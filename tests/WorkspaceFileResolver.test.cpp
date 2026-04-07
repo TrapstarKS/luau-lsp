@@ -1,5 +1,6 @@
 #include "doctest.h"
 #include "Fixture.h"
+#include "RobloxTestConstants.h"
 #include "LSP/WorkspaceFileResolver.hpp"
 #include "Platform/RobloxPlatform.hpp"
 #include "Luau/Ast.h"
@@ -516,5 +517,375 @@ TEST_CASE_FIXTURE(Fixture, "string_require_resolves_symlinked_directory")
     CHECK(endsWith(resolved->name, "/project/lib/init.luau"));
 }
 #endif
+
+TEST_CASE_FIXTURE(Fixture, "sourcemap_string_require_resolves_sibling")
+{
+    client->globalConfig.completion.imports.stringRequires.enabled = true;
+    loadSourcemap(SOURCEMAP_FOR_STRING_REQUIRES);
+
+    Luau::ModuleInfo baseContext{"game/ReplicatedStorage/Shared/ModuleA"};
+    auto result = workspace.fileResolver.platform->resolveStringRequire(&baseContext, "./ModuleB", workspace.limits);
+
+    REQUIRE(result.has_value());
+    CHECK_EQ(result->name, "game/ReplicatedStorage/Shared/ModuleB");
+}
+
+TEST_CASE_FIXTURE(Fixture, "sourcemap_string_require_resolves_bare_name")
+{
+    client->globalConfig.completion.imports.stringRequires.enabled = true;
+    loadSourcemap(SOURCEMAP_FOR_STRING_REQUIRES);
+
+    Luau::ModuleInfo baseContext{"game/ReplicatedStorage/Shared/ModuleA"};
+    auto result = workspace.fileResolver.platform->resolveStringRequire(&baseContext, "ModuleB", workspace.limits);
+
+    REQUIRE(result.has_value());
+    CHECK_EQ(result->name, "game/ReplicatedStorage/Shared/ModuleB");
+}
+
+TEST_CASE_FIXTURE(Fixture, "sourcemap_string_require_resolves_parent_traversal")
+{
+    client->globalConfig.completion.imports.stringRequires.enabled = true;
+    loadSourcemap(SOURCEMAP_FOR_STRING_REQUIRES);
+
+    Luau::ModuleInfo baseContext{"game/ReplicatedStorage/Shared/ModuleA"};
+    auto result = workspace.fileResolver.platform->resolveStringRequire(&baseContext, "../Utils", workspace.limits);
+
+    REQUIRE(result.has_value());
+    CHECK_EQ(result->name, "game/ReplicatedStorage/Utils");
+}
+
+TEST_CASE_FIXTURE(Fixture, "sourcemap_string_require_resolves_nested_path")
+{
+    client->globalConfig.completion.imports.stringRequires.enabled = true;
+    loadSourcemap(SOURCEMAP_FOR_STRING_REQUIRES);
+
+    Luau::ModuleInfo baseContext{"game/ReplicatedStorage/Shared/ModuleA"};
+    auto result = workspace.fileResolver.platform->resolveStringRequire(&baseContext, "./Nested/DeepModule", workspace.limits);
+
+    REQUIRE(result.has_value());
+    CHECK_EQ(result->name, "game/ReplicatedStorage/Shared/Nested/DeepModule");
+}
+
+TEST_CASE_FIXTURE(Fixture, "sourcemap_string_require_resolves_cross_service")
+{
+    client->globalConfig.completion.imports.stringRequires.enabled = true;
+    loadSourcemap(SOURCEMAP_FOR_STRING_REQUIRES);
+
+    // From ModuleA (parent=Shared), ../../ goes Shared->ReplicatedStorage->Game(root)
+    Luau::ModuleInfo baseContext{"game/ReplicatedStorage/Shared/ModuleA"};
+    auto result = workspace.fileResolver.platform->resolveStringRequire(
+        &baseContext, "../../ServerScriptService/ServerModule", workspace.limits);
+
+    REQUIRE(result.has_value());
+    CHECK_EQ(result->name, "game/ServerScriptService/ServerModule");
+}
+
+TEST_CASE_FIXTURE(Fixture, "sourcemap_string_require_resolves_nonexistent_path")
+{
+    client->globalConfig.completion.imports.stringRequires.enabled = true;
+    loadSourcemap(SOURCEMAP_FOR_STRING_REQUIRES);
+
+    Luau::ModuleInfo baseContext{"game/ReplicatedStorage/Shared/ModuleA"};
+    auto result = workspace.fileResolver.platform->resolveStringRequire(&baseContext, "./NonExistent", workspace.limits);
+
+    REQUIRE(result.has_value());
+    CHECK_EQ(result->name, "game/ReplicatedStorage/Shared/NonExistent");
+}
+
+TEST_CASE_FIXTURE(Fixture, "sourcemap_string_require_returns_nullopt_past_root")
+{
+    client->globalConfig.completion.imports.stringRequires.enabled = true;
+    loadSourcemap(SOURCEMAP_FOR_STRING_REQUIRES);
+
+    Luau::ModuleInfo baseContext{"game/ReplicatedStorage/Utils"};
+    auto result = workspace.fileResolver.platform->resolveStringRequire(&baseContext, "../../../..", workspace.limits);
+
+    CHECK_FALSE(result.has_value());
+}
+
+TEST_CASE_FIXTURE(Fixture, "sourcemap_string_require_falls_back_for_non_sourcemap_file")
+{
+    client->globalConfig.completion.imports.stringRequires.enabled = true;
+    loadSourcemap(SOURCEMAP_FOR_STRING_REQUIRES);
+
+    auto mainPath = tempDir.touch_child("standalone/main.luau");
+    auto otherPath = tempDir.touch_child("standalone/other.luau");
+
+    Luau::ModuleInfo baseContext{mainPath};
+    auto result = workspace.fileResolver.platform->resolveStringRequire(&baseContext, "./other", workspace.limits);
+
+    REQUIRE(result.has_value());
+    CHECK_EQ(Uri::file(result->name), Uri::file(otherPath));
+}
+
+TEST_CASE_FIXTURE(Fixture, "sourcemap_game_alias_resolves_from_root")
+{
+    client->globalConfig.completion.imports.stringRequires.enabled = true;
+    loadSourcemap(SOURCEMAP_FOR_STRING_REQUIRES);
+
+    Luau::ModuleInfo baseContext{"game/ServerScriptService/ServerModule"};
+    auto result = workspace.fileResolver.platform->resolveStringRequire(
+        &baseContext, "@game/ReplicatedStorage/Shared/ModuleA", workspace.limits);
+
+    REQUIRE(result.has_value());
+    CHECK_EQ(result->name, "game/ReplicatedStorage/Shared/ModuleA");
+}
+
+TEST_CASE_FIXTURE(Fixture, "sourcemap_game_alias_resolves_nonexistent_path")
+{
+    client->globalConfig.completion.imports.stringRequires.enabled = true;
+    loadSourcemap(SOURCEMAP_FOR_STRING_REQUIRES);
+
+    Luau::ModuleInfo baseContext{"game/ReplicatedStorage/Shared/ModuleA"};
+    auto result = workspace.fileResolver.platform->resolveStringRequire(&baseContext, "@game/NonExistent/Module", workspace.limits);
+
+    REQUIRE(result.has_value());
+    CHECK_EQ(result->name, "game/NonExistent/Module");
+}
+
+TEST_CASE_FIXTURE(Fixture, "sourcemap_user_defined_game_alias_takes_precedence")
+{
+    client->globalConfig.completion.imports.stringRequires.enabled = true;
+    loadSourcemap(SOURCEMAP_FOR_STRING_REQUIRES);
+
+    auto gameDirModule = tempDir.touch_child("game_alias/MyModule.luau");
+    loadLuaurc(R"(
+    {
+        "aliases": {
+            "game": "game_alias"
+        }
+    }
+    )");
+
+    Luau::ModuleInfo baseContext{"game/ReplicatedStorage/Shared/ModuleA"};
+    auto result = workspace.fileResolver.platform->resolveStringRequire(&baseContext, "@game/MyModule", workspace.limits);
+
+    REQUIRE(result.has_value());
+    CHECK_EQ(Uri::file(result->name), Uri::file(gameDirModule));
+}
+
+TEST_CASE_FIXTURE(Fixture, "sourcemap_user_defined_alias_resolves_via_filesystem")
+{
+    client->globalConfig.completion.imports.stringRequires.enabled = true;
+    loadSourcemap(SOURCEMAP_FOR_STRING_REQUIRES);
+
+    auto sharedModule = tempDir.touch_child("shared_libs/Helper.luau");
+    loadLuaurc(R"(
+    {
+        "aliases": {
+            "shared": "shared_libs"
+        }
+    }
+    )");
+
+    Luau::ModuleInfo baseContext{"game/ReplicatedStorage/Shared/ModuleA"};
+    auto result = workspace.fileResolver.platform->resolveStringRequire(&baseContext, "@shared/Helper", workspace.limits);
+
+    REQUIRE(result.has_value());
+    CHECK_EQ(Uri::file(result->name), Uri::file(sharedModule));
+}
+
+TEST_CASE_FIXTURE(Fixture, "sourcemap_string_require_resolves_json_data_file")
+{
+    client->globalConfig.completion.imports.stringRequires.enabled = true;
+
+    auto jsonPath = tempDir.write_child("data/settings.json", R"({"enabled": true})");
+    auto luauPath = tempDir.write_child("src/main.luau", "");
+
+    auto sourcemap = std::string(R"(
+    {
+        "name": "Game",
+        "className": "DataModel",
+        "children": [
+            {
+                "name": "ReplicatedStorage",
+                "className": "ReplicatedStorage",
+                "children": [
+                    {"name": "Settings", "className": "ModuleScript", "filePaths": ["{jsonPath}"]},
+                    {"name": "Main", "className": "ModuleScript", "filePaths": ["{luauPath}"]}
+                ]
+            }
+        ]
+    }
+    )");
+    replace(sourcemap, "{jsonPath}", jsonPath);
+    replace(sourcemap, "{luauPath}", luauPath);
+    loadSourcemap(sourcemap);
+
+    Luau::ModuleInfo baseContext{"game/ReplicatedStorage/Main"};
+    auto result = workspace.fileResolver.platform->resolveStringRequire(&baseContext, "./Settings", workspace.limits);
+
+    REQUIRE(result.has_value());
+    CHECK_EQ(result->name, "game/ReplicatedStorage/Settings");
+
+    auto source = workspace.fileResolver.readSource(result->name);
+    REQUIRE(source);
+    CHECK_EQ(source->source, "--!strict\nreturn {[\"enabled\"] = true;}");
+}
+
+TEST_CASE_FIXTURE(Fixture, "sourcemap_string_require_resolves_toml_data_file")
+{
+    client->globalConfig.completion.imports.stringRequires.enabled = true;
+
+    auto tomlPath = tempDir.write_child("data/settings.toml", "enabled = true");
+    auto luauPath = tempDir.write_child("src/main.luau", "");
+
+    auto sourcemap = std::string(R"(
+    {
+        "name": "Game",
+        "className": "DataModel",
+        "children": [
+            {
+                "name": "ReplicatedStorage",
+                "className": "ReplicatedStorage",
+                "children": [
+                    {"name": "Settings", "className": "ModuleScript", "filePaths": ["{tomlPath}"]},
+                    {"name": "Main", "className": "ModuleScript", "filePaths": ["{luauPath}"]}
+                ]
+            }
+        ]
+    }
+    )");
+    replace(sourcemap, "{tomlPath}", tomlPath);
+    replace(sourcemap, "{luauPath}", luauPath);
+    loadSourcemap(sourcemap);
+
+    Luau::ModuleInfo baseContext{"game/ReplicatedStorage/Main"};
+    auto result = workspace.fileResolver.platform->resolveStringRequire(&baseContext, "./Settings", workspace.limits);
+
+    REQUIRE(result.has_value());
+    CHECK_EQ(result->name, "game/ReplicatedStorage/Settings");
+
+    auto source = workspace.fileResolver.readSource(result->name);
+    REQUIRE(source);
+    CHECK_EQ(source->source, "--!strict\nreturn {[\"enabled\"] = true;}");
+}
+
+TEST_CASE_FIXTURE(Fixture, "sourcemap_string_require_resolves_yaml_data_file")
+{
+    client->globalConfig.completion.imports.stringRequires.enabled = true;
+
+    auto yamlPath = tempDir.write_child("data/settings.yaml", "enabled: true");
+    auto luauPath = tempDir.write_child("src/main.luau", "");
+
+    auto sourcemap = std::string(R"(
+    {
+        "name": "Game",
+        "className": "DataModel",
+        "children": [
+            {
+                "name": "ReplicatedStorage",
+                "className": "ReplicatedStorage",
+                "children": [
+                    {"name": "Settings", "className": "ModuleScript", "filePaths": ["{yamlPath}"]},
+                    {"name": "Main", "className": "ModuleScript", "filePaths": ["{luauPath}"]}
+                ]
+            }
+        ]
+    }
+    )");
+    replace(sourcemap, "{yamlPath}", yamlPath);
+    replace(sourcemap, "{luauPath}", luauPath);
+    loadSourcemap(sourcemap);
+
+    Luau::ModuleInfo baseContext{"game/ReplicatedStorage/Main"};
+    auto result = workspace.fileResolver.platform->resolveStringRequire(&baseContext, "./Settings", workspace.limits);
+
+    REQUIRE(result.has_value());
+    CHECK_EQ(result->name, "game/ReplicatedStorage/Settings");
+
+    auto source = workspace.fileResolver.readSource(result->name);
+    REQUIRE(source);
+    CHECK_EQ(source->source, "--!strict\nreturn {[\"enabled\"] = true;}");
+}
+
+TEST_CASE_FIXTURE(Fixture, "sourcemap_string_require_game_alias_resolves_data_file")
+{
+    client->globalConfig.completion.imports.stringRequires.enabled = true;
+
+    auto jsonPath = tempDir.write_child("data/config.json", R"({"key": "value"})");
+    auto luauPath = tempDir.write_child("src/server.luau", "");
+
+    auto sourcemap = std::string(R"(
+    {
+        "name": "Game",
+        "className": "DataModel",
+        "children": [
+            {
+                "name": "ReplicatedStorage",
+                "className": "ReplicatedStorage",
+                "children": [
+                    {"name": "Config", "className": "ModuleScript", "filePaths": ["{jsonPath}"]}
+                ]
+            },
+            {
+                "name": "ServerScriptService",
+                "className": "ServerScriptService",
+                "children": [
+                    {"name": "Server", "className": "ModuleScript", "filePaths": ["{luauPath}"]}
+                ]
+            }
+        ]
+    }
+    )");
+    replace(sourcemap, "{jsonPath}", jsonPath);
+    replace(sourcemap, "{luauPath}", luauPath);
+    loadSourcemap(sourcemap);
+
+    Luau::ModuleInfo baseContext{"game/ServerScriptService/Server"};
+    auto result = workspace.fileResolver.platform->resolveStringRequire(
+        &baseContext, "@game/ReplicatedStorage/Config", workspace.limits);
+
+    REQUIRE(result.has_value());
+    CHECK_EQ(result->name, "game/ReplicatedStorage/Config");
+
+    auto source = workspace.fileResolver.readSource(result->name);
+    REQUIRE(source);
+    CHECK_EQ(source->source, "--!strict\nreturn {[\"key\"] = \"value\";}");
+}
+
+TEST_CASE_FIXTURE(Fixture, "sourcemap_string_require_relative_parent_resolves_data_file")
+{
+    client->globalConfig.completion.imports.stringRequires.enabled = true;
+
+    auto jsonPath = tempDir.write_child("data/config.json", R"({"count": 42})");
+    auto luauPath = tempDir.write_child("src/nested/script.luau", "");
+
+    auto sourcemap = std::string(R"(
+    {
+        "name": "Game",
+        "className": "DataModel",
+        "children": [
+            {
+                "name": "ReplicatedStorage",
+                "className": "ReplicatedStorage",
+                "children": [
+                    {"name": "Config", "className": "ModuleScript", "filePaths": ["{jsonPath}"]},
+                    {
+                        "name": "Nested",
+                        "className": "Folder",
+                        "children": [
+                            {"name": "Script", "className": "ModuleScript", "filePaths": ["{luauPath}"]}
+                        ]
+                    }
+                ]
+            }
+        ]
+    }
+    )");
+    replace(sourcemap, "{jsonPath}", jsonPath);
+    replace(sourcemap, "{luauPath}", luauPath);
+    loadSourcemap(sourcemap);
+
+    Luau::ModuleInfo baseContext{"game/ReplicatedStorage/Nested/Script"};
+    auto result = workspace.fileResolver.platform->resolveStringRequire(&baseContext, "../Config", workspace.limits);
+
+    REQUIRE(result.has_value());
+    CHECK_EQ(result->name, "game/ReplicatedStorage/Config");
+
+    auto source = workspace.fileResolver.readSource(result->name);
+    REQUIRE(source);
+    CHECK_EQ(source->source, "--!strict\nreturn {[\"count\"] = 42;}");
+}
 
 TEST_SUITE_END();
