@@ -81,18 +81,27 @@ MERGE_EXIT=$?
 set -e
 
 if [[ ${MERGE_EXIT} -ne 0 ]]; then
-	echo "[auto-merge] Merge had conflicts, attempting luau submodule fallback."
-	CONFLICTS="$(git diff --name-only --diff-filter=U || true)"
-	if [[ "${CONFLICTS}" != "luau" ]]; then
-		echo "[auto-merge] Conflicts are not limited to submodule 'luau':" >&2
-		echo "${CONFLICTS}" >&2
-		git merge --abort || true
-		exit 1
-	fi
+	echo "[auto-merge] Merge had conflicts, attempting known conflict resolution."
+	mapfile -t CONFLICTS < <(git diff --name-only --diff-filter=U || true)
 
-	git checkout "${REMOTE_SYNC_REF}" -- luau
-	git add luau
-	git commit -m "chore(sync): resolve luau submodule merge for ${TARGET_TAG}"
+	for conflict in "${CONFLICTS[@]}"; do
+		case "${conflict}" in
+			luau | .gitmodules)
+				git checkout "${REMOTE_SYNC_REF}" -- "${conflict}"
+				;;
+			.github/workflows/release.yml)
+				git checkout "${REMOTE_BASE_REF}" -- "${conflict}"
+				;;
+			*)
+				echo "[auto-merge] Unsupported merge conflict: ${conflict}" >&2
+				git merge --abort || true
+				exit 1
+				;;
+		esac
+	done
+
+	git add "${CONFLICTS[@]}"
+	git commit -m "chore(sync): resolve merge conflicts for ${TARGET_TAG}"
 fi
 
 git push origin "${BASE_BRANCH}"
