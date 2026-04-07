@@ -116,6 +116,10 @@ if [[ ! -f ".gitmodules" ]]; then
   die ".gitmodules not found; this does not look like luau-lsp fork root."
 fi
 
+if [[ -n "${GH_TOKEN:-}" && -n "${GITHUB_REPOSITORY:-}" ]]; then
+  git remote set-url origin "$(github_repo_url "${GITHUB_REPOSITORY}")"
+fi
+
 if ! git remote get-url upstream >/dev/null 2>&1; then
   git remote add upstream "https://github.com/${UPSTREAM_LSP_REPO}.git"
 fi
