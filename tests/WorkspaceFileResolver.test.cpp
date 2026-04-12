@@ -223,6 +223,30 @@ TEST_CASE_FIXTURE(Fixture, "resolve_alias_supports_self_alias")
     CHECK_EQ(resolveAlias("@self/foo", workspace.fileResolver.defaultConfig, basePath), basePath.resolvePath("foo"));
 }
 
+TEST_CASE_FIXTURE(Fixture, "string_require_resolves_tilde_alias_end_to_end")
+{
+    // This test goes through resolveStringRequire (not resolveAlias directly) to catch
+    // regressions where tilde expansion is broken in the require resolution path.
+    // The .luaurc is written to disk because require resolution reads configs from disk.
+    auto mainPath = tempDir.touch_child("main.luau");
+    tempDir.write_child(".luaurc", R"({
+        "aliases": {
+            "test": "~/definitions"
+        }
+    })");
+
+    auto home = getHomeDirectory();
+    REQUIRE(home);
+
+    Luau::ModuleInfo baseContext{mainPath};
+    auto result = workspace.platform->resolveStringRequire(&baseContext, "@test/module", workspace.limits);
+
+    REQUIRE(result.has_value());
+    // The ~ should be expanded: the resolved path must be under the home directory
+    auto definitionsUri = Uri::file(Luau::FileUtils::joinPaths(*home, "definitions"));
+    CHECK(definitionsUri.isAncestorOf(Uri::file(result->name)));
+}
+
 TEST_CASE_FIXTURE(Fixture, "string require doesn't add file extension if already exists")
 {
     Luau::ModuleInfo baseContext{workspace.fileResolver.getModuleName(workspace.rootUri)};
@@ -641,6 +665,33 @@ TEST_CASE_FIXTURE(Fixture, "sourcemap_game_alias_resolves_nonexistent_path")
 
     REQUIRE(result.has_value());
     CHECK_EQ(result->name, "game/NonExistent/Module");
+}
+
+TEST_CASE_FIXTURE(Fixture, "sourcemap_self_alias_resolves_from_module")
+{
+    client->globalConfig.completion.imports.stringRequires.enabled = true;
+    loadSourcemap(R"(
+    {
+        "name": "Game",
+        "className": "DataModel",
+        "children": [
+            {
+                "name": "Library",
+                "className": "ModuleScript",
+                "filePaths": ["lib/init.luau"],
+                "children": [{"name": "Helper", "className": "ModuleScript", "filePaths": ["lib/Helper.luau"]}]
+            }
+        ]
+    }
+    )");
+
+    tempDir.touch_child("lib/Helper.luau");
+
+    Luau::ModuleInfo baseContext{"game/Library"};
+    auto result = workspace.fileResolver.platform->resolveStringRequire(&baseContext, "@self/Helper", workspace.limits);
+
+    REQUIRE(result.has_value());
+    CHECK_EQ(result->name, "game/Library/Helper");
 }
 
 TEST_CASE_FIXTURE(Fixture, "sourcemap_user_defined_game_alias_takes_precedence")
