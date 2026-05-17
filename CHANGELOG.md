@@ -6,6 +6,23 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ## [Unreleased]
 
+## [1.68.0] - 2026-05-16
+
+### Changed
+
+- Improved anonymous autofilled function completions ([#688](https://github.com/JohnnyMorganz/luau-lsp/issues/688)):
+  - The generated snippet now places the cursor (`$0`) inside the function body and adds snippet tabstops on each parameter name for quick editing. If you do not want tabstops on parameter names, disable `luau-lsp.completion.anonymousAutofilledFunction.addTabstopForParameters` (default: `true`)
+  - Type annotations in the generated snippet can be disabled via setting `luau-lsp.completion.anonymousAutofilledFunction.addTypeAnnotations` (default: `true`)
+  - Deprecated setting `luau-lsp.completion.showAnonymousAutofilledFunction` in favour of `luau-lsp.completion.anonymousAutofilledFunction.enabled`
+- Sync to upstream Luau 0.721
+
+### Fixed
+
+- Fixed incorrect description for `require()` when platform is set to "standard." ([#1479](https://github.com/JohnnyMorganz/luau-lsp/issues/1479))
+- Fixed module aliases pointing to absolute Windows paths (e.g. `C:\...`) causing the type checker to load the same file twice under different module names, producing spurious type mismatch errors.
+- Fixed autocomplete-end incorrectly inserting `then`/`end` inside a string literal when Enter is pressed with the cursor inside a string used as an `if`/`while` condition ([#1453](https://github.com/JohnnyMorganz/luau-lsp/issues/1453))
+- Fixed `luau-lsp.completion.imports.useConst` setting missing from the VSCode extension manifest
+
 ## [1.67.0] - 2026-05-10
 
 ### Added

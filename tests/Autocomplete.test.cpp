@@ -1697,6 +1697,164 @@ TEST_CASE_FIXTURE(Fixture, "autocomplete_do_in_numeric_for_loop_missing_step")
     CHECK_EQ(edits[1].newText, "        end\n");
 }
 
+TEST_CASE_FIXTURE(Fixture, "no_autocomplete_end_when_cursor_inside_double_quoted_string_in_if_condition")
+{
+    client->globalConfig.completion.autocompleteEnd = true;
+
+    auto [source, marker] = sourceWithMarker("if \"\n|\"\n");
+
+    auto uri = newDocument("foo.luau", source);
+
+    lsp::CompletionParams params;
+    params.textDocument = lsp::TextDocumentIdentifier{uri};
+    params.position = marker;
+    params.context = lsp::CompletionContext{};
+    params.context->triggerCharacter = "\n";
+
+    auto queueSizeBefore = client->requestQueue.size();
+    workspace.completion(params, nullptr);
+    REQUIRE_EQ(client->requestQueue.size(), queueSizeBefore);
+}
+
+TEST_CASE_FIXTURE(Fixture, "no_autocomplete_end_when_cursor_inside_single_quoted_string_in_if_condition")
+{
+    client->globalConfig.completion.autocompleteEnd = true;
+
+    auto [source, marker] = sourceWithMarker("if '\n|'\n");
+
+    auto uri = newDocument("foo.luau", source);
+
+    lsp::CompletionParams params;
+    params.textDocument = lsp::TextDocumentIdentifier{uri};
+    params.position = marker;
+    params.context = lsp::CompletionContext{};
+    params.context->triggerCharacter = "\n";
+
+    auto queueSizeBefore = client->requestQueue.size();
+    workspace.completion(params, nullptr);
+    REQUIRE_EQ(client->requestQueue.size(), queueSizeBefore);
+}
+
+TEST_CASE_FIXTURE(Fixture, "no_autocomplete_end_when_cursor_inside_string_in_while_condition")
+{
+    client->globalConfig.completion.autocompleteEnd = true;
+
+    auto [source, marker] = sourceWithMarker("while \"\n|\"\n");
+
+    auto uri = newDocument("foo.luau", source);
+
+    lsp::CompletionParams params;
+    params.textDocument = lsp::TextDocumentIdentifier{uri};
+    params.position = marker;
+    params.context = lsp::CompletionContext{};
+    params.context->triggerCharacter = "\n";
+
+    auto queueSizeBefore = client->requestQueue.size();
+    workspace.completion(params, nullptr);
+    REQUIRE_EQ(client->requestQueue.size(), queueSizeBefore);
+}
+
+TEST_CASE_FIXTURE(Fixture, "no_autocomplete_end_when_cursor_inside_backtick_string_in_if_condition")
+{
+    client->globalConfig.completion.autocompleteEnd = true;
+
+    auto [source, marker] = sourceWithMarker("if `\n|`\n");
+
+    auto uri = newDocument("foo.luau", source);
+
+    lsp::CompletionParams params;
+    params.textDocument = lsp::TextDocumentIdentifier{uri};
+    params.position = marker;
+    params.context = lsp::CompletionContext{};
+    params.context->triggerCharacter = "\n";
+
+    auto queueSizeBefore = client->requestQueue.size();
+    workspace.completion(params, nullptr);
+    REQUIRE_EQ(client->requestQueue.size(), queueSizeBefore);
+}
+
+TEST_CASE_FIXTURE(Fixture, "no_autocomplete_end_when_cursor_inside_string_in_for_in_condition")
+{
+    client->globalConfig.completion.autocompleteEnd = true;
+
+    auto [source, marker] = sourceWithMarker("for i in \"\n|\"\n");
+
+    auto uri = newDocument("foo.luau", source);
+
+    lsp::CompletionParams params;
+    params.textDocument = lsp::TextDocumentIdentifier{uri};
+    params.position = marker;
+    params.context = lsp::CompletionContext{};
+    params.context->triggerCharacter = "\n";
+
+    auto queueSizeBefore = client->requestQueue.size();
+    workspace.completion(params, nullptr);
+    REQUIRE_EQ(client->requestQueue.size(), queueSizeBefore);
+}
+
+TEST_CASE_FIXTURE(Fixture, "no_autocomplete_end_when_cursor_inside_string_in_complex_if_condition")
+{
+    client->globalConfig.completion.autocompleteEnd = true;
+
+    auto [source, marker] = sourceWithMarker("if x == \"\n|\"\n");
+
+    auto uri = newDocument("foo.luau", source);
+
+    lsp::CompletionParams params;
+    params.textDocument = lsp::TextDocumentIdentifier{uri};
+    params.position = marker;
+    params.context = lsp::CompletionContext{};
+    params.context->triggerCharacter = "\n";
+
+    auto queueSizeBefore = client->requestQueue.size();
+    workspace.completion(params, nullptr);
+    REQUIRE_EQ(client->requestQueue.size(), queueSizeBefore);
+}
+
+TEST_CASE_FIXTURE(Fixture, "no_autocomplete_end_when_cursor_after_unclosed_string_in_if_condition")
+{
+    client->globalConfig.completion.autocompleteEnd = true;
+
+    auto [source, marker] = sourceWithMarker("if \"\n|\n");
+
+    auto uri = newDocument("foo.luau", source);
+
+    lsp::CompletionParams params;
+    params.textDocument = lsp::TextDocumentIdentifier{uri};
+    params.position = marker;
+    params.context = lsp::CompletionContext{};
+    params.context->triggerCharacter = "\n";
+
+    auto queueSizeBefore = client->requestQueue.size();
+    workspace.completion(params, nullptr);
+    REQUIRE_EQ(client->requestQueue.size(), queueSizeBefore);
+}
+
+TEST_CASE_FIXTURE(Fixture, "autocomplete_then_when_cursor_after_string_in_if_condition")
+{
+    client->globalConfig.completion.autocompleteEnd = true;
+
+    auto [source, marker] = sourceWithMarker(R"(
+        if ""
+        |
+    )");
+
+    auto uri = newDocument("foo.luau", source);
+
+    lsp::CompletionParams params;
+    params.textDocument = lsp::TextDocumentIdentifier{uri};
+    params.position = marker;
+    params.context = lsp::CompletionContext{};
+    params.context->triggerCharacter = "\n";
+
+    auto result = workspace.completion(params, nullptr);
+    auto edits = requireEndAutocompletionEdits(client.get(), uri);
+    REQUIRE_EQ(edits.size(), 2);
+    CHECK_EQ(edits[0].newText, " then");
+    CHECK_EQ(edits[1].range, lsp::Range{{marker.line + 1, 0}, {marker.line + 1, 0}});
+    CHECK_EQ(edits[1].newText, "        end\n");
+}
+
 TEST_CASE_FIXTURE(Fixture, "dont_mark_type_as_function_kind_when_autocompleting_in_type_context")
 {
     auto [source, marker] = sourceWithMarker(R"(
@@ -2165,6 +2323,211 @@ TEST_CASE_FIXTURE(Fixture, "sourcemap_autocomplete_shows_self_alias_children")
     REQUIRE_EQ(result.size(), 2);
     checkFolderCompletionExists(result, "..", "@self");
     checkFileCompletionExists(result, "Helper.luau", "@self/Helper");
+}
+
+TEST_CASE_FIXTURE(Fixture, "anonymous_autofilled_function_new_enabled_config_hides_entry")
+{
+    client->globalConfig.completion.anonymousAutofilledFunction.enabled = false;
+
+    auto [source, marker] = sourceWithMarker(R"(
+        local function foo(cb: () -> ())
+        end
+        foo(|)
+    )");
+
+    auto uri = newDocument("foo.luau", source);
+
+    lsp::CompletionParams params;
+    params.textDocument = lsp::TextDocumentIdentifier{uri};
+    params.position = marker;
+
+    auto result = workspace.completion(params, nullptr);
+    CHECK_FALSE(getItem(result, "function (anonymous autofilled)"));
+}
+
+TEST_CASE_FIXTURE(Fixture, "deprecated_show_anonymous_autofilled_function_false_hides_entry")
+{
+    client->globalConfig.completion.showAnonymousAutofilledFunction = false;
+
+    auto [source, marker] = sourceWithMarker(R"(
+        local function foo(cb: () -> ())
+        end
+        foo(|)
+    )");
+
+    auto uri = newDocument("foo.luau", source);
+
+    lsp::CompletionParams params;
+    params.textDocument = lsp::TextDocumentIdentifier{uri};
+    params.position = marker;
+
+    auto result = workspace.completion(params, nullptr);
+    CHECK_FALSE(getItem(result, "function (anonymous autofilled)"));
+}
+
+TEST_CASE_FIXTURE(Fixture, "anonymous_autofilled_function_snippet_has_body_tabstop")
+{
+    enableSnippetSupport(client->capabilities);
+
+    auto [source, marker] = sourceWithMarker(R"(
+        local function foo(cb: () -> ())
+        end
+        foo(|)
+    )");
+
+    auto uri = newDocument("foo.luau", source);
+
+    lsp::CompletionParams params;
+    params.textDocument = lsp::TextDocumentIdentifier{uri};
+    params.position = marker;
+
+    auto result = workspace.completion(params, nullptr);
+    auto item = requireItem(result, "function (anonymous autofilled)");
+
+    REQUIRE(item.insertText);
+    CHECK_EQ(item.insertTextFormat, lsp::InsertTextFormat::Snippet);
+    CHECK_EQ(*item.insertText, "function()\n\t$0\nend");
+}
+
+TEST_CASE_FIXTURE(Fixture, "anonymous_autofilled_function_snippet_has_param_tabstops")
+{
+    enableSnippetSupport(client->capabilities);
+
+    auto [source, marker] = sourceWithMarker(R"(
+        local function foo(cb: (x: number, y: string) -> ())
+        end
+        foo(|)
+    )");
+
+    auto uri = newDocument("foo.luau", source);
+
+    lsp::CompletionParams params;
+    params.textDocument = lsp::TextDocumentIdentifier{uri};
+    params.position = marker;
+
+    auto result = workspace.completion(params, nullptr);
+    auto item = requireItem(result, "function (anonymous autofilled)");
+
+    REQUIRE(item.insertText);
+    CHECK_EQ(item.insertTextFormat, lsp::InsertTextFormat::Snippet);
+    CHECK_EQ(*item.insertText, "function(${1:x}: number, ${2:y}: string)\n\t$0\nend");
+}
+
+TEST_CASE_FIXTURE(Fixture, "anonymous_autofilled_function_snippet_includes_return_type")
+{
+    enableSnippetSupport(client->capabilities);
+
+    auto [source, marker] = sourceWithMarker(R"(
+        local function foo(cb: () -> number)
+        end
+        foo(|)
+    )");
+
+    auto uri = newDocument("foo.luau", source);
+
+    lsp::CompletionParams params;
+    params.textDocument = lsp::TextDocumentIdentifier{uri};
+    params.position = marker;
+
+    auto result = workspace.completion(params, nullptr);
+    auto item = requireItem(result, "function (anonymous autofilled)");
+
+    REQUIRE(item.insertText);
+    CHECK_EQ(*item.insertText, "function(): number\n\t$0\nend");
+}
+
+TEST_CASE_FIXTURE(Fixture, "anonymous_autofilled_function_snippet_uses_unnamed_param_fallback")
+{
+    enableSnippetSupport(client->capabilities);
+
+    auto [source, marker] = sourceWithMarker(R"(
+        local function foo(cb: (number, string) -> ())
+        end
+        foo(|)
+    )");
+
+    auto uri = newDocument("foo.luau", source);
+
+    lsp::CompletionParams params;
+    params.textDocument = lsp::TextDocumentIdentifier{uri};
+    params.position = marker;
+
+    auto result = workspace.completion(params, nullptr);
+    auto item = requireItem(result, "function (anonymous autofilled)");
+
+    REQUIRE(item.insertText);
+    CHECK_EQ(*item.insertText, "function(${1:a0}: number, ${2:a1}: string)\n\t$0\nend");
+}
+
+TEST_CASE_FIXTURE(Fixture, "anonymous_autofilled_function_snippet_no_type_annotations")
+{
+    enableSnippetSupport(client->capabilities);
+    client->globalConfig.completion.anonymousAutofilledFunction.addTypeAnnotations = false;
+
+    auto [source, marker] = sourceWithMarker(R"(
+        local function foo(cb: (x: number, y: string) -> number)
+        end
+        foo(|)
+    )");
+
+    auto uri = newDocument("foo.luau", source);
+
+    lsp::CompletionParams params;
+    params.textDocument = lsp::TextDocumentIdentifier{uri};
+    params.position = marker;
+
+    auto result = workspace.completion(params, nullptr);
+    auto item = requireItem(result, "function (anonymous autofilled)");
+
+    REQUIRE(item.insertText);
+    CHECK_EQ(*item.insertText, "function(${1:x}, ${2:y})\n\t$0\nend");
+}
+
+TEST_CASE_FIXTURE(Fixture, "anonymous_autofilled_function_no_snippet_support_uses_plain_text")
+{
+    auto [source, marker] = sourceWithMarker(R"(
+        local function foo(cb: (x: number) -> ())
+        end
+        foo(|)
+    )");
+
+    auto uri = newDocument("foo.luau", source);
+
+    lsp::CompletionParams params;
+    params.textDocument = lsp::TextDocumentIdentifier{uri};
+    params.position = marker;
+
+    auto result = workspace.completion(params, nullptr);
+    auto item = requireItem(result, "function (anonymous autofilled)");
+
+    REQUIRE(item.insertText);
+    CHECK_EQ(item.insertTextFormat, lsp::InsertTextFormat::PlainText);
+    CHECK_EQ(item.insertText->find("${"), std::string::npos);
+}
+
+TEST_CASE_FIXTURE(Fixture, "anonymous_autofilled_function_snippet_no_param_tabstops")
+{
+    enableSnippetSupport(client->capabilities);
+    client->globalConfig.completion.anonymousAutofilledFunction.addTabstopForParameters = false;
+
+    auto [source, marker] = sourceWithMarker(R"(
+        local function foo(cb: (x: number, y: string) -> ())
+        end
+        foo(|)
+    )");
+
+    auto uri = newDocument("foo.luau", source);
+
+    lsp::CompletionParams params;
+    params.textDocument = lsp::TextDocumentIdentifier{uri};
+    params.position = marker;
+
+    auto result = workspace.completion(params, nullptr);
+    auto item = requireItem(result, "function (anonymous autofilled)");
+
+    REQUIRE(item.insertText);
+    CHECK_EQ(item.insertTextFormat, lsp::InsertTextFormat::Snippet);
+    CHECK_EQ(*item.insertText, "function(x: number, y: string)\n\t$0\nend");
 }
 
 TEST_SUITE_END();
