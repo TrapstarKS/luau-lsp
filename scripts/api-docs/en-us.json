@@ -920,6 +920,7 @@
     "documentation": "Represents a reference to asset content stored externally or as an object within the place.",
     "keys": {
       "fromUri": "@roblox/global/Content.fromUri",
+      "fromAssetId": "@roblox/global/Content.fromAssetId",
       "fromObject": "@roblox/global/Content.fromObject",
       "none": "@roblox/global/Content.none"
     },
@@ -939,6 +940,21 @@
     ],
     "returns": [],
     "learn_more_link": "https://create.roblox.com/docs/reference/engine/datatypes/Content#fromUri",
+    "code_sample": ""
+  },
+  "@roblox/global/Content.fromAssetId/param/0": {
+    "documentation": "The numeric asset ID."
+  },
+  "@roblox/global/Content.fromAssetId": {
+    "documentation": "Returns a new <code>Content</code> from a numeric asset ID.",
+    "params": [
+      {
+        "name": "assetId",
+        "documentation": "@roblox/global/Content.fromAssetId/param/0"
+      }
+    ],
+    "returns": [],
+    "learn_more_link": "https://create.roblox.com/docs/reference/engine/datatypes/Content#fromAssetId",
     "code_sample": ""
   },
   "@roblox/global/Content.fromObject/param/0": {
@@ -9327,7 +9343,7 @@
     "code_sample": ""
   },
   "@roblox/globaltype/Terrain": {
-    "documentation": "Terrain lets you to create dynamically morphable environments.",
+    "documentation": "<code>Terrain</code> lets you to create dynamically morphable environments.",
     "keys": {
       "Decoration": "@roblox/globaltype/Terrain.Decoration",
       "GrassLength": "@roblox/globaltype/Terrain.GrassLength",
@@ -9344,7 +9360,6 @@
       "CellCenterToWorld": "@roblox/globaltype/Terrain.CellCenterToWorld",
       "CellCornerToWorld": "@roblox/globaltype/Terrain.CellCornerToWorld",
       "Clear": "@roblox/globaltype/Terrain.Clear",
-      "ClearVoxelsAsync_beta": "@roblox/globaltype/Terrain.ClearVoxelsAsync_beta",
       "ConvertToSmooth": "@roblox/globaltype/Terrain.ConvertToSmooth",
       "CopyRegion": "@roblox/globaltype/Terrain.CopyRegion",
       "CountCells": "@roblox/globaltype/Terrain.CountCells",
@@ -9356,12 +9371,9 @@
       "GetCell": "@roblox/globaltype/Terrain.GetCell",
       "GetMaterialColor": "@roblox/globaltype/Terrain.GetMaterialColor",
       "GetWaterCell": "@roblox/globaltype/Terrain.GetWaterCell",
-      "IterateVoxelsAsync_beta": "@roblox/globaltype/Terrain.IterateVoxelsAsync_beta",
-      "ModifyVoxelsAsync_beta": "@roblox/globaltype/Terrain.ModifyVoxelsAsync_beta",
       "PasteRegion": "@roblox/globaltype/Terrain.PasteRegion",
       "ReadVoxelChannels": "@roblox/globaltype/Terrain.ReadVoxelChannels",
       "ReadVoxels": "@roblox/globaltype/Terrain.ReadVoxels",
-      "ReadVoxelsAsync_beta": "@roblox/globaltype/Terrain.ReadVoxelsAsync_beta",
       "ReplaceMaterial": "@roblox/globaltype/Terrain.ReplaceMaterial",
       "SetCell": "@roblox/globaltype/Terrain.SetCell",
       "SetCells": "@roblox/globaltype/Terrain.SetCells",
@@ -9371,8 +9383,7 @@
       "WorldToCellPreferEmpty": "@roblox/globaltype/Terrain.WorldToCellPreferEmpty",
       "WorldToCellPreferSolid": "@roblox/globaltype/Terrain.WorldToCellPreferSolid",
       "WriteVoxelChannels": "@roblox/globaltype/Terrain.WriteVoxelChannels",
-      "WriteVoxels": "@roblox/globaltype/Terrain.WriteVoxels",
-      "WriteVoxelsAsync_beta": "@roblox/globaltype/Terrain.WriteVoxelsAsync_beta"
+      "WriteVoxels": "@roblox/globaltype/Terrain.WriteVoxels"
     },
     "learn_more_link": "https://create.roblox.com/docs/reference/engine/classes/Terrain",
     "code_sample": ""
@@ -9388,12 +9399,12 @@
     "code_sample": ""
   },
   "@roblox/globaltype/Terrain.IsSmooth": {
-    "documentation": "<strong>Deprecated:</strong> Sets the specified terrain voxel's material to ''Water'' and sets its occupancy to 1.<br>Returns true if the current game is using the smooth terrain system.",
+    "documentation": "<strong>Deprecated:</strong> The legacy terrain engine has been removed, so this property will always be <code>true</code>.<br>Returns <code>true</code> if the game is using the smooth terrain system.",
     "learn_more_link": "https://create.roblox.com/docs/reference/engine/classes/Terrain#IsSmooth",
     "code_sample": ""
   },
   "@roblox/globaltype/Terrain.MaterialColors": {
-    "documentation": "MaterialColors represents the editor for the Material Color feature, and <strong>cannot be edited by scripts</strong>. To get the color of a material, use: <code>Terrain:GetMaterialColor()</code> To set the color of a material, use: <code>Terrain:SetMaterialColor()</code>",
+    "documentation": "Represents the editor for the <strong>Material Color</strong> feature and cannot be edited by scripts.",
     "learn_more_link": "https://create.roblox.com/docs/reference/engine/classes/Terrain#MaterialColors",
     "code_sample": ""
   },
@@ -9403,32 +9414,32 @@
     "code_sample": ""
   },
   "@roblox/globaltype/Terrain.WaterColor": {
-    "documentation": "The tint of the Terrain water.",
+    "documentation": "The tint of <code>Terrain</code> water.",
     "learn_more_link": "https://create.roblox.com/docs/reference/engine/classes/Terrain#WaterColor",
     "code_sample": ""
   },
   "@roblox/globaltype/Terrain.WaterReflectance": {
-    "documentation": "Controls how opaque the Terrain's water reflections are.",
+    "documentation": "Controls how opaque <code>Terrain</code> water reflections are.",
     "learn_more_link": "https://create.roblox.com/docs/reference/engine/classes/Terrain#WaterReflectance",
     "code_sample": ""
   },
   "@roblox/globaltype/Terrain.WaterTransparency": {
-    "documentation": "The transparency of the Terrain water.",
+    "documentation": "The transparency of <code>Terrain</code> water.",
     "learn_more_link": "https://create.roblox.com/docs/reference/engine/classes/Terrain#WaterTransparency",
     "code_sample": ""
   },
   "@roblox/globaltype/Terrain.WaterWaveSize": {
-    "documentation": "Sets the maximum height of the Terrain water waves in studs.",
+    "documentation": "Sets the maximum height of <code>Terrain</code> water waves in studs.",
     "learn_more_link": "https://create.roblox.com/docs/reference/engine/classes/Terrain#WaterWaveSize",
     "code_sample": ""
   },
   "@roblox/globaltype/Terrain.WaterWaveSpeed": {
-    "documentation": "Sets how many times the Terrain water waves will move up and down per minute.",
+    "documentation": "Sets how many times <code>Terrain</code> water waves will move up and down per minute.",
     "learn_more_link": "https://create.roblox.com/docs/reference/engine/classes/Terrain#WaterWaveSpeed",
     "code_sample": ""
   },
   "@roblox/globaltype/Terrain.AutowedgeCell/param/0": {
-    "documentation": "Terrain lets you to create dynamically morphable environments."
+    "documentation": "<code>Terrain</code> lets you to create dynamically morphable environments."
   },
   "@roblox/globaltype/Terrain.AutowedgeCell/param/1": {
     "documentation": ""
@@ -9443,7 +9454,7 @@
     "documentation": ""
   },
   "@roblox/globaltype/Terrain.AutowedgeCell": {
-    "documentation": "<strong>Deprecated:</strong> This item is a deprecated function of a legacy <code>Terrain</code> engine that has been removed. Do not use it for new work.<br><em>(OBSOLETE)</em> No longer does anything.",
+    "documentation": "<strong>Deprecated:</strong> This item is a deprecated function of a legacy <code>Terrain</code> engine that has been removed. Do not use it for new work.<br>Obsolete function which no longer does anything.",
     "params": [
       {
         "name": "self",
@@ -9469,13 +9480,13 @@
     "code_sample": ""
   },
   "@roblox/globaltype/Terrain.AutowedgeCells/param/0": {
-    "documentation": "Terrain lets you to create dynamically morphable environments."
+    "documentation": "<code>Terrain</code> lets you to create dynamically morphable environments."
   },
   "@roblox/globaltype/Terrain.AutowedgeCells/param/1": {
     "documentation": ""
   },
   "@roblox/globaltype/Terrain.AutowedgeCells": {
-    "documentation": "<strong>Deprecated:</strong> This item is a deprecated function of a legacy <code>Terrain</code> engine that has been removed. Do not use it for new work.<br><em>(OBSOLETE)</em> No longer does anything.",
+    "documentation": "<strong>Deprecated:</strong> This item is a deprecated function of a legacy <code>Terrain</code> engine that has been removed. Do not use it for new work.<br>Obsolete function which no longer does anything.",
     "params": [
       {
         "name": "self",
@@ -9491,7 +9502,7 @@
     "code_sample": ""
   },
   "@roblox/globaltype/Terrain.CellCenterToWorld/param/0": {
-    "documentation": "Terrain lets you to create dynamically morphable environments."
+    "documentation": "<code>Terrain</code> lets you to create dynamically morphable environments."
   },
   "@roblox/globaltype/Terrain.CellCenterToWorld/param/1": {
     "documentation": ""
@@ -9506,7 +9517,7 @@
     "documentation": ""
   },
   "@roblox/globaltype/Terrain.CellCenterToWorld": {
-    "documentation": "Returns the world position of the center of the terrain cell (x, y, z).",
+    "documentation": "Returns the world position of the center of the terrain cell.",
     "params": [
       {
         "name": "self",
@@ -9532,7 +9543,7 @@
     "code_sample": ""
   },
   "@roblox/globaltype/Terrain.CellCornerToWorld/param/0": {
-    "documentation": "Terrain lets you to create dynamically morphable environments."
+    "documentation": "<code>Terrain</code> lets you to create dynamically morphable environments."
   },
   "@roblox/globaltype/Terrain.CellCornerToWorld/param/1": {
     "documentation": ""
@@ -9547,7 +9558,7 @@
     "documentation": ""
   },
   "@roblox/globaltype/Terrain.CellCornerToWorld": {
-    "documentation": "Returns the position of the lower-left-forward corner of the grid cell (x, y, z).",
+    "documentation": "Returns the position of the lower-left-forward corner of the grid cell.",
     "params": [
       {
         "name": "self",
@@ -9573,10 +9584,10 @@
     "code_sample": ""
   },
   "@roblox/globaltype/Terrain.Clear/param/0": {
-    "documentation": "Terrain lets you to create dynamically morphable environments."
+    "documentation": "<code>Terrain</code> lets you to create dynamically morphable environments."
   },
   "@roblox/globaltype/Terrain.Clear": {
-    "documentation": "Clears the terrain.",
+    "documentation": "Clears all terrain.",
     "params": [
       {
         "name": "self",
@@ -9587,40 +9598,11 @@
     "learn_more_link": "https://create.roblox.com/docs/reference/engine/classes/Terrain#Clear",
     "code_sample": ""
   },
-  "@roblox/globaltype/Terrain.ClearVoxelsAsync_beta/param/0": {
-    "documentation": "Terrain lets you to create dynamically morphable environments."
-  },
-  "@roblox/globaltype/Terrain.ClearVoxelsAsync_beta/param/1": {
-    "documentation": ""
-  },
-  "@roblox/globaltype/Terrain.ClearVoxelsAsync_beta/param/2": {
-    "documentation": ""
-  },
-  "@roblox/globaltype/Terrain.ClearVoxelsAsync_beta": {
-    "documentation": "",
-    "params": [
-      {
-        "name": "self",
-        "documentation": "@roblox/globaltype/Terrain.ClearVoxelsAsync_beta/param/0"
-      },
-      {
-        "name": "region",
-        "documentation": "@roblox/globaltype/Terrain.ClearVoxelsAsync_beta/param/1"
-      },
-      {
-        "name": "channelIds",
-        "documentation": "@roblox/globaltype/Terrain.ClearVoxelsAsync_beta/param/2"
-      }
-    ],
-    "returns": [],
-    "learn_more_link": "https://create.roblox.com/docs/reference/engine/classes/Terrain#ClearVoxelsAsync_beta",
-    "code_sample": ""
-  },
   "@roblox/globaltype/Terrain.ConvertToSmooth/param/0": {
-    "documentation": "Terrain lets you to create dynamically morphable environments."
+    "documentation": "<code>Terrain</code> lets you to create dynamically morphable environments."
   },
   "@roblox/globaltype/Terrain.ConvertToSmooth": {
-    "documentation": "<strong>Deprecated:</strong> Since all places now automatically use the new terrain engine, this method is obsolete. Do not use it for new work.<br>Transforms the legacy terrain engine into the new terrain engine.",
+    "documentation": "<strong>Deprecated:</strong> Since all places now automatically use the new terrain engine, this method is obsolete.<br>Transforms the legacy terrain engine into the new terrain engine.",
     "params": [
       {
         "name": "self",
@@ -9632,7 +9614,7 @@
     "code_sample": ""
   },
   "@roblox/globaltype/Terrain.CopyRegion/param/0": {
-    "documentation": "Terrain lets you to create dynamically morphable environments."
+    "documentation": "<code>Terrain</code> lets you to create dynamically morphable environments."
   },
   "@roblox/globaltype/Terrain.CopyRegion/param/1": {
     "documentation": ""
@@ -9641,7 +9623,7 @@
     "documentation": ""
   },
   "@roblox/globaltype/Terrain.CopyRegion": {
-    "documentation": "Stores a chunk of terrain into a <code>TerrainRegion</code> object so it can be loaded back later. Note: <code>TerrainRegion</code> data does not replicate between server and client.",
+    "documentation": "Stores a chunk of terrain into a <code>TerrainRegion</code> object so it can be loaded back later.",
     "params": [
       {
         "name": "self",
@@ -9659,13 +9641,13 @@
     "code_sample": ""
   },
   "@roblox/globaltype/Terrain.CountCells/param/0": {
-    "documentation": "Terrain lets you to create dynamically morphable environments."
+    "documentation": "<code>Terrain</code> lets you to create dynamically morphable environments."
   },
   "@roblox/globaltype/Terrain.CountCells/return/0": {
     "documentation": ""
   },
   "@roblox/globaltype/Terrain.CountCells": {
-    "documentation": "Returns the number of non-empty cells in the Terrain.",
+    "documentation": "Returns the number of non-empty cells in the terrain.",
     "params": [
       {
         "name": "self",
@@ -9679,7 +9661,7 @@
     "code_sample": ""
   },
   "@roblox/globaltype/Terrain.FillBall/param/0": {
-    "documentation": "Terrain lets you to create dynamically morphable environments."
+    "documentation": "<code>Terrain</code> lets you to create dynamically morphable environments."
   },
   "@roblox/globaltype/Terrain.FillBall/param/1": {
     "documentation": "The position of the center of the terrain ball."
@@ -9712,16 +9694,16 @@
     ],
     "returns": [],
     "learn_more_link": "https://create.roblox.com/docs/reference/engine/classes/Terrain#FillBall",
-    "code_sample": "local Workspace = game:GetService(\"Workspace\")\n\n-- Creates a ball of grass at (0,0,-10) with a radius of 10 studs\nWorkspace.Terrain:FillBall(Vector3.new(0, 0, -10), 10, Enum.Material.Grass)"
+    "code_sample": ""
   },
   "@roblox/globaltype/Terrain.FillBlock/param/0": {
-    "documentation": "Terrain lets you to create dynamically morphable environments."
+    "documentation": "<code>Terrain</code> lets you to create dynamically morphable environments."
   },
   "@roblox/globaltype/Terrain.FillBlock/param/1": {
     "documentation": "The position and orientation of the terrain block."
   },
   "@roblox/globaltype/Terrain.FillBlock/param/2": {
-    "documentation": "The size in studs of the square block - both the height and width."
+    "documentation": "The size in studs of the square block (both the height and width)."
   },
   "@roblox/globaltype/Terrain.FillBlock/param/3": {
     "documentation": "The <code>Material</code> of the terrain block."
@@ -9751,7 +9733,7 @@
     "code_sample": ""
   },
   "@roblox/globaltype/Terrain.FillCylinder/param/0": {
-    "documentation": "Terrain lets you to create dynamically morphable environments."
+    "documentation": "<code>Terrain</code> lets you to create dynamically morphable environments."
   },
   "@roblox/globaltype/Terrain.FillCylinder/param/1": {
     "documentation": "The position and orientation of the terrain cylinder."
@@ -9794,7 +9776,7 @@
     "code_sample": ""
   },
   "@roblox/globaltype/Terrain.FillRegion/param/0": {
-    "documentation": "Terrain lets you to create dynamically morphable environments."
+    "documentation": "<code>Terrain</code> lets you to create dynamically morphable environments."
   },
   "@roblox/globaltype/Terrain.FillRegion/param/1": {
     "documentation": ""
@@ -9830,7 +9812,7 @@
     "code_sample": ""
   },
   "@roblox/globaltype/Terrain.FillWedge/param/0": {
-    "documentation": "Terrain lets you to create dynamically morphable environments."
+    "documentation": "<code>Terrain</code> lets you to create dynamically morphable environments."
   },
   "@roblox/globaltype/Terrain.FillWedge/param/1": {
     "documentation": "The position and orientation of the wedge to fill."
@@ -9842,7 +9824,7 @@
     "documentation": "The material with which the wedge will be filled."
   },
   "@roblox/globaltype/Terrain.FillWedge": {
-    "documentation": "Fills a wedge-shaped volume of Terrain with the given <code>Material</code> and the area's CFrame and Size.",
+    "documentation": "Fills a wedge-shaped volume of terrain with the given <code>Material</code>.",
     "params": [
       {
         "name": "self",
@@ -9866,7 +9848,7 @@
     "code_sample": ""
   },
   "@roblox/globaltype/Terrain.GetCell/param/0": {
-    "documentation": "Terrain lets you to create dynamically morphable environments."
+    "documentation": "<code>Terrain</code> lets you to create dynamically morphable environments."
   },
   "@roblox/globaltype/Terrain.GetCell/param/1": {
     "documentation": ""
@@ -9881,7 +9863,7 @@
     "documentation": ""
   },
   "@roblox/globaltype/Terrain.GetCell": {
-    "documentation": "<strong>Deprecated:</strong> This item is a deprecated function of a legacy <code>Terrain</code> engine that has been removed. Do not use it for new work.<br>Returns the closest CellMaterial from the legacy terrain engine that matches the smooth terrain voxel specified.",
+    "documentation": "<strong>Deprecated:</strong> This item is a deprecated function of a legacy <code>Terrain</code> engine that has been removed. Do not use it for new work.<br>Returns the closest cell material from the legacy terrain engine that matches the smooth terrain voxel specified.",
     "params": [
       {
         "name": "self",
@@ -9907,7 +9889,7 @@
     "code_sample": ""
   },
   "@roblox/globaltype/Terrain.GetMaterialColor/param/0": {
-    "documentation": "Terrain lets you to create dynamically morphable environments."
+    "documentation": "<code>Terrain</code> lets you to create dynamically morphable environments."
   },
   "@roblox/globaltype/Terrain.GetMaterialColor/param/1": {
     "documentation": ""
@@ -9934,7 +9916,7 @@
     "code_sample": ""
   },
   "@roblox/globaltype/Terrain.GetWaterCell/param/0": {
-    "documentation": "Terrain lets you to create dynamically morphable environments."
+    "documentation": "<code>Terrain</code> lets you to create dynamically morphable environments."
   },
   "@roblox/globaltype/Terrain.GetWaterCell/param/1": {
     "documentation": ""
@@ -9949,7 +9931,7 @@
     "documentation": ""
   },
   "@roblox/globaltype/Terrain.GetWaterCell": {
-    "documentation": "<strong>Deprecated:</strong> This item is a deprecated function of a legacy <code>Terrain</code> engine that has been removed. Do not use it for new work.<br>Returns if the cell is a water cell.",
+    "documentation": "<strong>Deprecated:</strong> This item is a deprecated function of a legacy <code>Terrain</code> engine that has been removed. Do not use it for new work.<br>Returns <code>true</code> if the cell is a water cell.",
     "params": [
       {
         "name": "self",
@@ -9974,90 +9956,8 @@
     "learn_more_link": "https://create.roblox.com/docs/reference/engine/classes/Terrain#GetWaterCell",
     "code_sample": ""
   },
-  "@roblox/globaltype/Terrain.IterateVoxelsAsync_beta/param/0": {
-    "documentation": "Terrain lets you to create dynamically morphable environments."
-  },
-  "@roblox/globaltype/Terrain.IterateVoxelsAsync_beta/param/1": {
-    "documentation": ""
-  },
-  "@roblox/globaltype/Terrain.IterateVoxelsAsync_beta/param/2": {
-    "documentation": ""
-  },
-  "@roblox/globaltype/Terrain.IterateVoxelsAsync_beta/param/3": {
-    "documentation": ""
-  },
-  "@roblox/globaltype/Terrain.IterateVoxelsAsync_beta/return/0": {
-    "documentation": ""
-  },
-  "@roblox/globaltype/Terrain.IterateVoxelsAsync_beta": {
-    "documentation": "",
-    "params": [
-      {
-        "name": "self",
-        "documentation": "@roblox/globaltype/Terrain.IterateVoxelsAsync_beta/param/0"
-      },
-      {
-        "name": "region",
-        "documentation": "@roblox/globaltype/Terrain.IterateVoxelsAsync_beta/param/1"
-      },
-      {
-        "name": "resolution",
-        "documentation": "@roblox/globaltype/Terrain.IterateVoxelsAsync_beta/param/2"
-      },
-      {
-        "name": "channelIds",
-        "documentation": "@roblox/globaltype/Terrain.IterateVoxelsAsync_beta/param/3"
-      }
-    ],
-    "returns": [
-      "@roblox/globaltype/Terrain.IterateVoxelsAsync_beta/return/0"
-    ],
-    "learn_more_link": "https://create.roblox.com/docs/reference/engine/classes/Terrain#IterateVoxelsAsync_beta",
-    "code_sample": ""
-  },
-  "@roblox/globaltype/Terrain.ModifyVoxelsAsync_beta/param/0": {
-    "documentation": "Terrain lets you to create dynamically morphable environments."
-  },
-  "@roblox/globaltype/Terrain.ModifyVoxelsAsync_beta/param/1": {
-    "documentation": ""
-  },
-  "@roblox/globaltype/Terrain.ModifyVoxelsAsync_beta/param/2": {
-    "documentation": ""
-  },
-  "@roblox/globaltype/Terrain.ModifyVoxelsAsync_beta/param/3": {
-    "documentation": ""
-  },
-  "@roblox/globaltype/Terrain.ModifyVoxelsAsync_beta/return/0": {
-    "documentation": ""
-  },
-  "@roblox/globaltype/Terrain.ModifyVoxelsAsync_beta": {
-    "documentation": "",
-    "params": [
-      {
-        "name": "self",
-        "documentation": "@roblox/globaltype/Terrain.ModifyVoxelsAsync_beta/param/0"
-      },
-      {
-        "name": "region",
-        "documentation": "@roblox/globaltype/Terrain.ModifyVoxelsAsync_beta/param/1"
-      },
-      {
-        "name": "resolution",
-        "documentation": "@roblox/globaltype/Terrain.ModifyVoxelsAsync_beta/param/2"
-      },
-      {
-        "name": "channelIds",
-        "documentation": "@roblox/globaltype/Terrain.ModifyVoxelsAsync_beta/param/3"
-      }
-    ],
-    "returns": [
-      "@roblox/globaltype/Terrain.ModifyVoxelsAsync_beta/return/0"
-    ],
-    "learn_more_link": "https://create.roblox.com/docs/reference/engine/classes/Terrain#ModifyVoxelsAsync_beta",
-    "code_sample": ""
-  },
   "@roblox/globaltype/Terrain.PasteRegion/param/0": {
-    "documentation": "Terrain lets you to create dynamically morphable environments."
+    "documentation": "<code>Terrain</code> lets you to create dynamically morphable environments."
   },
   "@roblox/globaltype/Terrain.PasteRegion/param/1": {
     "documentation": ""
@@ -10069,7 +9969,7 @@
     "documentation": ""
   },
   "@roblox/globaltype/Terrain.PasteRegion": {
-    "documentation": "Applies a chunk of terrain to the Terrain object. Note: <code>TerrainRegion</code> data does not replicate between server and client.",
+    "documentation": "Applies a chunk of terrain to the <code>Terrain</code> object.",
     "params": [
       {
         "name": "self",
@@ -10093,7 +9993,7 @@
     "code_sample": ""
   },
   "@roblox/globaltype/Terrain.ReadVoxelChannels/param/0": {
-    "documentation": "Terrain lets you to create dynamically morphable environments."
+    "documentation": "<code>Terrain</code> lets you to create dynamically morphable environments."
   },
   "@roblox/globaltype/Terrain.ReadVoxelChannels/param/1": {
     "documentation": "Target region to read from. Must be aligned to the voxel grid. Will throw an error if region is too large; limit is currently 4194304 voxels&sup3;."
@@ -10134,13 +10034,13 @@
     "code_sample": ""
   },
   "@roblox/globaltype/Terrain.ReadVoxels/param/0": {
-    "documentation": "Terrain lets you to create dynamically morphable environments."
+    "documentation": "<code>Terrain</code> lets you to create dynamically morphable environments."
   },
   "@roblox/globaltype/Terrain.ReadVoxels/param/1": {
-    "documentation": "Target region to read from. Must be aligned to the voxel grid. Will throw an error if region is too large. The limit is currently 4194304 voxels^3."
+    "documentation": "Target region to read from. Must be aligned to the voxel grid. Will throw an error if region is too large. The limit is currently 4194304 voxels&sup3;."
   },
   "@roblox/globaltype/Terrain.ReadVoxels/param/2": {
-    "documentation": "Voxel resolution. Must be 4."
+    "documentation": "Voxel resolution. Must be <code>4</code>."
   },
   "@roblox/globaltype/Terrain.ReadVoxels/return/0": {
     "documentation": "Returns raw voxel data as two 3D arrays. <ul> <li><code>materials</code> - 3D array of <code>Material</code> from the target area. Also   contains a Size field, equal to the dimensions of the nested arrays.</li> <li><code>occupancies</code> - 3D array of occupancy values from the target area.   Also contains a Size field, equal to the dimensions of the nested   arrays.</li> </ul>"
@@ -10167,55 +10067,14 @@
     "learn_more_link": "https://create.roblox.com/docs/reference/engine/classes/Terrain#ReadVoxels",
     "code_sample": ""
   },
-  "@roblox/globaltype/Terrain.ReadVoxelsAsync_beta/param/0": {
-    "documentation": "Terrain lets you to create dynamically morphable environments."
-  },
-  "@roblox/globaltype/Terrain.ReadVoxelsAsync_beta/param/1": {
-    "documentation": ""
-  },
-  "@roblox/globaltype/Terrain.ReadVoxelsAsync_beta/param/2": {
-    "documentation": ""
-  },
-  "@roblox/globaltype/Terrain.ReadVoxelsAsync_beta/param/3": {
-    "documentation": ""
-  },
-  "@roblox/globaltype/Terrain.ReadVoxelsAsync_beta/return/0": {
-    "documentation": ""
-  },
-  "@roblox/globaltype/Terrain.ReadVoxelsAsync_beta": {
-    "documentation": "",
-    "params": [
-      {
-        "name": "self",
-        "documentation": "@roblox/globaltype/Terrain.ReadVoxelsAsync_beta/param/0"
-      },
-      {
-        "name": "region",
-        "documentation": "@roblox/globaltype/Terrain.ReadVoxelsAsync_beta/param/1"
-      },
-      {
-        "name": "resolution",
-        "documentation": "@roblox/globaltype/Terrain.ReadVoxelsAsync_beta/param/2"
-      },
-      {
-        "name": "channelIds",
-        "documentation": "@roblox/globaltype/Terrain.ReadVoxelsAsync_beta/param/3"
-      }
-    ],
-    "returns": [
-      "@roblox/globaltype/Terrain.ReadVoxelsAsync_beta/return/0"
-    ],
-    "learn_more_link": "https://create.roblox.com/docs/reference/engine/classes/Terrain#ReadVoxelsAsync_beta",
-    "code_sample": ""
-  },
   "@roblox/globaltype/Terrain.ReplaceMaterial/param/0": {
-    "documentation": "Terrain lets you to create dynamically morphable environments."
+    "documentation": "<code>Terrain</code> lets you to create dynamically morphable environments."
   },
   "@roblox/globaltype/Terrain.ReplaceMaterial/param/1": {
     "documentation": "The region in which the replacement operation will occur."
   },
   "@roblox/globaltype/Terrain.ReplaceMaterial/param/2": {
-    "documentation": "The resolution at which the replacement operation will take place; at the moment this must be exactly 4."
+    "documentation": "The resolution at which the replacement operation will take place; at the moment this must be exactly <code>4</code>."
   },
   "@roblox/globaltype/Terrain.ReplaceMaterial/param/3": {
     "documentation": "The old material that shall be replaced."
@@ -10252,7 +10111,7 @@
     "code_sample": ""
   },
   "@roblox/globaltype/Terrain.SetCell/param/0": {
-    "documentation": "Terrain lets you to create dynamically morphable environments."
+    "documentation": "<code>Terrain</code> lets you to create dynamically morphable environments."
   },
   "@roblox/globaltype/Terrain.SetCell/param/1": {
     "documentation": ""
@@ -10309,7 +10168,7 @@
     "code_sample": ""
   },
   "@roblox/globaltype/Terrain.SetCells/param/0": {
-    "documentation": "Terrain lets you to create dynamically morphable environments."
+    "documentation": "<code>Terrain</code> lets you to create dynamically morphable environments."
   },
   "@roblox/globaltype/Terrain.SetCells/param/1": {
     "documentation": ""
@@ -10352,7 +10211,7 @@
     "code_sample": ""
   },
   "@roblox/globaltype/Terrain.SetMaterialColor/param/0": {
-    "documentation": "Terrain lets you to create dynamically morphable environments."
+    "documentation": "<code>Terrain</code> lets you to create dynamically morphable environments."
   },
   "@roblox/globaltype/Terrain.SetMaterialColor/param/1": {
     "documentation": ""
@@ -10381,7 +10240,7 @@
     "code_sample": ""
   },
   "@roblox/globaltype/Terrain.SetWaterCell/param/0": {
-    "documentation": "Terrain lets you to create dynamically morphable environments."
+    "documentation": "<code>Terrain</code> lets you to create dynamically morphable environments."
   },
   "@roblox/globaltype/Terrain.SetWaterCell/param/1": {
     "documentation": ""
@@ -10399,7 +10258,7 @@
     "documentation": ""
   },
   "@roblox/globaltype/Terrain.SetWaterCell": {
-    "documentation": "<strong>Deprecated:</strong> This item is a deprecated function of a legacy <code>Terrain</code> engine that has been removed. Do not use it for new work.<br>Sets the specified terrain voxel's material to ''Water'' and sets its occupancy to 1.",
+    "documentation": "<strong>Deprecated:</strong> This item is a deprecated function of a legacy <code>Terrain</code> engine that has been removed. Do not use it for new work.<br>Sets the specified terrain voxel's material to water and sets its occupancy to <code>1</code>.",
     "params": [
       {
         "name": "self",
@@ -10431,7 +10290,7 @@
     "code_sample": ""
   },
   "@roblox/globaltype/Terrain.WorldToCell/param/0": {
-    "documentation": "Terrain lets you to create dynamically morphable environments."
+    "documentation": "<code>Terrain</code> lets you to create dynamically morphable environments."
   },
   "@roblox/globaltype/Terrain.WorldToCell/param/1": {
     "documentation": ""
@@ -10440,7 +10299,7 @@
     "documentation": ""
   },
   "@roblox/globaltype/Terrain.WorldToCell": {
-    "documentation": "Returns the grid cell location that contains the point <strong>position</strong>.",
+    "documentation": "Returns the grid cell location that contains the position point.",
     "params": [
       {
         "name": "self",
@@ -10458,7 +10317,7 @@
     "code_sample": ""
   },
   "@roblox/globaltype/Terrain.WorldToCellPreferEmpty/param/0": {
-    "documentation": "Terrain lets you to create dynamically morphable environments."
+    "documentation": "<code>Terrain</code> lets you to create dynamically morphable environments."
   },
   "@roblox/globaltype/Terrain.WorldToCellPreferEmpty/param/1": {
     "documentation": ""
@@ -10467,7 +10326,7 @@
     "documentation": ""
   },
   "@roblox/globaltype/Terrain.WorldToCellPreferEmpty": {
-    "documentation": "Returns the grid cell location that contains the point position, preferring empty grid cells when position is on a grid edge.",
+    "documentation": "Returns the grid cell location that contains the position point, preferring empty grid cells when position is on a grid edge.",
     "params": [
       {
         "name": "self",
@@ -10485,7 +10344,7 @@
     "code_sample": ""
   },
   "@roblox/globaltype/Terrain.WorldToCellPreferSolid/param/0": {
-    "documentation": "Terrain lets you to create dynamically morphable environments."
+    "documentation": "<code>Terrain</code> lets you to create dynamically morphable environments."
   },
   "@roblox/globaltype/Terrain.WorldToCellPreferSolid/param/1": {
     "documentation": ""
@@ -10512,16 +10371,16 @@
     "code_sample": ""
   },
   "@roblox/globaltype/Terrain.WriteVoxelChannels/param/0": {
-    "documentation": "Terrain lets you to create dynamically morphable environments."
+    "documentation": "<code>Terrain</code> lets you to create dynamically morphable environments."
   },
   "@roblox/globaltype/Terrain.WriteVoxelChannels/param/1": {
     "documentation": "Target region to write to. Must be aligned to the voxel grid. Will throw an error if region is too large; limit is currently 4194304 voxels&sup3;."
   },
   "@roblox/globaltype/Terrain.WriteVoxelChannels/param/2": {
-    "documentation": "Voxel resolution. Must be 4."
+    "documentation": "Voxel resolution. Must be <code>4</code>."
   },
   "@roblox/globaltype/Terrain.WriteVoxelChannels/param/3": {
-    "documentation": "Dictionary of voxel data similar to the return value of <code>ReadVoxelChannels()</code>. Keys represent each channel ID with their respective value as an array of 3D data. The dictionary can support single or multiple channel inputs. <ul> <li><code>SolidMaterial</code> — The <code>Material</code> material of the voxel. Note   that <code>Water</code> is not supported anymore; instead, a   voxel that contains only water should be entered as   <code>SolidMaterial = Enum.Material.Air, LiquidOccupancy = x</code>, where <code>x</code>   is a number between 0 (exclusive) and 1 (inclusive).</li> <li><code>SolidOccupancy</code> — The occupancy of the voxel's material as   specified in the <code>SolidMaterial</code> channel. This should be a value   between 0 (empty) and 1 (full).</li> <li><code>LiquidOccupancy</code> — Specifies the occupancy of the   <code>Water</code> material in a voxel as a value between 0 (no   water) and 1 (full of water). If the <code>SolidOccupancy</code> is 1 and the   <code>SolidMaterial</code> is not <code>Air</code>, this will be 0.</li> </ul>"
+    "documentation": "Dictionary of voxel data similar to the return value of <code>ReadVoxelChannels()</code>. Keys represent each channel ID with their respective value as an array of 3D data. The dictionary can support single or multiple channel inputs. <ul> <li><code>SolidMaterial</code> — The <code>Material</code> material of the voxel. Note   that <code>Water</code> is not supported anymore; instead, a   voxel that contains only water should be entered as   <code>SolidMaterial = Enum.Material.Air, LiquidOccupancy = x</code>, where <code>x</code>   is a number between <code>0</code> (exclusive) and <code>1</code> (inclusive).</li> <li><code>SolidOccupancy</code> — The occupancy of the voxel's material as   specified in the <code>SolidMaterial</code> channel. This should be a value   between <code>0</code> (empty) and <code>1</code> (full).</li> <li><code>LiquidOccupancy</code> — Specifies the occupancy of the   <code>Water</code> material in a voxel as a value between <code>0</code> (no   water) and <code>1</code> (full of water). If the <code>SolidOccupancy</code> is 1 and the   <code>SolidMaterial</code> is not <code>Air</code>, this will be <code>0</code>.</li> </ul>"
   },
   "@roblox/globaltype/Terrain.WriteVoxelChannels": {
     "documentation": "Sets a region of terrain using a dictionary of voxel channel data.",
@@ -10548,19 +10407,19 @@
     "code_sample": ""
   },
   "@roblox/globaltype/Terrain.WriteVoxels/param/0": {
-    "documentation": "Terrain lets you to create dynamically morphable environments."
+    "documentation": "<code>Terrain</code> lets you to create dynamically morphable environments."
   },
   "@roblox/globaltype/Terrain.WriteVoxels/param/1": {
     "documentation": "Target region to write to. Must be aligned to the voxel grid. Will throw an error if region is too large."
   },
   "@roblox/globaltype/Terrain.WriteVoxels/param/2": {
-    "documentation": "Voxel resolution. Must be 4."
+    "documentation": "Voxel resolution. Must be <code>4</code>."
   },
   "@roblox/globaltype/Terrain.WriteVoxels/param/3": {
-    "documentation": "3D array of Enum.Material. Dimensions must exactly match the size of the target region in voxels."
+    "documentation": "3D array of <code>Material</code>. Dimensions must exactly match the size of the target region in voxels."
   },
   "@roblox/globaltype/Terrain.WriteVoxels/param/4": {
-    "documentation": "3D array of voxel occupancies (number between 0 and 1). Dimensions must exactly match the size of the target region in voxels."
+    "documentation": "3D array of voxel occupancies (number between <code>0</code> and <code>1</code>). Dimensions must exactly match the size of the target region in voxels."
   },
   "@roblox/globaltype/Terrain.WriteVoxels": {
     "documentation": "Sets a certain region of smooth terrain using table format.",
@@ -10588,47 +10447,6 @@
     ],
     "returns": [],
     "learn_more_link": "https://create.roblox.com/docs/reference/engine/classes/Terrain#WriteVoxels",
-    "code_sample": ""
-  },
-  "@roblox/globaltype/Terrain.WriteVoxelsAsync_beta/param/0": {
-    "documentation": "Terrain lets you to create dynamically morphable environments."
-  },
-  "@roblox/globaltype/Terrain.WriteVoxelsAsync_beta/param/1": {
-    "documentation": ""
-  },
-  "@roblox/globaltype/Terrain.WriteVoxelsAsync_beta/param/2": {
-    "documentation": ""
-  },
-  "@roblox/globaltype/Terrain.WriteVoxelsAsync_beta/param/3": {
-    "documentation": ""
-  },
-  "@roblox/globaltype/Terrain.WriteVoxelsAsync_beta/return/0": {
-    "documentation": ""
-  },
-  "@roblox/globaltype/Terrain.WriteVoxelsAsync_beta": {
-    "documentation": "",
-    "params": [
-      {
-        "name": "self",
-        "documentation": "@roblox/globaltype/Terrain.WriteVoxelsAsync_beta/param/0"
-      },
-      {
-        "name": "region",
-        "documentation": "@roblox/globaltype/Terrain.WriteVoxelsAsync_beta/param/1"
-      },
-      {
-        "name": "resolution",
-        "documentation": "@roblox/globaltype/Terrain.WriteVoxelsAsync_beta/param/2"
-      },
-      {
-        "name": "channelIds",
-        "documentation": "@roblox/globaltype/Terrain.WriteVoxelsAsync_beta/param/3"
-      }
-    ],
-    "returns": [
-      "@roblox/globaltype/Terrain.WriteVoxelsAsync_beta/return/0"
-    ],
-    "learn_more_link": "https://create.roblox.com/docs/reference/engine/classes/Terrain#WriteVoxelsAsync_beta",
     "code_sample": ""
   },
   "@roblox/globaltype/AudioDistortion": {
@@ -13634,7 +13452,7 @@
     "documentation": ""
   },
   "@roblox/globaltype/ScrollingFrame.GetScrollVelocity": {
-    "documentation": "",
+    "documentation": "Returns a <code>Vector2</code> representing the current inertial scroll velocity after the user stops their input.",
     "params": [
       {
         "name": "self",
@@ -13651,7 +13469,7 @@
     "documentation": "<code>ScrollingFrame</code> is a special <code>Frame</code> type with built-in scrolling interactivity and different ways to customize how the scrolling works."
   },
   "@roblox/globaltype/ScrollingFrame.ResetScrollVelocity": {
-    "documentation": "",
+    "documentation": "Resets the inertial scroll velocity of the <code>ScrollingFrame</code> to <code>0</code> on both axes.",
     "params": [
       {
         "name": "self",
@@ -13660,62 +13478,6 @@
     ],
     "returns": [],
     "learn_more_link": "https://create.roblox.com/docs/reference/engine/classes/ScrollingFrame#ResetScrollVelocity",
-    "code_sample": ""
-  },
-  "@roblox/globaltype/TerrainWriteOperation": {
-    "documentation": "",
-    "keys": {
-      "CommitBlock": "@roblox/globaltype/TerrainWriteOperation.CommitBlock",
-      "GetBlock": "@roblox/globaltype/TerrainWriteOperation.GetBlock"
-    },
-    "learn_more_link": "https://create.roblox.com/docs/reference/engine/classes/TerrainWriteOperation",
-    "code_sample": ""
-  },
-  "@roblox/globaltype/TerrainWriteOperation.CommitBlock/param/0": {
-    "documentation": ""
-  },
-  "@roblox/globaltype/TerrainWriteOperation.CommitBlock/param/1": {
-    "documentation": ""
-  },
-  "@roblox/globaltype/TerrainWriteOperation.CommitBlock/return/0": {
-    "documentation": ""
-  },
-  "@roblox/globaltype/TerrainWriteOperation.CommitBlock": {
-    "documentation": "",
-    "params": [
-      {
-        "name": "self",
-        "documentation": "@roblox/globaltype/TerrainWriteOperation.CommitBlock/param/0"
-      },
-      {
-        "name": "block",
-        "documentation": "@roblox/globaltype/TerrainWriteOperation.CommitBlock/param/1"
-      }
-    ],
-    "returns": [
-      "@roblox/globaltype/TerrainWriteOperation.CommitBlock/return/0"
-    ],
-    "learn_more_link": "https://create.roblox.com/docs/reference/engine/classes/TerrainWriteOperation#CommitBlock",
-    "code_sample": ""
-  },
-  "@roblox/globaltype/TerrainWriteOperation.GetBlock/param/0": {
-    "documentation": ""
-  },
-  "@roblox/globaltype/TerrainWriteOperation.GetBlock/return/0": {
-    "documentation": ""
-  },
-  "@roblox/globaltype/TerrainWriteOperation.GetBlock": {
-    "documentation": "",
-    "params": [
-      {
-        "name": "self",
-        "documentation": "@roblox/globaltype/TerrainWriteOperation.GetBlock/param/0"
-      }
-    ],
-    "returns": [
-      "@roblox/globaltype/TerrainWriteOperation.GetBlock/return/0"
-    ],
-    "learn_more_link": "https://create.roblox.com/docs/reference/engine/classes/TerrainWriteOperation#GetBlock",
     "code_sample": ""
   },
   "@roblox/globaltype/PackageService": {
@@ -16140,19 +15902,19 @@
     "documentation": "A service that provides an interface for you to manage and display personalized content recommendations."
   },
   "@roblox/globaltype/RecommendationService.LogPreferenceEvent/param/1": {
-    "documentation": ""
+    "documentation": "The enum for the type of preference."
   },
   "@roblox/globaltype/RecommendationService.LogPreferenceEvent/param/2": {
-    "documentation": ""
+    "documentation": "The enum for the type of target."
   },
   "@roblox/globaltype/RecommendationService.LogPreferenceEvent/param/3": {
-    "documentation": ""
+    "documentation": "The identifier of the preference target. The format depends on <code>targetType</code>."
   },
   "@roblox/globaltype/RecommendationService.LogPreferenceEvent/param/4": {
-    "documentation": ""
+    "documentation": "The tracing ID returned from the <code>GenerateItemListAsync</code> response. Pass an empty string if the preference originates outside a recommendation feed."
   },
   "@roblox/globaltype/RecommendationService.LogPreferenceEvent/param/5": {
-    "documentation": ""
+    "documentation": "The item ID returned from the <code>GenerateItemListAsync</code> response. Pass an empty string if the preference originates outside a recommendation feed."
   },
   "@roblox/globaltype/RecommendationService.LogPreferenceEvent": {
     "documentation": "",
@@ -17487,7 +17249,7 @@
     "documentation": "True if the user has the badge."
   },
   "@roblox/globaltype/BadgeService.UserHasBadge": {
-    "documentation": "<strong>Deprecated:</strong> This method has been superseded by <code>BadgeService:UserHasBadgeAsync()</code> which should be used for new instead.<br>Checks whether a user has the badge given the <code>Player.UserId</code> and the badge ID.",
+    "documentation": "<strong>Deprecated:</strong> This method has been superseded by <code>BadgeService:UserHasBadgeAsync()</code> which should be used for new work instead.<br>Checks whether a user has the badge given the <code>Player.UserId</code> and the badge ID.",
     "params": [
       {
         "name": "self",
@@ -17998,16 +17760,16 @@
     "documentation": "The abstract base class for in-world objects that physically interact."
   },
   "@roblox/globaltype/BasePart.AngularAccelerationToTorque/param/1": {
-    "documentation": ""
+    "documentation": "The desired angular acceleration vector in world space."
   },
   "@roblox/globaltype/BasePart.AngularAccelerationToTorque/param/2": {
-    "documentation": ""
+    "documentation": "The current angular velocity of the assembly in world space. Defaults to <code>(0, 0, 0)</code>. Supply the assembly's angular velocity to account for gyroscopic effects."
   },
   "@roblox/globaltype/BasePart.AngularAccelerationToTorque/return/0": {
-    "documentation": ""
+    "documentation": "A <code>Vector3</code> representing the world-space torque required to produce the specified angular acceleration."
   },
   "@roblox/globaltype/BasePart.AngularAccelerationToTorque": {
-    "documentation": "",
+    "documentation": "Returns the torque needed to achieve a given angular acceleration on this part's assembly, optionally accounting for gyroscopic effects.",
     "params": [
       {
         "name": "self",
@@ -18182,13 +17944,13 @@
     "documentation": "The abstract base class for in-world objects that physically interact."
   },
   "@roblox/globaltype/BasePart.GetClosestPointOnSurface/param/1": {
-    "documentation": ""
+    "documentation": "The world-space point to find the closest surface point to."
   },
   "@roblox/globaltype/BasePart.GetClosestPointOnSurface/return/0": {
-    "documentation": ""
+    "documentation": "The closest point on the part's surface in world space."
   },
   "@roblox/globaltype/BasePart.GetClosestPointOnSurface": {
-    "documentation": "",
+    "documentation": "Returns the closest point on the part's surface to the given point.",
     "params": [
       {
         "name": "self",
@@ -18680,16 +18442,16 @@
     "documentation": "The abstract base class for in-world objects that physically interact."
   },
   "@roblox/globaltype/BasePart.TorqueToAngularAcceleration/param/1": {
-    "documentation": ""
+    "documentation": "The torque vector applied to the assembly in world space."
   },
   "@roblox/globaltype/BasePart.TorqueToAngularAcceleration/param/2": {
-    "documentation": ""
+    "documentation": "The current angular velocity of the assembly in world space. Defaults to <code>(0, 0, 0)</code>. Supply the assembly's angular velocity to account for gyroscopic effects."
   },
   "@roblox/globaltype/BasePart.TorqueToAngularAcceleration/return/0": {
-    "documentation": ""
+    "documentation": "A <code>Vector3</code> representing the resulting angular acceleration in world space."
   },
   "@roblox/globaltype/BasePart.TorqueToAngularAcceleration": {
-    "documentation": "",
+    "documentation": "Returns the angular acceleration that would result from applying a given torque to this part's assembly, optionally accounting for gyroscopic effects.",
     "params": [
       {
         "name": "self",
@@ -22728,7 +22490,7 @@
     "code_sample": ""
   },
   "@roblox/globaltype/PlayerGui": {
-    "documentation": "A container for a player's currently rendered <code>ScreenGuis</code>.",
+    "documentation": "A container that holds a player's UI.",
     "keys": {
       "CurrentScreenOrientation": "@roblox/globaltype/PlayerGui.CurrentScreenOrientation",
       "ScreenOrientation": "@roblox/globaltype/PlayerGui.ScreenOrientation",
@@ -22755,7 +22517,7 @@
     "code_sample": ""
   },
   "@roblox/globaltype/PlayerGui.GetTopbarTransparency/param/0": {
-    "documentation": "A container for a player's currently rendered <code>ScreenGuis</code>."
+    "documentation": "A container that holds a player's UI."
   },
   "@roblox/globaltype/PlayerGui.GetTopbarTransparency/return/0": {
     "documentation": ""
@@ -22775,7 +22537,7 @@
     "code_sample": "local Players = game:GetService(\"Players\")\n\nlocal player = Players.LocalPlayer\n\nlocal playerGui = player:WaitForChild(\"PlayerGui\")\n\nprint(playerGui:GetTopbarTransparency())"
   },
   "@roblox/globaltype/PlayerGui.SetTopbarTransparency/param/0": {
-    "documentation": "A container for a player's currently rendered <code>ScreenGuis</code>."
+    "documentation": "A container that holds a player's UI."
   },
   "@roblox/globaltype/PlayerGui.SetTopbarTransparency/param/1": {
     "documentation": ""
@@ -24842,6 +24604,7 @@
       "IsLoaded": "@roblox/globaltype/VideoPlayer.IsLoaded",
       "IsPlaying": "@roblox/globaltype/VideoPlayer.IsPlaying",
       "Looping": "@roblox/globaltype/VideoPlayer.Looping",
+      "MaximumResolution": "@roblox/globaltype/VideoPlayer.MaximumResolution",
       "PlaybackSpeed": "@roblox/globaltype/VideoPlayer.PlaybackSpeed",
       "Resolution": "@roblox/globaltype/VideoPlayer.Resolution",
       "TimeLength": "@roblox/globaltype/VideoPlayer.TimeLength",
@@ -24882,6 +24645,11 @@
   "@roblox/globaltype/VideoPlayer.Looping": {
     "documentation": "Controls whether this <code>VideoPlayer</code> loops.",
     "learn_more_link": "https://create.roblox.com/docs/reference/engine/classes/VideoPlayer#Looping",
+    "code_sample": ""
+  },
+  "@roblox/globaltype/VideoPlayer.MaximumResolution": {
+    "documentation": "",
+    "learn_more_link": "https://create.roblox.com/docs/reference/engine/classes/VideoPlayer#MaximumResolution",
     "code_sample": ""
   },
   "@roblox/globaltype/VideoPlayer.PlaybackSpeed": {
@@ -27327,7 +27095,7 @@
     "code_sample": ""
   },
   "@roblox/globaltype/Workspace.EnableSLIMAvatars": {
-    "documentation": "",
+    "documentation": "Controls whether SLIM rendering is used for avatars in the experience.",
     "learn_more_link": "https://create.roblox.com/docs/reference/engine/classes/Workspace#EnableSLIMAvatars",
     "code_sample": ""
   },
@@ -30015,7 +29783,8 @@
       "Offset": "@roblox/globaltype/UIShadow.Offset",
       "Spread": "@roblox/globaltype/UIShadow.Spread",
       "Transparency": "@roblox/globaltype/UIShadow.Transparency",
-      "ZIndex": "@roblox/globaltype/UIShadow.ZIndex"
+      "ZIndex": "@roblox/globaltype/UIShadow.ZIndex",
+      "Enabled": "@roblox/globaltype/UIShadow.Enabled"
     },
     "learn_more_link": "https://create.roblox.com/docs/reference/engine/classes/UIShadow",
     "code_sample": ""
@@ -30048,6 +29817,11 @@
   "@roblox/globaltype/UIShadow.ZIndex": {
     "documentation": "Determines the shadow's render order relative to sibling <code>UIShadow</code> instances.",
     "learn_more_link": "https://create.roblox.com/docs/reference/engine/classes/UIShadow#ZIndex",
+    "code_sample": ""
+  },
+  "@roblox/globaltype/UIShadow.Enabled": {
+    "documentation": "Determines whether the <code>UIShadow</code> is visible.",
+    "learn_more_link": "https://create.roblox.com/docs/reference/engine/classes/UIShadow#Enabled",
     "code_sample": ""
   },
   "@roblox/globaltype/EncodingService": {
@@ -32009,7 +31783,6 @@
   "@roblox/globaltype/InsertService": {
     "documentation": "Used to insert assets from the Roblox website.",
     "keys": {
-      "AllowClientInsertModels": "@roblox/globaltype/InsertService.AllowClientInsertModels",
       "AllowInsertFreeModels": "@roblox/globaltype/InsertService.AllowInsertFreeModels",
       "ApproveAssetId": "@roblox/globaltype/InsertService.ApproveAssetId",
       "ApproveAssetVersionId": "@roblox/globaltype/InsertService.ApproveAssetVersionId",
@@ -32030,11 +31803,6 @@
       "LoadAssetVersion": "@roblox/globaltype/InsertService.LoadAssetVersion"
     },
     "learn_more_link": "https://create.roblox.com/docs/reference/engine/classes/InsertService",
-    "code_sample": ""
-  },
-  "@roblox/globaltype/InsertService.AllowClientInsertModels": {
-    "documentation": "",
-    "learn_more_link": "https://create.roblox.com/docs/reference/engine/classes/InsertService#AllowClientInsertModels",
     "code_sample": ""
   },
   "@roblox/globaltype/InsertService.AllowInsertFreeModels": {
@@ -32870,10 +32638,10 @@
     "code_sample": ""
   },
   "@roblox/globaltype/StarterPack": {
-    "documentation": "A service-level container whose contents are copied into each player's <code>Backpack</code> when the player spawns. It is generally used to hold <code>Tools</code>, but is sometimes used to hold <code>LocalScripts</code> to ensure that each player gets a copy.",
+    "documentation": "A container whose contents are copied into each player's <code>Backpack</code> when their player character spawns. It is generally used to hold <code>Tools</code>.",
     "keys": {},
     "learn_more_link": "https://create.roblox.com/docs/reference/engine/classes/StarterPack",
-    "code_sample": "local StarterPack = game:GetService(\"StarterPack\")\n\nlocal function emptyStarterPack()\n\tfor _, child in pairs(StarterPack:GetChildren()) do\n\t\tif child:IsA(\"Tool\") then\n\t\t\tchild:Destroy()\n\t\tend\n\tend\nend\n\nemptyStarterPack()"
+    "code_sample": ""
   },
   "@roblox/globaltype/CoreScriptDebuggingManagerHelper": {
     "documentation": "",
@@ -35202,7 +34970,7 @@
     "code_sample": ""
   },
   "@roblox/globaltype/StarterGear": {
-    "documentation": "If the game allows gear, StarterGear contains all of a player's appropriate gear. Whenever the player's character spawns, all of the contents of that player's StarterGear will get copied into the player's <code>Backpack</code>.",
+    "documentation": "If the game allows gear, <code>StarterGear</code> is a container automatically inserted into each <code>Player</code> object when the player joins the game. Whenever the player's character spawns, the contents of that player's <code>StarterGear</code> are copied into the player's <code>Backpack</code>.",
     "keys": {},
     "learn_more_link": "https://create.roblox.com/docs/reference/engine/classes/StarterGear",
     "code_sample": ""
@@ -35472,7 +35240,7 @@
     "code_sample": ""
   },
   "@roblox/globaltype/Plugin.DisableUIDragDetectorDrags": {
-    "documentation": "",
+    "documentation": "If <code>true</code>, toolbars and buttons for the plugin will ignore dragging related to a <code>UIDragDetector</code> instance.",
     "learn_more_link": "https://create.roblox.com/docs/reference/engine/classes/Plugin#DisableUIDragDetectorDrags",
     "code_sample": ""
   },
@@ -38274,7 +38042,7 @@
     "code_sample": ""
   },
   "@roblox/globaltype/EditableImage": {
-    "documentation": "Instance which allows for the runtime creation and manipulation of images.",
+    "documentation": "Object which allows for the runtime creation and manipulation of images.",
     "keys": {
       "Size": "@roblox/globaltype/EditableImage.Size",
       "Destroy": "@roblox/globaltype/EditableImage.Destroy",
@@ -38296,7 +38064,7 @@
     "code_sample": ""
   },
   "@roblox/globaltype/EditableImage.Destroy/param/0": {
-    "documentation": "Instance which allows for the runtime creation and manipulation of images."
+    "documentation": "Object which allows for the runtime creation and manipulation of images."
   },
   "@roblox/globaltype/EditableImage.Destroy": {
     "documentation": "",
@@ -38311,7 +38079,7 @@
     "code_sample": ""
   },
   "@roblox/globaltype/EditableImage.DrawCircle/param/0": {
-    "documentation": "Instance which allows for the runtime creation and manipulation of images."
+    "documentation": "Object which allows for the runtime creation and manipulation of images."
   },
   "@roblox/globaltype/EditableImage.DrawCircle/param/1": {
     "documentation": "Center of the circle, relative to the top-left corner of the <code>EditableImage</code>. Positions outside the canvas bounds are allowed."
@@ -38368,7 +38136,7 @@
     "code_sample": ""
   },
   "@roblox/globaltype/EditableImage.DrawImage/param/0": {
-    "documentation": "Instance which allows for the runtime creation and manipulation of images."
+    "documentation": "Object which allows for the runtime creation and manipulation of images."
   },
   "@roblox/globaltype/EditableImage.DrawImage/param/1": {
     "documentation": "Position at which the top-left corner of the added image will be drawn."
@@ -38404,7 +38172,7 @@
     "code_sample": ""
   },
   "@roblox/globaltype/EditableImage.DrawImageProjected/param/0": {
-    "documentation": "Instance which allows for the runtime creation and manipulation of images."
+    "documentation": "Object which allows for the runtime creation and manipulation of images."
   },
   "@roblox/globaltype/EditableImage.DrawImageProjected/param/1": {
     "documentation": "The <code>EditableMesh</code> used to project into."
@@ -38440,7 +38208,7 @@
     "code_sample": ""
   },
   "@roblox/globaltype/EditableImage.DrawImageTransformed/param/0": {
-    "documentation": "Instance which allows for the runtime creation and manipulation of images."
+    "documentation": "Object which allows for the runtime creation and manipulation of images."
   },
   "@roblox/globaltype/EditableImage.DrawImageTransformed/param/1": {
     "documentation": "Position in pixels where the pivot point of the source image will be placed on this image."
@@ -38490,7 +38258,7 @@
     "code_sample": ""
   },
   "@roblox/globaltype/EditableImage.DrawLine/param/0": {
-    "documentation": "Instance which allows for the runtime creation and manipulation of images."
+    "documentation": "Object which allows for the runtime creation and manipulation of images."
   },
   "@roblox/globaltype/EditableImage.DrawLine/param/1": {
     "documentation": "Start point of the line."
@@ -38547,7 +38315,7 @@
     "code_sample": ""
   },
   "@roblox/globaltype/EditableImage.DrawRectangle/param/0": {
-    "documentation": "Instance which allows for the runtime creation and manipulation of images."
+    "documentation": "Object which allows for the runtime creation and manipulation of images."
   },
   "@roblox/globaltype/EditableImage.DrawRectangle/param/1": {
     "documentation": "Position of the top-left of the rectangle. Unlike other drawing methods, this cannot be outside the canvas bounds of the <code>EditableImage</code>."
@@ -38597,7 +38365,7 @@
     "code_sample": ""
   },
   "@roblox/globaltype/EditableImage.ReadPixelsBuffer/param/0": {
-    "documentation": "Instance which allows for the runtime creation and manipulation of images."
+    "documentation": "Object which allows for the runtime creation and manipulation of images."
   },
   "@roblox/globaltype/EditableImage.ReadPixelsBuffer/param/1": {
     "documentation": "Top-left corner of the rectangular region of pixels to read."
@@ -38631,7 +38399,7 @@
     "code_sample": ""
   },
   "@roblox/globaltype/EditableImage.WritePixelsBuffer/param/0": {
-    "documentation": "Instance which allows for the runtime creation and manipulation of images."
+    "documentation": "Object which allows for the runtime creation and manipulation of images."
   },
   "@roblox/globaltype/EditableImage.WritePixelsBuffer/param/1": {
     "documentation": "Top-left corner of the rectangular region to draw the pixels into."
@@ -38802,6 +38570,7 @@
       "Pivot Snap To Geometry Color": "@roblox/globaltype/Studio.Pivot Snap To Geometry Color",
       "PluginDebuggingEnabled": "@roblox/globaltype/Studio.PluginDebuggingEnabled",
       "PluginsDir": "@roblox/globaltype/Studio.PluginsDir",
+      "PreferredTextSize": "@roblox/globaltype/Studio.PreferredTextSize",
       "Primary Text Color": "@roblox/globaltype/Studio.Primary Text Color",
       "Property Color": "@roblox/globaltype/Studio.Property Color",
       "ReloadBuiltinPluginsOnChange": "@roblox/globaltype/Studio.ReloadBuiltinPluginsOnChange",
@@ -39523,6 +39292,11 @@
   "@roblox/globaltype/Studio.PluginsDir": {
     "documentation": "The directory where local plugins are stored.",
     "learn_more_link": "https://create.roblox.com/docs/reference/engine/classes/Studio#PluginsDir",
+    "code_sample": ""
+  },
+  "@roblox/globaltype/Studio.PreferredTextSize": {
+    "documentation": "",
+    "learn_more_link": "https://create.roblox.com/docs/reference/engine/classes/Studio#PreferredTextSize",
     "code_sample": ""
   },
   "@roblox/globaltype/Studio.Primary Text Color": {
@@ -47259,6 +47033,7 @@
       "userId": "@roblox/globaltype/Player.userId",
       "AddReplicationFocus": "@roblox/globaltype/Player.AddReplicationFocus",
       "ClearCharacterAppearance": "@roblox/globaltype/Player.ClearCharacterAppearance",
+      "ClearCachedAvatarAppearance": "@roblox/globaltype/Player.ClearCachedAvatarAppearance",
       "DistanceFromCharacter": "@roblox/globaltype/Player.DistanceFromCharacter",
       "GetFriendsOnline": "@roblox/globaltype/Player.GetFriendsOnline",
       "GetFriendsOnlineAsync": "@roblox/globaltype/Player.GetFriendsOnlineAsync",
@@ -47533,6 +47308,21 @@
     "learn_more_link": "https://create.roblox.com/docs/reference/engine/classes/Player#ClearCharacterAppearance",
     "code_sample": "local Players = game:GetService(\"Players\")\n\nlocal player = Players.LocalPlayer\n\nlocal character = player.Character or player.CharacterAdded:Wait()\n\nlocal function onChildRemoved(child)\n\tprint(child.ClassName, \"removed from character\")\nend\n\ncharacter.ChildRemoved:Connect(onChildRemoved)\n\nplayer:ClearCharacterAppearance()\n--> BodyColors removed from character\n--> ShirtGraphic removed from character\n--> Shirt removed from character\n--> Pants removed from character\n--> CharacterMesh removed from character\n--> Hat removed from character\n--> Shirt removed from character"
   },
+  "@roblox/globaltype/Player.ClearCachedAvatarAppearance/param/0": {
+    "documentation": "An object that represents a presently connected client to the experience."
+  },
+  "@roblox/globaltype/Player.ClearCachedAvatarAppearance": {
+    "documentation": "Clears the cached avatar appearance for the player, forcing a fresh fetch from the backend on the next respawn.",
+    "params": [
+      {
+        "name": "self",
+        "documentation": "@roblox/globaltype/Player.ClearCachedAvatarAppearance/param/0"
+      }
+    ],
+    "returns": [],
+    "learn_more_link": "https://create.roblox.com/docs/reference/engine/classes/Player#ClearCachedAvatarAppearance",
+    "code_sample": ""
+  },
   "@roblox/globaltype/Player.DistanceFromCharacter/param/0": {
     "documentation": "An object that represents a presently connected client to the experience."
   },
@@ -47731,7 +47521,7 @@
     "documentation": "The player's rank in the group."
   },
   "@roblox/globaltype/Player.GetRankInGroupAsync": {
-    "documentation": "Returns the player's rank in the group as an integer.",
+    "documentation": "<strong>Deprecated:</strong> This method only returns a single role rank and may produce arbitrary results when a user holds multiple roles. Use <code>GroupService:GetRolesInGroupAsync()</code> instead, which returns all roles.<br>Returns the player's rank in the group as an integer.",
     "params": [
       {
         "name": "self",
@@ -47785,7 +47575,7 @@
     "documentation": "The player's role in the specified group, or <code>Guest</code> if the player is not a member."
   },
   "@roblox/globaltype/Player.GetRoleInGroupAsync": {
-    "documentation": "Returns the player's role in the group as a string, or <code>Guest</code> if the player isn't part of the group.",
+    "documentation": "<strong>Deprecated:</strong> This method only returns a single role name and may produce arbitrary results when a user holds multiple roles. Use <code>GroupService:GetRolesInGroupAsync()</code> instead, which returns all roles.<br>Returns the player's role in the group as a string, or <code>Guest</code> if the player isn't part of the group.",
     "params": [
       {
         "name": "self",
@@ -56903,129 +56693,6 @@
     "learn_more_link": "https://create.roblox.com/docs/reference/engine/classes/MaterialVariant#StudsPerTile",
     "code_sample": ""
   },
-  "@roblox/globaltype/TerrainIterateOperation": {
-    "documentation": "",
-    "keys": {
-      "CommitBlock": "@roblox/globaltype/TerrainIterateOperation.CommitBlock"
-    },
-    "learn_more_link": "https://create.roblox.com/docs/reference/engine/classes/TerrainIterateOperation",
-    "code_sample": ""
-  },
-  "@roblox/globaltype/TerrainIterateOperation.CommitBlock/param/0": {
-    "documentation": ""
-  },
-  "@roblox/globaltype/TerrainIterateOperation.CommitBlock/param/1": {
-    "documentation": ""
-  },
-  "@roblox/globaltype/TerrainIterateOperation.CommitBlock/return/0": {
-    "documentation": ""
-  },
-  "@roblox/globaltype/TerrainIterateOperation.CommitBlock": {
-    "documentation": "",
-    "params": [
-      {
-        "name": "self",
-        "documentation": "@roblox/globaltype/TerrainIterateOperation.CommitBlock/param/0"
-      },
-      {
-        "name": "block",
-        "documentation": "@roblox/globaltype/TerrainIterateOperation.CommitBlock/param/1"
-      }
-    ],
-    "returns": [
-      "@roblox/globaltype/TerrainIterateOperation.CommitBlock/return/0"
-    ],
-    "learn_more_link": "https://create.roblox.com/docs/reference/engine/classes/TerrainIterateOperation#CommitBlock",
-    "code_sample": ""
-  },
-  "@roblox/globaltype/TerrainIterateOperation.Ready.Connect/param/0": {
-    "documentation": "An object that runs connected functions upon a specific occurrence."
-  },
-  "@roblox/globaltype/TerrainIterateOperation.Ready.Connect/param/1": {
-    "documentation": ""
-  },
-  "@roblox/globaltype/TerrainIterateOperation.Ready.Connect": {
-    "documentation": "Connects the given function to the event and returns an <code>RBXScriptConnection</code> that represents it.",
-    "learn_more_link": "https://create.roblox.com/docs/reference/engine/datatypes/RBXScriptSignal#Connect",
-    "params": [
-      {
-        "name": "self",
-        "documentation": "@roblox/globaltype/TerrainIterateOperation.Ready.Connect/param/0"
-      },
-      {
-        "name": "func",
-        "documentation": "@roblox/globaltype/TerrainIterateOperation.Ready.Connect/param/1"
-      }
-    ],
-    "returns": []
-  },
-  "@roblox/globaltype/TerrainIterateOperation.Ready.ConnectParallel/param/0": {
-    "documentation": "An object that runs connected functions upon a specific occurrence."
-  },
-  "@roblox/globaltype/TerrainIterateOperation.Ready.ConnectParallel/param/1": {
-    "documentation": ""
-  },
-  "@roblox/globaltype/TerrainIterateOperation.Ready.ConnectParallel": {
-    "documentation": "Connects the given function to the event and returns an <code>RBXScriptConnection</code> that represents it.",
-    "learn_more_link": "https://create.roblox.com/docs/reference/engine/datatypes/RBXScriptSignal#ConnectParallel",
-    "params": [
-      {
-        "name": "self",
-        "documentation": "@roblox/globaltype/TerrainIterateOperation.Ready.ConnectParallel/param/0"
-      },
-      {
-        "name": "func",
-        "documentation": "@roblox/globaltype/TerrainIterateOperation.Ready.ConnectParallel/param/1"
-      }
-    ],
-    "returns": []
-  },
-  "@roblox/globaltype/TerrainIterateOperation.Ready.Once/param/0": {
-    "documentation": "An object that runs connected functions upon a specific occurrence."
-  },
-  "@roblox/globaltype/TerrainIterateOperation.Ready.Once/param/1": {
-    "documentation": ""
-  },
-  "@roblox/globaltype/TerrainIterateOperation.Ready.Once": {
-    "documentation": "Connects the given function to the event (for a single invocation) and returns an <code>RBXScriptConnection</code> that represents it.",
-    "learn_more_link": "https://create.roblox.com/docs/reference/engine/datatypes/RBXScriptSignal#Once",
-    "params": [
-      {
-        "name": "self",
-        "documentation": "@roblox/globaltype/TerrainIterateOperation.Ready.Once/param/0"
-      },
-      {
-        "name": "func",
-        "documentation": "@roblox/globaltype/TerrainIterateOperation.Ready.Once/param/1"
-      }
-    ],
-    "returns": []
-  },
-  "@roblox/globaltype/TerrainIterateOperation.Ready.Wait/param/0": {
-    "documentation": "An object that runs connected functions upon a specific occurrence."
-  },
-  "@roblox/globaltype/TerrainIterateOperation.Ready.Wait": {
-    "documentation": "Yields the current thread until the signal fires and returns the arguments provided by the signal.",
-    "learn_more_link": "https://create.roblox.com/docs/reference/engine/datatypes/RBXScriptSignal#Wait",
-    "params": [
-      {
-        "name": "self",
-        "documentation": "@roblox/globaltype/TerrainIterateOperation.Ready.Wait/param/0"
-      }
-    ],
-    "returns": []
-  },
-  "@roblox/globaltype/TerrainIterateOperation.Ready": {
-    "documentation": "",
-    "keys": {
-      "Connect": "@roblox/globaltype/TerrainIterateOperation.Ready.Connect",
-      "ConnectParallel": "@roblox/globaltype/TerrainIterateOperation.Ready.ConnectParallel",
-      "Once": "@roblox/globaltype/TerrainIterateOperation.Ready.Once",
-      "Wait": "@roblox/globaltype/TerrainIterateOperation.Ready.Wait"
-    },
-    "learn_more_link": "https://create.roblox.com/docs/reference/engine/classes/TerrainIterateOperation#Ready",
-    "code_sample": ""
-  },
   "@roblox/globaltype/WrapTarget": {
     "documentation": "The WrapTarget object defines a target. A target is the 3D body with only an outer surface, or an Outer Cage.",
     "keys": {
@@ -58223,7 +57890,7 @@
     "code_sample": ""
   },
   "@roblox/globaltype/BasePlayerGui": {
-    "documentation": "The BasePlayerGui is an abstract class which the GUI drawing storage classes inherit from.",
+    "documentation": "<code>BasePlayerGui</code> is an abstract class which the GUI drawing storage classes inherit from.",
     "keys": {
       "GetGuiObjectsAtPosition": "@roblox/globaltype/BasePlayerGui.GetGuiObjectsAtPosition"
     },
@@ -58231,13 +57898,13 @@
     "code_sample": ""
   },
   "@roblox/globaltype/BasePlayerGui.GetGuiObjectsAtPosition/param/0": {
-    "documentation": "The BasePlayerGui is an abstract class which the GUI drawing storage classes inherit from."
+    "documentation": "<code>BasePlayerGui</code> is an abstract class which the GUI drawing storage classes inherit from."
   },
   "@roblox/globaltype/BasePlayerGui.GetGuiObjectsAtPosition/param/1": {
-    "documentation": "The x position on the screen relative to the top left corner after the <code>GuiInset</code> is applied."
+    "documentation": "The <strong>X</strong> position on the screen relative to the top-left corner after the GUI inset is applied (see <code>GuiService:GetGuiInset()</code>)."
   },
   "@roblox/globaltype/BasePlayerGui.GetGuiObjectsAtPosition/param/2": {
-    "documentation": "The y position on the screen relative to the top left corner after the <code>GuiInset</code> is applied."
+    "documentation": "The <strong>Y</strong> position on the screen relative to the top-left corner after the GUI inset is applied (see <code>GuiService:GetGuiInset()</code>)."
   },
   "@roblox/globaltype/BasePlayerGui.GetGuiObjectsAtPosition/return/0": {
     "documentation": "A table of the <code>GuiObject</code> instances that occupy the given screen space."
@@ -58271,7 +57938,7 @@
     "code_sample": ""
   },
   "@roblox/globaltype/Configuration": {
-    "documentation": "The Configuration object is a container object that is designed to hold value objects to make values used in <code>Tools</code> or any model using <code>Scripts</code> more accessible.",
+    "documentation": "A container object designed to hold value objects. Makes values used in <code>Tools</code> or any model using <code>Scripts</code> more accessible.",
     "keys": {},
     "learn_more_link": "https://create.roblox.com/docs/reference/engine/classes/Configuration",
     "code_sample": ""
@@ -59246,7 +58913,7 @@
     "code_sample": ""
   },
   "@roblox/globaltype/PlayerScripts": {
-    "documentation": "A container for LocalScripts to be run on the client.",
+    "documentation": "A container for client-side scripts to be run inside <code>Player</code> objects within the <code>Players</code> service.",
     "keys": {
       "ClearComputerCameraMovementModes": "@roblox/globaltype/PlayerScripts.ClearComputerCameraMovementModes",
       "ClearComputerMovementModes": "@roblox/globaltype/PlayerScripts.ClearComputerMovementModes",
@@ -59261,10 +58928,10 @@
     "code_sample": ""
   },
   "@roblox/globaltype/PlayerScripts.ClearComputerCameraMovementModes/param/0": {
-    "documentation": "A container for LocalScripts to be run on the client."
+    "documentation": "A container for client-side scripts to be run inside <code>Player</code> objects within the <code>Players</code> service."
   },
   "@roblox/globaltype/PlayerScripts.ClearComputerCameraMovementModes": {
-    "documentation": "Unregisters all ComputerCameraMovementMode enums from the experience's settings menu.",
+    "documentation": "Unregisters all <code>ComputerCameraMovementMode</code> enums from the game's settings menu.",
     "params": [
       {
         "name": "self",
@@ -59276,10 +58943,10 @@
     "code_sample": ""
   },
   "@roblox/globaltype/PlayerScripts.ClearComputerMovementModes/param/0": {
-    "documentation": "A container for LocalScripts to be run on the client."
+    "documentation": "A container for client-side scripts to be run inside <code>Player</code> objects within the <code>Players</code> service."
   },
   "@roblox/globaltype/PlayerScripts.ClearComputerMovementModes": {
-    "documentation": "Unregisters all ComputerMovementMode enums from the experience's settings menu.",
+    "documentation": "Unregisters all <code>ComputerMovementMode</code> enums from the game's settings menu.",
     "params": [
       {
         "name": "self",
@@ -59291,10 +58958,10 @@
     "code_sample": ""
   },
   "@roblox/globaltype/PlayerScripts.ClearTouchCameraMovementModes/param/0": {
-    "documentation": "A container for LocalScripts to be run on the client."
+    "documentation": "A container for client-side scripts to be run inside <code>Player</code> objects within the <code>Players</code> service."
   },
   "@roblox/globaltype/PlayerScripts.ClearTouchCameraMovementModes": {
-    "documentation": "Unregisters all TouchCameraMovementMode enums from the experience's settings menu.",
+    "documentation": "Unregisters all <code>TouchCameraMovementMode</code> enums from the game's settings menu.",
     "params": [
       {
         "name": "self",
@@ -59306,10 +58973,10 @@
     "code_sample": ""
   },
   "@roblox/globaltype/PlayerScripts.ClearTouchMovementModes/param/0": {
-    "documentation": "A container for LocalScripts to be run on the client."
+    "documentation": "A container for client-side scripts to be run inside <code>Player</code> objects within the <code>Players</code> service."
   },
   "@roblox/globaltype/PlayerScripts.ClearTouchMovementModes": {
-    "documentation": "Unregisters all TouchMovementMode enums from the experience's settings menu.",
+    "documentation": "Unregisters all <code>TouchMovementMode</code> enums from the game's settings menu.",
     "params": [
       {
         "name": "self",
@@ -59321,7 +58988,7 @@
     "code_sample": ""
   },
   "@roblox/globaltype/PlayerScripts.RegisterComputerCameraMovementMode/param/0": {
-    "documentation": "A container for LocalScripts to be run on the client."
+    "documentation": "A container for client-side scripts to be run inside <code>Player</code> objects within the <code>Players</code> service."
   },
   "@roblox/globaltype/PlayerScripts.RegisterComputerCameraMovementMode/param/1": {
     "documentation": ""
@@ -59343,7 +59010,7 @@
     "code_sample": ""
   },
   "@roblox/globaltype/PlayerScripts.RegisterComputerMovementMode/param/0": {
-    "documentation": "A container for LocalScripts to be run on the client."
+    "documentation": "A container for client-side scripts to be run inside <code>Player</code> objects within the <code>Players</code> service."
   },
   "@roblox/globaltype/PlayerScripts.RegisterComputerMovementMode/param/1": {
     "documentation": ""
@@ -59365,7 +59032,7 @@
     "code_sample": ""
   },
   "@roblox/globaltype/PlayerScripts.RegisterTouchCameraMovementMode/param/0": {
-    "documentation": "A container for LocalScripts to be run on the client."
+    "documentation": "A container for client-side scripts to be run inside <code>Player</code> objects within the <code>Players</code> service."
   },
   "@roblox/globaltype/PlayerScripts.RegisterTouchCameraMovementMode/param/1": {
     "documentation": ""
@@ -59387,7 +59054,7 @@
     "code_sample": ""
   },
   "@roblox/globaltype/PlayerScripts.RegisterTouchMovementMode/param/0": {
-    "documentation": "A container for LocalScripts to be run on the client."
+    "documentation": "A container for client-side scripts to be run inside <code>Player</code> objects within the <code>Players</code> service."
   },
   "@roblox/globaltype/PlayerScripts.RegisterTouchMovementMode/param/1": {
     "documentation": ""
@@ -60123,7 +59790,7 @@
     "documentation": ""
   },
   "@roblox/globaltype/GuiService.GetInsetArea": {
-    "documentation": "",
+    "documentation": "Takes an <code>ScreenInsets</code> value and returns a <code>Rect2D</code> describing the inset region, relative to the <code>CoreUISafeInsets</code> area.",
     "params": [
       {
         "name": "self",
@@ -61468,7 +61135,7 @@
     "code_sample": ""
   },
   "@roblox/globaltype/Backpack": {
-    "documentation": "A container object that holds a player's inventory. Any <code>Tool</code> in a player's Backpack will be displayed in their inventory at the bottom of their screen.",
+    "documentation": "A container object that holds a player's inventory. Any <code>Tool</code> in a player's <code>Backpack</code> will be displayed in their inventory at the bottom of the screen.",
     "keys": {},
     "learn_more_link": "https://create.roblox.com/docs/reference/engine/classes/Backpack",
     "code_sample": "local Players = game:GetService(\"Players\")\n\nlocal function onCharacterAdded(character)\n\tlocal player = Players:GetPlayerFromCharacter(character)\n\tlocal tool = Instance.new(\"Tool\")\n\tlocal backpack = player:FindFirstChildOfClass(\"Backpack\")\n\ttool.Parent = backpack\nend\n\nlocal function onPlayerAdded(player)\n\tif player.Character then\n\t\tonCharacterAdded(player.Character)\n\tend\n\tplayer.CharacterAdded:Connect(onCharacterAdded)\nend\n\nPlayers.PlayerAdded:Connect(onPlayerAdded)"
@@ -61760,7 +61427,7 @@
     "documentation": "Options table containing controls for the method: <ul> <li><code>FixedSize</code> – A <code>bool</code>. Default value is <code>true</code>, and the returned   <code>EditableMesh</code> will not allow you to add or remove vertices,   only modify their values. Set to <code>false</code> if the ability to change   the mesh topology is required, at the expense of using more memory.</li> </ul>"
   },
   "@roblox/globaltype/AssetService.CreateEditableMeshAsync/return/0": {
-    "documentation": "The new <code>EditableMesh</code> instance."
+    "documentation": "The new <code>EditableMesh</code> object."
   },
   "@roblox/globaltype/AssetService.CreateEditableMeshAsync": {
     "documentation": "Returns a new <code>EditableMesh</code> object created from an existing mesh content ID.",
@@ -67027,10 +66694,9 @@
     "code_sample": ""
   },
   "@roblox/globaltype/EditableMesh": {
-    "documentation": "Instance which allows for the runtime creation and manipulation of meshes.",
+    "documentation": "Object which allows for the runtime creation and manipulation of meshes.",
     "keys": {
       "FixedSize": "@roblox/globaltype/EditableMesh.FixedSize",
-      "SkinningEnabled": "@roblox/globaltype/EditableMesh.SkinningEnabled",
       "AddBone": "@roblox/globaltype/EditableMesh.AddBone",
       "AddColor": "@roblox/globaltype/EditableMesh.AddColor",
       "AddNormal": "@roblox/globaltype/EditableMesh.AddNormal",
@@ -67124,13 +66790,8 @@
     "learn_more_link": "https://create.roblox.com/docs/reference/engine/classes/EditableMesh#FixedSize",
     "code_sample": ""
   },
-  "@roblox/globaltype/EditableMesh.SkinningEnabled": {
-    "documentation": "<strong>Deprecated:</strong> ",
-    "learn_more_link": "https://create.roblox.com/docs/reference/engine/classes/EditableMesh#SkinningEnabled",
-    "code_sample": ""
-  },
   "@roblox/globaltype/EditableMesh.AddBone/param/0": {
-    "documentation": "Instance which allows for the runtime creation and manipulation of meshes."
+    "documentation": "Object which allows for the runtime creation and manipulation of meshes."
   },
   "@roblox/globaltype/EditableMesh.AddBone/param/1": {
     "documentation": "Options table containing bone parameters: <ul> <li><code>Name</code> — A string that specifies the bone name. Note that all bone   names in a mesh must be unique.</li> <li><code>ParentId</code> — Optional bone ID of the new bone's parent.</li> <li><code>CFrame</code> — Initial <code>CFrame</code> of the bone in the bind pose of   the mesh, in the mesh's local space.</li> <li><code>Virtual</code> — Boolean that specifies whether this bone is virtual.   Virtual bones can only be bound to a <code>FaceControls</code> instance.</li> </ul>"
@@ -67157,7 +66818,7 @@
     "code_sample": ""
   },
   "@roblox/globaltype/EditableMesh.AddColor/param/0": {
-    "documentation": "Instance which allows for the runtime creation and manipulation of meshes."
+    "documentation": "Object which allows for the runtime creation and manipulation of meshes."
   },
   "@roblox/globaltype/EditableMesh.AddColor/param/1": {
     "documentation": "The new color."
@@ -67191,7 +66852,7 @@
     "code_sample": ""
   },
   "@roblox/globaltype/EditableMesh.AddNormal/param/0": {
-    "documentation": "Instance which allows for the runtime creation and manipulation of meshes."
+    "documentation": "Object which allows for the runtime creation and manipulation of meshes."
   },
   "@roblox/globaltype/EditableMesh.AddNormal/param/1": {
     "documentation": "The normal vector. If the normal value isn't specified, the normal will be automatically calculated."
@@ -67218,7 +66879,7 @@
     "code_sample": ""
   },
   "@roblox/globaltype/EditableMesh.AddTriangle/param/0": {
-    "documentation": "Instance which allows for the runtime creation and manipulation of meshes."
+    "documentation": "Object which allows for the runtime creation and manipulation of meshes."
   },
   "@roblox/globaltype/EditableMesh.AddTriangle/param/1": {
     "documentation": "ID of the first vertex of the triangle."
@@ -67259,7 +66920,7 @@
     "code_sample": ""
   },
   "@roblox/globaltype/EditableMesh.AddUV/param/0": {
-    "documentation": "Instance which allows for the runtime creation and manipulation of meshes."
+    "documentation": "Object which allows for the runtime creation and manipulation of meshes."
   },
   "@roblox/globaltype/EditableMesh.AddUV/param/1": {
     "documentation": "The new UV coordinate."
@@ -67286,7 +66947,7 @@
     "code_sample": ""
   },
   "@roblox/globaltype/EditableMesh.AddVertex/param/0": {
-    "documentation": "Instance which allows for the runtime creation and manipulation of meshes."
+    "documentation": "Object which allows for the runtime creation and manipulation of meshes."
   },
   "@roblox/globaltype/EditableMesh.AddVertex/param/1": {
     "documentation": "Position in the mesh's local object space."
@@ -67313,7 +66974,7 @@
     "code_sample": ""
   },
   "@roblox/globaltype/EditableMesh.Destroy/param/0": {
-    "documentation": "Instance which allows for the runtime creation and manipulation of meshes."
+    "documentation": "Object which allows for the runtime creation and manipulation of meshes."
   },
   "@roblox/globaltype/EditableMesh.Destroy": {
     "documentation": "Destroys the mesh.",
@@ -67328,7 +66989,7 @@
     "code_sample": ""
   },
   "@roblox/globaltype/EditableMesh.FindClosestPointOnSurface/param/0": {
-    "documentation": "Instance which allows for the runtime creation and manipulation of meshes."
+    "documentation": "Object which allows for the runtime creation and manipulation of meshes."
   },
   "@roblox/globaltype/EditableMesh.FindClosestPointOnSurface/param/1": {
     "documentation": "Point position in the mesh's local object space."
@@ -67355,7 +67016,7 @@
     "code_sample": ""
   },
   "@roblox/globaltype/EditableMesh.FindClosestVertex/param/0": {
-    "documentation": "Instance which allows for the runtime creation and manipulation of meshes."
+    "documentation": "Object which allows for the runtime creation and manipulation of meshes."
   },
   "@roblox/globaltype/EditableMesh.FindClosestVertex/param/1": {
     "documentation": "Point position in the mesh's local object space."
@@ -67382,7 +67043,7 @@
     "code_sample": ""
   },
   "@roblox/globaltype/EditableMesh.FindVerticesWithinSphere/param/0": {
-    "documentation": "Instance which allows for the runtime creation and manipulation of meshes."
+    "documentation": "Object which allows for the runtime creation and manipulation of meshes."
   },
   "@roblox/globaltype/EditableMesh.FindVerticesWithinSphere/param/1": {
     "documentation": "Center of the sphere in the mesh's local object space."
@@ -67416,7 +67077,7 @@
     "code_sample": ""
   },
   "@roblox/globaltype/EditableMesh.GetAdjacentFaces/param/0": {
-    "documentation": "Instance which allows for the runtime creation and manipulation of meshes."
+    "documentation": "Object which allows for the runtime creation and manipulation of meshes."
   },
   "@roblox/globaltype/EditableMesh.GetAdjacentFaces/param/1": {
     "documentation": ""
@@ -67443,7 +67104,7 @@
     "code_sample": ""
   },
   "@roblox/globaltype/EditableMesh.GetAdjacentVertices/param/0": {
-    "documentation": "Instance which allows for the runtime creation and manipulation of meshes."
+    "documentation": "Object which allows for the runtime creation and manipulation of meshes."
   },
   "@roblox/globaltype/EditableMesh.GetAdjacentVertices/param/1": {
     "documentation": "Vertex ID around which to get adjacent vertices."
@@ -67470,7 +67131,7 @@
     "code_sample": ""
   },
   "@roblox/globaltype/EditableMesh.GetBoneByName/param/0": {
-    "documentation": "Instance which allows for the runtime creation and manipulation of meshes."
+    "documentation": "Object which allows for the runtime creation and manipulation of meshes."
   },
   "@roblox/globaltype/EditableMesh.GetBoneByName/param/1": {
     "documentation": "Bone name to search for."
@@ -67497,7 +67158,7 @@
     "code_sample": ""
   },
   "@roblox/globaltype/EditableMesh.GetBoneCFrame/param/0": {
-    "documentation": "Instance which allows for the runtime creation and manipulation of meshes."
+    "documentation": "Object which allows for the runtime creation and manipulation of meshes."
   },
   "@roblox/globaltype/EditableMesh.GetBoneCFrame/param/1": {
     "documentation": "Bone ID for which to get the <code>CFrame</code>."
@@ -67524,7 +67185,7 @@
     "code_sample": ""
   },
   "@roblox/globaltype/EditableMesh.GetBoneIsVirtual/param/0": {
-    "documentation": "Instance which allows for the runtime creation and manipulation of meshes."
+    "documentation": "Object which allows for the runtime creation and manipulation of meshes."
   },
   "@roblox/globaltype/EditableMesh.GetBoneIsVirtual/param/1": {
     "documentation": "Bone ID for which to get whether the bone is virtual."
@@ -67551,7 +67212,7 @@
     "code_sample": ""
   },
   "@roblox/globaltype/EditableMesh.GetBoneName/param/0": {
-    "documentation": "Instance which allows for the runtime creation and manipulation of meshes."
+    "documentation": "Object which allows for the runtime creation and manipulation of meshes."
   },
   "@roblox/globaltype/EditableMesh.GetBoneName/param/1": {
     "documentation": "Bone ID for which to get the name."
@@ -67578,7 +67239,7 @@
     "code_sample": ""
   },
   "@roblox/globaltype/EditableMesh.GetBoneParent/param/0": {
-    "documentation": "Instance which allows for the runtime creation and manipulation of meshes."
+    "documentation": "Object which allows for the runtime creation and manipulation of meshes."
   },
   "@roblox/globaltype/EditableMesh.GetBoneParent/param/1": {
     "documentation": "Bone ID for which to get the parent."
@@ -67605,7 +67266,7 @@
     "code_sample": ""
   },
   "@roblox/globaltype/EditableMesh.GetBones/param/0": {
-    "documentation": "Instance which allows for the runtime creation and manipulation of meshes."
+    "documentation": "Object which allows for the runtime creation and manipulation of meshes."
   },
   "@roblox/globaltype/EditableMesh.GetBones/return/0": {
     "documentation": "List of stable bone IDs."
@@ -67625,7 +67286,7 @@
     "code_sample": ""
   },
   "@roblox/globaltype/EditableMesh.GetCenter/param/0": {
-    "documentation": "Instance which allows for the runtime creation and manipulation of meshes."
+    "documentation": "Object which allows for the runtime creation and manipulation of meshes."
   },
   "@roblox/globaltype/EditableMesh.GetCenter/return/0": {
     "documentation": "Center of the bounding box of the <code>EditableMesh</code>."
@@ -67645,7 +67306,7 @@
     "code_sample": ""
   },
   "@roblox/globaltype/EditableMesh.GetColor/param/0": {
-    "documentation": "Instance which allows for the runtime creation and manipulation of meshes."
+    "documentation": "Object which allows for the runtime creation and manipulation of meshes."
   },
   "@roblox/globaltype/EditableMesh.GetColor/param/1": {
     "documentation": "Color ID for which to get the color."
@@ -67672,7 +67333,7 @@
     "code_sample": ""
   },
   "@roblox/globaltype/EditableMesh.GetColorAlpha/param/0": {
-    "documentation": "Instance which allows for the runtime creation and manipulation of meshes."
+    "documentation": "Object which allows for the runtime creation and manipulation of meshes."
   },
   "@roblox/globaltype/EditableMesh.GetColorAlpha/param/1": {
     "documentation": "Color ID for which to get the alpha."
@@ -67699,7 +67360,7 @@
     "code_sample": ""
   },
   "@roblox/globaltype/EditableMesh.GetColors/param/0": {
-    "documentation": "Instance which allows for the runtime creation and manipulation of meshes."
+    "documentation": "Object which allows for the runtime creation and manipulation of meshes."
   },
   "@roblox/globaltype/EditableMesh.GetColors/return/0": {
     "documentation": "List of stable color IDs."
@@ -67719,7 +67380,7 @@
     "code_sample": ""
   },
   "@roblox/globaltype/EditableMesh.GetFaceColors/param/0": {
-    "documentation": "Instance which allows for the runtime creation and manipulation of meshes."
+    "documentation": "Object which allows for the runtime creation and manipulation of meshes."
   },
   "@roblox/globaltype/EditableMesh.GetFaceColors/param/1": {
     "documentation": "Face ID for which to get the color IDs."
@@ -67746,7 +67407,7 @@
     "code_sample": ""
   },
   "@roblox/globaltype/EditableMesh.GetFaceNormals/param/0": {
-    "documentation": "Instance which allows for the runtime creation and manipulation of meshes."
+    "documentation": "Object which allows for the runtime creation and manipulation of meshes."
   },
   "@roblox/globaltype/EditableMesh.GetFaceNormals/param/1": {
     "documentation": "Face ID for which to get the normal IDs."
@@ -67773,7 +67434,7 @@
     "code_sample": ""
   },
   "@roblox/globaltype/EditableMesh.GetFaces/param/0": {
-    "documentation": "Instance which allows for the runtime creation and manipulation of meshes."
+    "documentation": "Object which allows for the runtime creation and manipulation of meshes."
   },
   "@roblox/globaltype/EditableMesh.GetFaces/return/0": {
     "documentation": "List of stable face IDs."
@@ -67793,7 +67454,7 @@
     "code_sample": ""
   },
   "@roblox/globaltype/EditableMesh.GetFacesWithAttribute/param/0": {
-    "documentation": "Instance which allows for the runtime creation and manipulation of meshes."
+    "documentation": "Object which allows for the runtime creation and manipulation of meshes."
   },
   "@roblox/globaltype/EditableMesh.GetFacesWithAttribute/param/1": {
     "documentation": "Attribute ID for which to find faces that use it."
@@ -67820,7 +67481,7 @@
     "code_sample": ""
   },
   "@roblox/globaltype/EditableMesh.GetFacesWithColor/param/0": {
-    "documentation": "Instance which allows for the runtime creation and manipulation of meshes."
+    "documentation": "Object which allows for the runtime creation and manipulation of meshes."
   },
   "@roblox/globaltype/EditableMesh.GetFacesWithColor/param/1": {
     "documentation": "Color ID to find faces for."
@@ -67847,7 +67508,7 @@
     "code_sample": ""
   },
   "@roblox/globaltype/EditableMesh.GetFacesWithNormal/param/0": {
-    "documentation": "Instance which allows for the runtime creation and manipulation of meshes."
+    "documentation": "Object which allows for the runtime creation and manipulation of meshes."
   },
   "@roblox/globaltype/EditableMesh.GetFacesWithNormal/param/1": {
     "documentation": "Normal ID to find faces for."
@@ -67874,7 +67535,7 @@
     "code_sample": ""
   },
   "@roblox/globaltype/EditableMesh.GetFacesWithUV/param/0": {
-    "documentation": "Instance which allows for the runtime creation and manipulation of meshes."
+    "documentation": "Object which allows for the runtime creation and manipulation of meshes."
   },
   "@roblox/globaltype/EditableMesh.GetFacesWithUV/param/1": {
     "documentation": "UV ID to find faces for."
@@ -67901,7 +67562,7 @@
     "code_sample": ""
   },
   "@roblox/globaltype/EditableMesh.GetFaceUVs/param/0": {
-    "documentation": "Instance which allows for the runtime creation and manipulation of meshes."
+    "documentation": "Object which allows for the runtime creation and manipulation of meshes."
   },
   "@roblox/globaltype/EditableMesh.GetFaceUVs/param/1": {
     "documentation": "Face ID for which to get the UV IDs."
@@ -67928,7 +67589,7 @@
     "code_sample": ""
   },
   "@roblox/globaltype/EditableMesh.GetFaceVertices/param/0": {
-    "documentation": "Instance which allows for the runtime creation and manipulation of meshes."
+    "documentation": "Object which allows for the runtime creation and manipulation of meshes."
   },
   "@roblox/globaltype/EditableMesh.GetFaceVertices/param/1": {
     "documentation": ""
@@ -67955,7 +67616,7 @@
     "code_sample": ""
   },
   "@roblox/globaltype/EditableMesh.GetFacsCorrectivePose/param/0": {
-    "documentation": "Instance which allows for the runtime creation and manipulation of meshes."
+    "documentation": "Object which allows for the runtime creation and manipulation of meshes."
   },
   "@roblox/globaltype/EditableMesh.GetFacsCorrectivePose/param/1": {
     "documentation": "Array or 2 or 3 <code>FacsActionUnit</code> values that specify a corrective pose."
@@ -67982,7 +67643,7 @@
     "code_sample": ""
   },
   "@roblox/globaltype/EditableMesh.GetFacsCorrectivePoses/param/0": {
-    "documentation": "Instance which allows for the runtime creation and manipulation of meshes."
+    "documentation": "Object which allows for the runtime creation and manipulation of meshes."
   },
   "@roblox/globaltype/EditableMesh.GetFacsCorrectivePoses/return/0": {
     "documentation": "Array of corrective poses. Each corrective pose is specified by a small array of 2 or 3 <code>FacsActionUnit</code> values."
@@ -68002,7 +67663,7 @@
     "code_sample": ""
   },
   "@roblox/globaltype/EditableMesh.GetFacsPose/param/0": {
-    "documentation": "Instance which allows for the runtime creation and manipulation of meshes."
+    "documentation": "Object which allows for the runtime creation and manipulation of meshes."
   },
   "@roblox/globaltype/EditableMesh.GetFacsPose/param/1": {
     "documentation": "FACS action unit for which to get the pose."
@@ -68029,7 +67690,7 @@
     "code_sample": ""
   },
   "@roblox/globaltype/EditableMesh.GetFacsPoses/param/0": {
-    "documentation": "Instance which allows for the runtime creation and manipulation of meshes."
+    "documentation": "Object which allows for the runtime creation and manipulation of meshes."
   },
   "@roblox/globaltype/EditableMesh.GetFacsPoses/return/0": {
     "documentation": "Array of <code>FacsActionUnit</code>, one for each FACS action unit that has a pose defined."
@@ -68049,7 +67710,7 @@
     "code_sample": ""
   },
   "@roblox/globaltype/EditableMesh.GetNormal/param/0": {
-    "documentation": "Instance which allows for the runtime creation and manipulation of meshes."
+    "documentation": "Object which allows for the runtime creation and manipulation of meshes."
   },
   "@roblox/globaltype/EditableMesh.GetNormal/param/1": {
     "documentation": "Normal ID for which to get the normal vector."
@@ -68076,7 +67737,7 @@
     "code_sample": ""
   },
   "@roblox/globaltype/EditableMesh.GetNormals/param/0": {
-    "documentation": "Instance which allows for the runtime creation and manipulation of meshes."
+    "documentation": "Object which allows for the runtime creation and manipulation of meshes."
   },
   "@roblox/globaltype/EditableMesh.GetNormals/return/0": {
     "documentation": "List of stable normal IDs."
@@ -68096,7 +67757,7 @@
     "code_sample": ""
   },
   "@roblox/globaltype/EditableMesh.GetPosition/param/0": {
-    "documentation": "Instance which allows for the runtime creation and manipulation of meshes."
+    "documentation": "Object which allows for the runtime creation and manipulation of meshes."
   },
   "@roblox/globaltype/EditableMesh.GetPosition/param/1": {
     "documentation": "Stable vertex ID for which to get the position."
@@ -68123,7 +67784,7 @@
     "code_sample": ""
   },
   "@roblox/globaltype/EditableMesh.GetSize/param/0": {
-    "documentation": "Instance which allows for the runtime creation and manipulation of meshes."
+    "documentation": "Object which allows for the runtime creation and manipulation of meshes."
   },
   "@roblox/globaltype/EditableMesh.GetSize/return/0": {
     "documentation": "Size of the <code>EditableMesh</code>."
@@ -68143,7 +67804,7 @@
     "code_sample": ""
   },
   "@roblox/globaltype/EditableMesh.GetUV/param/0": {
-    "documentation": "Instance which allows for the runtime creation and manipulation of meshes."
+    "documentation": "Object which allows for the runtime creation and manipulation of meshes."
   },
   "@roblox/globaltype/EditableMesh.GetUV/param/1": {
     "documentation": "UV ID for which to get the UV coordinate."
@@ -68170,7 +67831,7 @@
     "code_sample": ""
   },
   "@roblox/globaltype/EditableMesh.GetUVs/param/0": {
-    "documentation": "Instance which allows for the runtime creation and manipulation of meshes."
+    "documentation": "Object which allows for the runtime creation and manipulation of meshes."
   },
   "@roblox/globaltype/EditableMesh.GetUVs/return/0": {
     "documentation": "List of stable UV IDs."
@@ -68190,7 +67851,7 @@
     "code_sample": ""
   },
   "@roblox/globaltype/EditableMesh.GetVertexBones/param/0": {
-    "documentation": "Instance which allows for the runtime creation and manipulation of meshes."
+    "documentation": "Object which allows for the runtime creation and manipulation of meshes."
   },
   "@roblox/globaltype/EditableMesh.GetVertexBones/param/1": {
     "documentation": "Vertex ID for which to get the associated bones."
@@ -68217,7 +67878,7 @@
     "code_sample": ""
   },
   "@roblox/globaltype/EditableMesh.GetVertexBoneWeights/param/0": {
-    "documentation": "Instance which allows for the runtime creation and manipulation of meshes."
+    "documentation": "Object which allows for the runtime creation and manipulation of meshes."
   },
   "@roblox/globaltype/EditableMesh.GetVertexBoneWeights/param/1": {
     "documentation": "Vertex ID for which to get the associated bone weights."
@@ -68244,7 +67905,7 @@
     "code_sample": ""
   },
   "@roblox/globaltype/EditableMesh.GetVertexColors/param/0": {
-    "documentation": "Instance which allows for the runtime creation and manipulation of meshes."
+    "documentation": "Object which allows for the runtime creation and manipulation of meshes."
   },
   "@roblox/globaltype/EditableMesh.GetVertexColors/param/1": {
     "documentation": "Stable vertex ID to find color IDs."
@@ -68271,7 +67932,7 @@
     "code_sample": ""
   },
   "@roblox/globaltype/EditableMesh.GetVertexFaceColor/param/0": {
-    "documentation": "Instance which allows for the runtime creation and manipulation of meshes."
+    "documentation": "Object which allows for the runtime creation and manipulation of meshes."
   },
   "@roblox/globaltype/EditableMesh.GetVertexFaceColor/param/1": {
     "documentation": "Stable vertex ID."
@@ -68305,7 +67966,7 @@
     "code_sample": ""
   },
   "@roblox/globaltype/EditableMesh.GetVertexFaceNormal/param/0": {
-    "documentation": "Instance which allows for the runtime creation and manipulation of meshes."
+    "documentation": "Object which allows for the runtime creation and manipulation of meshes."
   },
   "@roblox/globaltype/EditableMesh.GetVertexFaceNormal/param/1": {
     "documentation": "Stable vertex ID."
@@ -68339,7 +68000,7 @@
     "code_sample": ""
   },
   "@roblox/globaltype/EditableMesh.GetVertexFaces/param/0": {
-    "documentation": "Instance which allows for the runtime creation and manipulation of meshes."
+    "documentation": "Object which allows for the runtime creation and manipulation of meshes."
   },
   "@roblox/globaltype/EditableMesh.GetVertexFaces/param/1": {
     "documentation": "Stable vertex ID to find faces for."
@@ -68366,7 +68027,7 @@
     "code_sample": ""
   },
   "@roblox/globaltype/EditableMesh.GetVertexFaceUV/param/0": {
-    "documentation": "Instance which allows for the runtime creation and manipulation of meshes."
+    "documentation": "Object which allows for the runtime creation and manipulation of meshes."
   },
   "@roblox/globaltype/EditableMesh.GetVertexFaceUV/param/1": {
     "documentation": "Stable vertex ID."
@@ -68400,7 +68061,7 @@
     "code_sample": ""
   },
   "@roblox/globaltype/EditableMesh.GetVertexNormals/param/0": {
-    "documentation": "Instance which allows for the runtime creation and manipulation of meshes."
+    "documentation": "Object which allows for the runtime creation and manipulation of meshes."
   },
   "@roblox/globaltype/EditableMesh.GetVertexNormals/param/1": {
     "documentation": "Stable vertex ID to find normal IDs."
@@ -68427,7 +68088,7 @@
     "code_sample": ""
   },
   "@roblox/globaltype/EditableMesh.GetVertexUVs/param/0": {
-    "documentation": "Instance which allows for the runtime creation and manipulation of meshes."
+    "documentation": "Object which allows for the runtime creation and manipulation of meshes."
   },
   "@roblox/globaltype/EditableMesh.GetVertexUVs/param/1": {
     "documentation": "Stable vertex ID to find UV IDs."
@@ -68454,7 +68115,7 @@
     "code_sample": ""
   },
   "@roblox/globaltype/EditableMesh.GetVertices/param/0": {
-    "documentation": "Instance which allows for the runtime creation and manipulation of meshes."
+    "documentation": "Object which allows for the runtime creation and manipulation of meshes."
   },
   "@roblox/globaltype/EditableMesh.GetVertices/return/0": {
     "documentation": "List of stable vertex IDs."
@@ -68474,7 +68135,7 @@
     "code_sample": ""
   },
   "@roblox/globaltype/EditableMesh.GetVerticesWithAttribute/param/0": {
-    "documentation": "Instance which allows for the runtime creation and manipulation of meshes."
+    "documentation": "Object which allows for the runtime creation and manipulation of meshes."
   },
   "@roblox/globaltype/EditableMesh.GetVerticesWithAttribute/param/1": {
     "documentation": "Attribute ID for which to find vertices that use it."
@@ -68501,7 +68162,7 @@
     "code_sample": ""
   },
   "@roblox/globaltype/EditableMesh.GetVerticesWithColor/param/0": {
-    "documentation": "Instance which allows for the runtime creation and manipulation of meshes."
+    "documentation": "Object which allows for the runtime creation and manipulation of meshes."
   },
   "@roblox/globaltype/EditableMesh.GetVerticesWithColor/param/1": {
     "documentation": "Color ID to find faces for."
@@ -68528,7 +68189,7 @@
     "code_sample": ""
   },
   "@roblox/globaltype/EditableMesh.GetVerticesWithNormal/param/0": {
-    "documentation": "Instance which allows for the runtime creation and manipulation of meshes."
+    "documentation": "Object which allows for the runtime creation and manipulation of meshes."
   },
   "@roblox/globaltype/EditableMesh.GetVerticesWithNormal/param/1": {
     "documentation": "Normal ID to find vertices for."
@@ -68555,7 +68216,7 @@
     "code_sample": ""
   },
   "@roblox/globaltype/EditableMesh.GetVerticesWithUV/param/0": {
-    "documentation": "Instance which allows for the runtime creation and manipulation of meshes."
+    "documentation": "Object which allows for the runtime creation and manipulation of meshes."
   },
   "@roblox/globaltype/EditableMesh.GetVerticesWithUV/param/1": {
     "documentation": "UV ID to find vertices for."
@@ -68582,7 +68243,7 @@
     "code_sample": ""
   },
   "@roblox/globaltype/EditableMesh.IdDebugString/param/0": {
-    "documentation": "Instance which allows for the runtime creation and manipulation of meshes."
+    "documentation": "Object which allows for the runtime creation and manipulation of meshes."
   },
   "@roblox/globaltype/EditableMesh.IdDebugString/param/1": {
     "documentation": "ID for which to return a debugging information string."
@@ -68609,7 +68270,7 @@
     "code_sample": ""
   },
   "@roblox/globaltype/EditableMesh.MergeVertices/param/0": {
-    "documentation": "Instance which allows for the runtime creation and manipulation of meshes."
+    "documentation": "Object which allows for the runtime creation and manipulation of meshes."
   },
   "@roblox/globaltype/EditableMesh.MergeVertices/param/1": {
     "documentation": "The distance at which the vertices are considered to touch each other."
@@ -68636,7 +68297,7 @@
     "code_sample": ""
   },
   "@roblox/globaltype/EditableMesh.RaycastLocal/param/0": {
-    "documentation": "Instance which allows for the runtime creation and manipulation of meshes."
+    "documentation": "Object which allows for the runtime creation and manipulation of meshes."
   },
   "@roblox/globaltype/EditableMesh.RaycastLocal/param/1": {
     "documentation": "Origin of the ray in the mesh's local object space."
@@ -68670,7 +68331,7 @@
     "code_sample": ""
   },
   "@roblox/globaltype/EditableMesh.RemoveBone/param/0": {
-    "documentation": "Instance which allows for the runtime creation and manipulation of meshes."
+    "documentation": "Object which allows for the runtime creation and manipulation of meshes."
   },
   "@roblox/globaltype/EditableMesh.RemoveBone/param/1": {
     "documentation": ""
@@ -68692,7 +68353,7 @@
     "code_sample": ""
   },
   "@roblox/globaltype/EditableMesh.RemoveFace/param/0": {
-    "documentation": "Instance which allows for the runtime creation and manipulation of meshes."
+    "documentation": "Object which allows for the runtime creation and manipulation of meshes."
   },
   "@roblox/globaltype/EditableMesh.RemoveFace/param/1": {
     "documentation": ""
@@ -68714,7 +68375,7 @@
     "code_sample": ""
   },
   "@roblox/globaltype/EditableMesh.RemoveUnused/param/0": {
-    "documentation": "Instance which allows for the runtime creation and manipulation of meshes."
+    "documentation": "Object which allows for the runtime creation and manipulation of meshes."
   },
   "@roblox/globaltype/EditableMesh.RemoveUnused/return/0": {
     "documentation": "All of the removed stable IDs."
@@ -68734,7 +68395,7 @@
     "code_sample": ""
   },
   "@roblox/globaltype/EditableMesh.ResetNormal/param/0": {
-    "documentation": "Instance which allows for the runtime creation and manipulation of meshes."
+    "documentation": "Object which allows for the runtime creation and manipulation of meshes."
   },
   "@roblox/globaltype/EditableMesh.ResetNormal/param/1": {
     "documentation": "Stable normal ID to reset."
@@ -68756,7 +68417,7 @@
     "code_sample": ""
   },
   "@roblox/globaltype/EditableMesh.SetBoneCFrame/param/0": {
-    "documentation": "Instance which allows for the runtime creation and manipulation of meshes."
+    "documentation": "Object which allows for the runtime creation and manipulation of meshes."
   },
   "@roblox/globaltype/EditableMesh.SetBoneCFrame/param/1": {
     "documentation": "Bone ID for which to set the initial <code>CFrame</code>."
@@ -68785,7 +68446,7 @@
     "code_sample": ""
   },
   "@roblox/globaltype/EditableMesh.SetBoneIsVirtual/param/0": {
-    "documentation": "Instance which allows for the runtime creation and manipulation of meshes."
+    "documentation": "Object which allows for the runtime creation and manipulation of meshes."
   },
   "@roblox/globaltype/EditableMesh.SetBoneIsVirtual/param/1": {
     "documentation": "Bone ID for which to set whether the bone is virtual."
@@ -68814,7 +68475,7 @@
     "code_sample": ""
   },
   "@roblox/globaltype/EditableMesh.SetBoneName/param/0": {
-    "documentation": "Instance which allows for the runtime creation and manipulation of meshes."
+    "documentation": "Object which allows for the runtime creation and manipulation of meshes."
   },
   "@roblox/globaltype/EditableMesh.SetBoneName/param/1": {
     "documentation": "Bone ID for which to set the name."
@@ -68843,7 +68504,7 @@
     "code_sample": ""
   },
   "@roblox/globaltype/EditableMesh.SetBoneParent/param/0": {
-    "documentation": "Instance which allows for the runtime creation and manipulation of meshes."
+    "documentation": "Object which allows for the runtime creation and manipulation of meshes."
   },
   "@roblox/globaltype/EditableMesh.SetBoneParent/param/1": {
     "documentation": "Bone ID for which to set the parent."
@@ -68872,7 +68533,7 @@
     "code_sample": ""
   },
   "@roblox/globaltype/EditableMesh.SetColor/param/0": {
-    "documentation": "Instance which allows for the runtime creation and manipulation of meshes."
+    "documentation": "Object which allows for the runtime creation and manipulation of meshes."
   },
   "@roblox/globaltype/EditableMesh.SetColor/param/1": {
     "documentation": "Stable color ID for which to set the color."
@@ -68901,7 +68562,7 @@
     "code_sample": ""
   },
   "@roblox/globaltype/EditableMesh.SetColorAlpha/param/0": {
-    "documentation": "Instance which allows for the runtime creation and manipulation of meshes."
+    "documentation": "Object which allows for the runtime creation and manipulation of meshes."
   },
   "@roblox/globaltype/EditableMesh.SetColorAlpha/param/1": {
     "documentation": "Stable color ID for which to set the color alpha."
@@ -68930,7 +68591,7 @@
     "code_sample": ""
   },
   "@roblox/globaltype/EditableMesh.SetFaceColors/param/0": {
-    "documentation": "Instance which allows for the runtime creation and manipulation of meshes."
+    "documentation": "Object which allows for the runtime creation and manipulation of meshes."
   },
   "@roblox/globaltype/EditableMesh.SetFaceColors/param/1": {
     "documentation": "Face ID for which to update the vertex colors."
@@ -68959,7 +68620,7 @@
     "code_sample": ""
   },
   "@roblox/globaltype/EditableMesh.SetFaceNormals/param/0": {
-    "documentation": "Instance which allows for the runtime creation and manipulation of meshes."
+    "documentation": "Object which allows for the runtime creation and manipulation of meshes."
   },
   "@roblox/globaltype/EditableMesh.SetFaceNormals/param/1": {
     "documentation": "Face ID for which to update the vertex normals."
@@ -68988,7 +68649,7 @@
     "code_sample": ""
   },
   "@roblox/globaltype/EditableMesh.SetFaceUVs/param/0": {
-    "documentation": "Instance which allows for the runtime creation and manipulation of meshes."
+    "documentation": "Object which allows for the runtime creation and manipulation of meshes."
   },
   "@roblox/globaltype/EditableMesh.SetFaceUVs/param/1": {
     "documentation": "Face ID for which to update the vertex UVs."
@@ -69017,7 +68678,7 @@
     "code_sample": ""
   },
   "@roblox/globaltype/EditableMesh.SetFaceVertices/param/0": {
-    "documentation": "Instance which allows for the runtime creation and manipulation of meshes."
+    "documentation": "Object which allows for the runtime creation and manipulation of meshes."
   },
   "@roblox/globaltype/EditableMesh.SetFaceVertices/param/1": {
     "documentation": "Face ID for which to update the vertices."
@@ -69046,7 +68707,7 @@
     "code_sample": ""
   },
   "@roblox/globaltype/EditableMesh.SetFacsBonePose/param/0": {
-    "documentation": "Instance which allows for the runtime creation and manipulation of meshes."
+    "documentation": "Object which allows for the runtime creation and manipulation of meshes."
   },
   "@roblox/globaltype/EditableMesh.SetFacsBonePose/param/1": {
     "documentation": "FACS action unit for which to set the pose."
@@ -69082,7 +68743,7 @@
     "code_sample": ""
   },
   "@roblox/globaltype/EditableMesh.SetFacsCorrectivePose/param/0": {
-    "documentation": "Instance which allows for the runtime creation and manipulation of meshes."
+    "documentation": "Object which allows for the runtime creation and manipulation of meshes."
   },
   "@roblox/globaltype/EditableMesh.SetFacsCorrectivePose/param/1": {
     "documentation": "Array or 2 or 3 <code>FacsActionUnit</code> values to apply as a corrective pose."
@@ -69118,7 +68779,7 @@
     "code_sample": ""
   },
   "@roblox/globaltype/EditableMesh.SetFacsPose/param/0": {
-    "documentation": "Instance which allows for the runtime creation and manipulation of meshes."
+    "documentation": "Object which allows for the runtime creation and manipulation of meshes."
   },
   "@roblox/globaltype/EditableMesh.SetFacsPose/param/1": {
     "documentation": "FACS action unit to set the pose for."
@@ -69154,7 +68815,7 @@
     "code_sample": ""
   },
   "@roblox/globaltype/EditableMesh.SetNormal/param/0": {
-    "documentation": "Instance which allows for the runtime creation and manipulation of meshes."
+    "documentation": "Object which allows for the runtime creation and manipulation of meshes."
   },
   "@roblox/globaltype/EditableMesh.SetNormal/param/1": {
     "documentation": "Stable normal ID for which to set the normal vector."
@@ -69183,7 +68844,7 @@
     "code_sample": ""
   },
   "@roblox/globaltype/EditableMesh.SetPosition/param/0": {
-    "documentation": "Instance which allows for the runtime creation and manipulation of meshes."
+    "documentation": "Object which allows for the runtime creation and manipulation of meshes."
   },
   "@roblox/globaltype/EditableMesh.SetPosition/param/1": {
     "documentation": "Stable vertex ID of the vertex to position."
@@ -69212,7 +68873,7 @@
     "code_sample": ""
   },
   "@roblox/globaltype/EditableMesh.SetUV/param/0": {
-    "documentation": "Instance which allows for the runtime creation and manipulation of meshes."
+    "documentation": "Object which allows for the runtime creation and manipulation of meshes."
   },
   "@roblox/globaltype/EditableMesh.SetUV/param/1": {
     "documentation": "UV ID for which to set the UV coordinates."
@@ -69241,7 +68902,7 @@
     "code_sample": ""
   },
   "@roblox/globaltype/EditableMesh.SetVertexBones/param/0": {
-    "documentation": "Instance which allows for the runtime creation and manipulation of meshes."
+    "documentation": "Object which allows for the runtime creation and manipulation of meshes."
   },
   "@roblox/globaltype/EditableMesh.SetVertexBones/param/1": {
     "documentation": "Vertex ID to set vertex skinning bones."
@@ -69270,7 +68931,7 @@
     "code_sample": ""
   },
   "@roblox/globaltype/EditableMesh.SetVertexBoneWeights/param/0": {
-    "documentation": "Instance which allows for the runtime creation and manipulation of meshes."
+    "documentation": "Object which allows for the runtime creation and manipulation of meshes."
   },
   "@roblox/globaltype/EditableMesh.SetVertexBoneWeights/param/1": {
     "documentation": "Vertex ID on which to set skinning blend weights."
@@ -69299,7 +68960,7 @@
     "code_sample": ""
   },
   "@roblox/globaltype/EditableMesh.SetVertexFaceColor/param/0": {
-    "documentation": "Instance which allows for the runtime creation and manipulation of meshes."
+    "documentation": "Object which allows for the runtime creation and manipulation of meshes."
   },
   "@roblox/globaltype/EditableMesh.SetVertexFaceColor/param/1": {
     "documentation": "Stable vertex ID."
@@ -69335,7 +68996,7 @@
     "code_sample": ""
   },
   "@roblox/globaltype/EditableMesh.SetVertexFaceNormal/param/0": {
-    "documentation": "Instance which allows for the runtime creation and manipulation of meshes."
+    "documentation": "Object which allows for the runtime creation and manipulation of meshes."
   },
   "@roblox/globaltype/EditableMesh.SetVertexFaceNormal/param/1": {
     "documentation": "Stable vertex ID."
@@ -69371,7 +69032,7 @@
     "code_sample": ""
   },
   "@roblox/globaltype/EditableMesh.SetVertexFaceUV/param/0": {
-    "documentation": "Instance which allows for the runtime creation and manipulation of meshes."
+    "documentation": "Object which allows for the runtime creation and manipulation of meshes."
   },
   "@roblox/globaltype/EditableMesh.SetVertexFaceUV/param/1": {
     "documentation": "Stable vertex ID."
@@ -69407,7 +69068,7 @@
     "code_sample": ""
   },
   "@roblox/globaltype/EditableMesh.Triangulate/param/0": {
-    "documentation": "Instance which allows for the runtime creation and manipulation of meshes."
+    "documentation": "Object which allows for the runtime creation and manipulation of meshes."
   },
   "@roblox/globaltype/EditableMesh.Triangulate": {
     "documentation": "Splits all faces on the mesh to be triangles.",
@@ -69509,7 +69170,7 @@
     ],
     "returns": [],
     "learn_more_link": "https://create.roblox.com/docs/reference/engine/classes/ScriptEditorService#DeregisterAutocompleteCallback",
-    "code_sample": "game.ScriptEditorService:DeregisterAutocompleteCallback(\"foo\")"
+    "code_sample": "local ScriptEditorService = game:GetService(\"ScriptEditorService\")\n\nScriptEditorService:DeregisterAutocompleteCallback(\"foo\")"
   },
   "@roblox/globaltype/ScriptEditorService.DeregisterScriptAnalysisCallback/param/0": {
     "documentation": "This service is used for interacting with <code>ScriptDocument</code> instances."
@@ -71517,7 +71178,7 @@
     "documentation": "A new <code>VirtualInput</code> object, or <code>nil</code> if the feature is not available."
   },
   "@roblox/globaltype/UserInputService.CreateVirtualInput": {
-    "documentation": "Creates a <code>VirtualInput</code> object that a Studio plugin can use to simulate mouse, keyboard, and pointer input.",
+    "documentation": "Creates a <code>VirtualInput</code> object for simulating mouse, keyboard, and pointer input.",
     "params": [
       {
         "name": "self",
@@ -74564,22 +74225,22 @@
     "code_sample": ""
   },
   "@roblox/globaltype/UserGameSettings.AllTutorialsDisabled": {
-    "documentation": "",
+    "documentation": "Indicates whether all in-experience tutorials have been disabled by the user.",
     "learn_more_link": "https://create.roblox.com/docs/reference/engine/classes/UserGameSettings#AllTutorialsDisabled",
     "code_sample": ""
   },
   "@roblox/globaltype/UserGameSettings.BadgeVisible": {
-    "documentation": "",
+    "documentation": "Indicates whether badge notifications are visible to the client.",
     "learn_more_link": "https://create.roblox.com/docs/reference/engine/classes/UserGameSettings#BadgeVisible",
     "code_sample": ""
   },
   "@roblox/globaltype/UserGameSettings.CameraMode": {
-    "documentation": "",
+    "documentation": "The custom camera mode currently in-use by the client.",
     "learn_more_link": "https://create.roblox.com/docs/reference/engine/classes/UserGameSettings#CameraMode",
     "code_sample": ""
   },
   "@roblox/globaltype/UserGameSettings.ChatVisible": {
-    "documentation": "",
+    "documentation": "Indicates whether the in-experience chat is visible to the client.",
     "learn_more_link": "https://create.roblox.com/docs/reference/engine/classes/UserGameSettings#ChatVisible",
     "code_sample": ""
   },
@@ -74599,7 +74260,7 @@
     "code_sample": ""
   },
   "@roblox/globaltype/UserGameSettings.Fullscreen": {
-    "documentation": "",
+    "documentation": "Indicates whether the client's window is currently in full screen mode.",
     "learn_more_link": "https://create.roblox.com/docs/reference/engine/classes/UserGameSettings#Fullscreen",
     "code_sample": ""
   },
@@ -74609,17 +74270,17 @@
     "code_sample": ""
   },
   "@roblox/globaltype/UserGameSettings.GraphicsOptimizationMode": {
-    "documentation": "",
+    "documentation": "The graphics optimization mode used by the client to balance visual quality and performance.",
     "learn_more_link": "https://create.roblox.com/docs/reference/engine/classes/UserGameSettings#GraphicsOptimizationMode",
     "code_sample": ""
   },
   "@roblox/globaltype/UserGameSettings.GraphicsQualityLevel": {
-    "documentation": "",
+    "documentation": "The current graphics quality level being used by the client.",
     "learn_more_link": "https://create.roblox.com/docs/reference/engine/classes/UserGameSettings#GraphicsQualityLevel",
     "code_sample": ""
   },
   "@roblox/globaltype/UserGameSettings.HasEverUsedVR": {
-    "documentation": "",
+    "documentation": "Indicates whether the user has ever launched the client in VR mode.",
     "learn_more_link": "https://create.roblox.com/docs/reference/engine/classes/UserGameSettings#HasEverUsedVR",
     "code_sample": ""
   },
@@ -74629,12 +74290,12 @@
     "code_sample": ""
   },
   "@roblox/globaltype/UserGameSettings.MasterVolumeStudio": {
-    "documentation": "",
+    "documentation": "A float between 0 and 1 representing the master volume used in Roblox Studio.",
     "learn_more_link": "https://create.roblox.com/docs/reference/engine/classes/UserGameSettings#MasterVolumeStudio",
     "code_sample": ""
   },
   "@roblox/globaltype/UserGameSettings.MaxQualityEnabled": {
-    "documentation": "",
+    "documentation": "Indicates whether the client's graphics quality is set to the maximum available level.",
     "learn_more_link": "https://create.roblox.com/docs/reference/engine/classes/UserGameSettings#MaxQualityEnabled",
     "code_sample": ""
   },
@@ -74644,37 +74305,37 @@
     "code_sample": ""
   },
   "@roblox/globaltype/UserGameSettings.OnboardingsCompleted": {
-    "documentation": "",
+    "documentation": "A comma-separated list of onboarding IDs that the user has completed.",
     "learn_more_link": "https://create.roblox.com/docs/reference/engine/classes/UserGameSettings#OnboardingsCompleted",
     "code_sample": ""
   },
   "@roblox/globaltype/UserGameSettings.PartyVoiceVolume": {
-    "documentation": "",
+    "documentation": "A float between 0 and 1 representing the volume of party voice chat.",
     "learn_more_link": "https://create.roblox.com/docs/reference/engine/classes/UserGameSettings#PartyVoiceVolume",
     "code_sample": ""
   },
   "@roblox/globaltype/UserGameSettings.PeoplePageLayout": {
-    "documentation": "",
+    "documentation": "The layout style used to display the people page in the in-experience menu.",
     "learn_more_link": "https://create.roblox.com/docs/reference/engine/classes/UserGameSettings#PeoplePageLayout",
     "code_sample": ""
   },
   "@roblox/globaltype/UserGameSettings.PlayerListVisible": {
-    "documentation": "",
+    "documentation": "Indicates whether the in-experience player list is visible to the client.",
     "learn_more_link": "https://create.roblox.com/docs/reference/engine/classes/UserGameSettings#PlayerListVisible",
     "code_sample": ""
   },
   "@roblox/globaltype/UserGameSettings.PlayerNamesEnabled": {
-    "documentation": "",
+    "documentation": "Indicates whether player names are displayed above characters in the experience.",
     "learn_more_link": "https://create.roblox.com/docs/reference/engine/classes/UserGameSettings#PlayerNamesEnabled",
     "code_sample": ""
   },
   "@roblox/globaltype/UserGameSettings.RCCProfilerRecordFrameRate": {
-    "documentation": "",
+    "documentation": "Internal MicroProfiler setting specifying the frame rate used when capturing server-side RCC profiler data.",
     "learn_more_link": "https://create.roblox.com/docs/reference/engine/classes/UserGameSettings#RCCProfilerRecordFrameRate",
     "code_sample": ""
   },
   "@roblox/globaltype/UserGameSettings.RCCProfilerRecordTimeFrame": {
-    "documentation": "",
+    "documentation": "Internal MicroProfiler setting specifying the duration over which server-side RCC profiler data is captured.",
     "learn_more_link": "https://create.roblox.com/docs/reference/engine/classes/UserGameSettings#RCCProfilerRecordTimeFrame",
     "code_sample": ""
   },
@@ -74689,17 +74350,17 @@
     "code_sample": ""
   },
   "@roblox/globaltype/UserGameSettings.StartMaximized": {
-    "documentation": "",
+    "documentation": "Indicates whether Roblox Studio should launch in a maximized window.",
     "learn_more_link": "https://create.roblox.com/docs/reference/engine/classes/UserGameSettings#StartMaximized",
     "code_sample": ""
   },
   "@roblox/globaltype/UserGameSettings.StartScreenPosition": {
-    "documentation": "",
+    "documentation": "The screen position of the client's window when the application launches.",
     "learn_more_link": "https://create.roblox.com/docs/reference/engine/classes/UserGameSettings#StartScreenPosition",
     "code_sample": ""
   },
   "@roblox/globaltype/UserGameSettings.StartScreenSize": {
-    "documentation": "",
+    "documentation": "The size of the client's window when the application launches.",
     "learn_more_link": "https://create.roblox.com/docs/reference/engine/classes/UserGameSettings#StartScreenSize",
     "code_sample": ""
   },
@@ -74714,37 +74375,37 @@
     "code_sample": ""
   },
   "@roblox/globaltype/UserGameSettings.UsedCoreGuiIsVisibleToggle": {
-    "documentation": "",
+    "documentation": "Indicates whether the user has toggled the visibility of core GUI elements.",
     "learn_more_link": "https://create.roblox.com/docs/reference/engine/classes/UserGameSettings#UsedCoreGuiIsVisibleToggle",
     "code_sample": ""
   },
   "@roblox/globaltype/UserGameSettings.UsedCustomGuiIsVisibleToggle": {
-    "documentation": "",
+    "documentation": "Indicates whether the user has toggled the visibility of custom GUI elements.",
     "learn_more_link": "https://create.roblox.com/docs/reference/engine/classes/UserGameSettings#UsedCustomGuiIsVisibleToggle",
     "code_sample": ""
   },
   "@roblox/globaltype/UserGameSettings.UsedHideHudShortcut": {
-    "documentation": "",
+    "documentation": "Indicates whether the user has used the keyboard shortcut for hiding the HUD.",
     "learn_more_link": "https://create.roblox.com/docs/reference/engine/classes/UserGameSettings#UsedHideHudShortcut",
     "code_sample": ""
   },
   "@roblox/globaltype/UserGameSettings.VignetteEnabled": {
-    "documentation": "",
+    "documentation": "Indicates whether the VR vignette comfort effect is enabled.",
     "learn_more_link": "https://create.roblox.com/docs/reference/engine/classes/UserGameSettings#VignetteEnabled",
     "code_sample": ""
   },
   "@roblox/globaltype/UserGameSettings.VREnabled": {
-    "documentation": "",
+    "documentation": "Indicates whether the client is currently running in VR mode.",
     "learn_more_link": "https://create.roblox.com/docs/reference/engine/classes/UserGameSettings#VREnabled",
     "code_sample": ""
   },
   "@roblox/globaltype/UserGameSettings.VRRotationIntensity": {
-    "documentation": "",
+    "documentation": "The intensity of camera rotation when turning in VR.",
     "learn_more_link": "https://create.roblox.com/docs/reference/engine/classes/UserGameSettings#VRRotationIntensity",
     "code_sample": ""
   },
   "@roblox/globaltype/UserGameSettings.VRSmoothRotationEnabled": {
-    "documentation": "",
+    "documentation": "Indicates whether smooth rotation is used instead of snap rotation in VR.",
     "learn_more_link": "https://create.roblox.com/docs/reference/engine/classes/UserGameSettings#VRSmoothRotationEnabled",
     "code_sample": ""
   },
@@ -75950,6 +75611,7 @@
       "GetEnemiesAsync": "@roblox/globaltype/GroupService.GetEnemiesAsync",
       "GetGroupInfoAsync": "@roblox/globaltype/GroupService.GetGroupInfoAsync",
       "GetGroupsAsync": "@roblox/globaltype/GroupService.GetGroupsAsync",
+      "GetRolesInGroupAsync": "@roblox/globaltype/GroupService.GetRolesInGroupAsync",
       "PromptJoinAsync": "@roblox/globaltype/GroupService.PromptJoinAsync"
     },
     "learn_more_link": "https://create.roblox.com/docs/reference/engine/classes/GroupService",
@@ -76063,6 +75725,40 @@
     "learn_more_link": "https://create.roblox.com/docs/reference/engine/classes/GroupService#GetGroupsAsync",
     "code_sample": "local GroupService = game:GetService(\"GroupService\")\nlocal Players = game:GetService(\"Players\")\n\nlocal function playerAdded(player)\n\t-- load a list of info on all groups the player is a member of\n\tlocal groups = GroupService:GetGroupsAsync(player.UserId)\n\n\tfor _, groupInfo in pairs(groups) do\n\t\tfor key, value in pairs(groupInfo) do\n\t\t\tprint(key .. \": \" .. tostring(value))\n\t\tend\n\n\t\tprint(\"--\")\n\tend\nend\n\nPlayers.PlayerAdded:Connect(playerAdded)\n\n-- go through existing players\nfor _, player in pairs(Players:GetPlayers()) do\n\tplayerAdded(player)\nend"
   },
+  "@roblox/globaltype/GroupService.GetRolesInGroupAsync/param/0": {
+    "documentation": "GroupService is a service that allows developers to fetch information about a Roblox group from within a game."
+  },
+  "@roblox/globaltype/GroupService.GetRolesInGroupAsync/param/1": {
+    "documentation": "The user's ID."
+  },
+  "@roblox/globaltype/GroupService.GetRolesInGroupAsync/param/2": {
+    "documentation": "The group's ID."
+  },
+  "@roblox/globaltype/GroupService.GetRolesInGroupAsync/return/0": {
+    "documentation": "A table with two fields: <code>IsMember</code> (boolean) and <code>Roles</code> (array of public role tables). Each role table contains <code>Id</code> (int64), <code>Name</code> (string), and <code>Rank</code> (int). The array is ordered as returned by the backend."
+  },
+  "@roblox/globaltype/GroupService.GetRolesInGroupAsync": {
+    "documentation": "Returns all roles held by the specified user in the specified group, supporting multi-role group membership.",
+    "params": [
+      {
+        "name": "self",
+        "documentation": "@roblox/globaltype/GroupService.GetRolesInGroupAsync/param/0"
+      },
+      {
+        "name": "userId",
+        "documentation": "@roblox/globaltype/GroupService.GetRolesInGroupAsync/param/1"
+      },
+      {
+        "name": "groupId",
+        "documentation": "@roblox/globaltype/GroupService.GetRolesInGroupAsync/param/2"
+      }
+    ],
+    "returns": [
+      "@roblox/globaltype/GroupService.GetRolesInGroupAsync/return/0"
+    ],
+    "learn_more_link": "https://create.roblox.com/docs/reference/engine/classes/GroupService#GetRolesInGroupAsync",
+    "code_sample": ""
+  },
   "@roblox/globaltype/GroupService.PromptJoinAsync/param/0": {
     "documentation": "GroupService is a service that allows developers to fetch information about a Roblox group from within a game."
   },
@@ -76088,7 +75784,7 @@
       "@roblox/globaltype/GroupService.PromptJoinAsync/return/0"
     ],
     "learn_more_link": "https://create.roblox.com/docs/reference/engine/classes/GroupService#PromptJoinAsync",
-    "code_sample": "local GroupService = game:GetService(\"GroupService\")\n\nlocal GROUP_ID = 377251\n\n-- This should be done in a script running on the client\nlocal success, result = pcall(function()\n    return GroupService:PromptJoinAsync(GROUP_ID)\nend)\n\nif success then\n    if result == Enum.GroupMembershipStatus.Joined then\n        print(\"Player joined the group!\")\n    elseif result == Enum.GroupMembershipStatus.JoinRequestPending then\n        print(\"Join request sent\")\n    elseif result == Enum.GroupMembershipStatus.AlreadyMember then\n        print(\"Already a member\")\n    else\n        print(\"Did not join or not eligible\")\n    end\nelse\n    warn(\"Prompt failed:\", result)\nend"
+    "code_sample": "local GroupService = game:GetService(\"GroupService\")\n\nlocal GROUP_ID = 377251\n\n-- This should be done in a script running on the client\nlocal success, result = pcall(function()\n    return GroupService:PromptJoinAsync(GROUP_ID)\nend)\n\nif success then\n    if result == Enum.GroupMembershipStatus.Joined then\n        print(\"Player joined the group!\")\n    elseif result == Enum.GroupMembershipStatus.JoinRequestPending then\n        print(\"Player has an outstanding join request\")\n    elseif result == Enum.GroupMembershipStatus.AlreadyMember then\n        print(\"Already a member\")\n    else\n        print(\"Did not join or not eligible\")\n    end\nelse\n    warn(\"Prompt failed:\", result)\nend"
   },
   "@roblox/globaltype/AudioFilter": {
     "documentation": "Adjusts the frequency content of audio streams.",
@@ -77419,129 +77115,6 @@
       "@roblox/globaltype/IKControl.GetSmoothedFinalTarget/return/0"
     ],
     "learn_more_link": "https://create.roblox.com/docs/reference/engine/classes/IKControl#GetSmoothedFinalTarget",
-    "code_sample": ""
-  },
-  "@roblox/globaltype/TerrainModifyOperation": {
-    "documentation": "",
-    "keys": {
-      "CommitBlock": "@roblox/globaltype/TerrainModifyOperation.CommitBlock"
-    },
-    "learn_more_link": "https://create.roblox.com/docs/reference/engine/classes/TerrainModifyOperation",
-    "code_sample": ""
-  },
-  "@roblox/globaltype/TerrainModifyOperation.CommitBlock/param/0": {
-    "documentation": ""
-  },
-  "@roblox/globaltype/TerrainModifyOperation.CommitBlock/param/1": {
-    "documentation": ""
-  },
-  "@roblox/globaltype/TerrainModifyOperation.CommitBlock/return/0": {
-    "documentation": ""
-  },
-  "@roblox/globaltype/TerrainModifyOperation.CommitBlock": {
-    "documentation": "",
-    "params": [
-      {
-        "name": "self",
-        "documentation": "@roblox/globaltype/TerrainModifyOperation.CommitBlock/param/0"
-      },
-      {
-        "name": "block",
-        "documentation": "@roblox/globaltype/TerrainModifyOperation.CommitBlock/param/1"
-      }
-    ],
-    "returns": [
-      "@roblox/globaltype/TerrainModifyOperation.CommitBlock/return/0"
-    ],
-    "learn_more_link": "https://create.roblox.com/docs/reference/engine/classes/TerrainModifyOperation#CommitBlock",
-    "code_sample": ""
-  },
-  "@roblox/globaltype/TerrainModifyOperation.Ready.Connect/param/0": {
-    "documentation": "An object that runs connected functions upon a specific occurrence."
-  },
-  "@roblox/globaltype/TerrainModifyOperation.Ready.Connect/param/1": {
-    "documentation": ""
-  },
-  "@roblox/globaltype/TerrainModifyOperation.Ready.Connect": {
-    "documentation": "Connects the given function to the event and returns an <code>RBXScriptConnection</code> that represents it.",
-    "learn_more_link": "https://create.roblox.com/docs/reference/engine/datatypes/RBXScriptSignal#Connect",
-    "params": [
-      {
-        "name": "self",
-        "documentation": "@roblox/globaltype/TerrainModifyOperation.Ready.Connect/param/0"
-      },
-      {
-        "name": "func",
-        "documentation": "@roblox/globaltype/TerrainModifyOperation.Ready.Connect/param/1"
-      }
-    ],
-    "returns": []
-  },
-  "@roblox/globaltype/TerrainModifyOperation.Ready.ConnectParallel/param/0": {
-    "documentation": "An object that runs connected functions upon a specific occurrence."
-  },
-  "@roblox/globaltype/TerrainModifyOperation.Ready.ConnectParallel/param/1": {
-    "documentation": ""
-  },
-  "@roblox/globaltype/TerrainModifyOperation.Ready.ConnectParallel": {
-    "documentation": "Connects the given function to the event and returns an <code>RBXScriptConnection</code> that represents it.",
-    "learn_more_link": "https://create.roblox.com/docs/reference/engine/datatypes/RBXScriptSignal#ConnectParallel",
-    "params": [
-      {
-        "name": "self",
-        "documentation": "@roblox/globaltype/TerrainModifyOperation.Ready.ConnectParallel/param/0"
-      },
-      {
-        "name": "func",
-        "documentation": "@roblox/globaltype/TerrainModifyOperation.Ready.ConnectParallel/param/1"
-      }
-    ],
-    "returns": []
-  },
-  "@roblox/globaltype/TerrainModifyOperation.Ready.Once/param/0": {
-    "documentation": "An object that runs connected functions upon a specific occurrence."
-  },
-  "@roblox/globaltype/TerrainModifyOperation.Ready.Once/param/1": {
-    "documentation": ""
-  },
-  "@roblox/globaltype/TerrainModifyOperation.Ready.Once": {
-    "documentation": "Connects the given function to the event (for a single invocation) and returns an <code>RBXScriptConnection</code> that represents it.",
-    "learn_more_link": "https://create.roblox.com/docs/reference/engine/datatypes/RBXScriptSignal#Once",
-    "params": [
-      {
-        "name": "self",
-        "documentation": "@roblox/globaltype/TerrainModifyOperation.Ready.Once/param/0"
-      },
-      {
-        "name": "func",
-        "documentation": "@roblox/globaltype/TerrainModifyOperation.Ready.Once/param/1"
-      }
-    ],
-    "returns": []
-  },
-  "@roblox/globaltype/TerrainModifyOperation.Ready.Wait/param/0": {
-    "documentation": "An object that runs connected functions upon a specific occurrence."
-  },
-  "@roblox/globaltype/TerrainModifyOperation.Ready.Wait": {
-    "documentation": "Yields the current thread until the signal fires and returns the arguments provided by the signal.",
-    "learn_more_link": "https://create.roblox.com/docs/reference/engine/datatypes/RBXScriptSignal#Wait",
-    "params": [
-      {
-        "name": "self",
-        "documentation": "@roblox/globaltype/TerrainModifyOperation.Ready.Wait/param/0"
-      }
-    ],
-    "returns": []
-  },
-  "@roblox/globaltype/TerrainModifyOperation.Ready": {
-    "documentation": "",
-    "keys": {
-      "Connect": "@roblox/globaltype/TerrainModifyOperation.Ready.Connect",
-      "ConnectParallel": "@roblox/globaltype/TerrainModifyOperation.Ready.ConnectParallel",
-      "Once": "@roblox/globaltype/TerrainModifyOperation.Ready.Once",
-      "Wait": "@roblox/globaltype/TerrainModifyOperation.Ready.Wait"
-    },
-    "learn_more_link": "https://create.roblox.com/docs/reference/engine/classes/TerrainModifyOperation#Ready",
     "code_sample": ""
   },
   "@roblox/globaltype/BodyForce": {
@@ -81531,7 +81104,7 @@
     "code_sample": ""
   },
   "@roblox/globaltype/TextBox.TextEditable": {
-    "documentation": "Determines whether the user can change the <code>Text</code>.",
+    "documentation": "Determines whether the player can change the <code>Text</code>.",
     "learn_more_link": "https://create.roblox.com/docs/reference/engine/classes/TextBox#TextEditable",
     "code_sample": ""
   },
@@ -81901,7 +81474,7 @@
     "returns": []
   },
   "@roblox/globaltype/TextBox.ReturnPressedFromOnScreenKeyboard": {
-    "documentation": "",
+    "documentation": "Fires when the <code>TextBox</code> is focused and the player presses the on-screen keyboard's return/enter button.",
     "keys": {
       "Connect": "@roblox/globaltype/TextBox.ReturnPressedFromOnScreenKeyboard.Connect",
       "ConnectParallel": "@roblox/globaltype/TextBox.ReturnPressedFromOnScreenKeyboard.ConnectParallel",
@@ -82137,7 +81710,6 @@
       "GetUserSubscriptionDetailsAsync": "@roblox/globaltype/MarketplaceService.GetUserSubscriptionDetailsAsync",
       "GetUserSubscriptionPaymentHistoryAsync": "@roblox/globaltype/MarketplaceService.GetUserSubscriptionPaymentHistoryAsync",
       "GetUserSubscriptionStatusAsync": "@roblox/globaltype/MarketplaceService.GetUserSubscriptionStatusAsync",
-      "OpenShop": "@roblox/globaltype/MarketplaceService.OpenShop",
       "PlayerOwnsAsset": "@roblox/globaltype/MarketplaceService.PlayerOwnsAsset",
       "PlayerOwnsAssetAsync": "@roblox/globaltype/MarketplaceService.PlayerOwnsAssetAsync",
       "PlayerOwnsBundle": "@roblox/globaltype/MarketplaceService.PlayerOwnsBundle",
@@ -82470,28 +82042,6 @@
       "@roblox/globaltype/MarketplaceService.GetUserSubscriptionStatusAsync/return/0"
     ],
     "learn_more_link": "https://create.roblox.com/docs/reference/engine/classes/MarketplaceService#GetUserSubscriptionStatusAsync",
-    "code_sample": ""
-  },
-  "@roblox/globaltype/MarketplaceService.OpenShop/param/0": {
-    "documentation": "The service responsible for in-experience transactions."
-  },
-  "@roblox/globaltype/MarketplaceService.OpenShop/param/1": {
-    "documentation": ""
-  },
-  "@roblox/globaltype/MarketplaceService.OpenShop": {
-    "documentation": "",
-    "params": [
-      {
-        "name": "self",
-        "documentation": "@roblox/globaltype/MarketplaceService.OpenShop/param/0"
-      },
-      {
-        "name": "player",
-        "documentation": "@roblox/globaltype/MarketplaceService.OpenShop/param/1"
-      }
-    ],
-    "returns": [],
-    "learn_more_link": "https://create.roblox.com/docs/reference/engine/classes/MarketplaceService#OpenShop",
     "code_sample": ""
   },
   "@roblox/globaltype/MarketplaceService.PlayerOwnsAsset/param/0": {
@@ -85356,7 +84906,7 @@
     "code_sample": ""
   },
   "@roblox/globaltype/VehicleSeat.AreHingesDetected": {
-    "documentation": "Displays how many hinges are detected by the VehicleSeat. Useful for debugging vehicle designs.",
+    "documentation": "Displays how many hinges are detected by the <code>VehicleSeat</code>. Useful for debugging vehicle designs.",
     "learn_more_link": "https://create.roblox.com/docs/reference/engine/classes/VehicleSeat#AreHingesDetected",
     "code_sample": ""
   },
@@ -85366,7 +84916,7 @@
     "code_sample": ""
   },
   "@roblox/globaltype/VehicleSeat.HeadsUpDisplay": {
-    "documentation": "If true, a fancy speed bar will be displayed speed on screen that tells you what speed the Vehicle is moving at.",
+    "documentation": "If <code>true</code>, a UI speed bar will be displayed on screen that tells you what speed the vehicle is moving at.",
     "learn_more_link": "https://create.roblox.com/docs/reference/engine/classes/VehicleSeat#HeadsUpDisplay",
     "code_sample": ""
   },
@@ -85376,32 +84926,32 @@
     "code_sample": ""
   },
   "@roblox/globaltype/VehicleSeat.Occupant": {
-    "documentation": "The humanoid that is sitting in the seat.",
+    "documentation": "The <code>Humanoid</code> that is sitting in the seat.",
     "learn_more_link": "https://create.roblox.com/docs/reference/engine/classes/VehicleSeat#Occupant",
     "code_sample": ""
   },
   "@roblox/globaltype/VehicleSeat.Steer": {
-    "documentation": "The direction of movement, tied to the keys A and D. Must be one of 1 (right), 0 (straight), or -1 (left). Will refresh back to 0 unless constantly set.",
+    "documentation": "The direction of movement, tied to left and right movement inputs.",
     "learn_more_link": "https://create.roblox.com/docs/reference/engine/classes/VehicleSeat#Steer",
     "code_sample": ""
   },
   "@roblox/globaltype/VehicleSeat.SteerFloat": {
-    "documentation": "Functions identically to <code>VehicleSeat.Steer</code>, but the value is not an integer.",
+    "documentation": "The left-to-right movement float, tied to left and right movement inputs.",
     "learn_more_link": "https://create.roblox.com/docs/reference/engine/classes/VehicleSeat#SteerFloat",
     "code_sample": ""
   },
   "@roblox/globaltype/VehicleSeat.Throttle": {
-    "documentation": "The direction of movement, tied to the keys W and S. Must be an integer 1 (forward) 0 (null) or -1 (reverse). Will refresh back to 0 unless constantly set.",
+    "documentation": "The direction of throttle, tied to forward and backward movement inputs.",
     "learn_more_link": "https://create.roblox.com/docs/reference/engine/classes/VehicleSeat#Throttle",
     "code_sample": ""
   },
   "@roblox/globaltype/VehicleSeat.ThrottleFloat": {
-    "documentation": "Functions identically to <code>VehicleSeat.Throttle</code>, but the value is not an integer.",
+    "documentation": "The forward-to-reverse throttle float, tied to forward and backward movement inputs.",
     "learn_more_link": "https://create.roblox.com/docs/reference/engine/classes/VehicleSeat#ThrottleFloat",
     "code_sample": ""
   },
   "@roblox/globaltype/VehicleSeat.Torque": {
-    "documentation": "How fast the vehicles will be able to attain <code>VehicleSeat.MaxSpeed</code>. The greater the number, the faster it will reach the maximum speed.",
+    "documentation": "How fast the vehicle will be able to attain <code>MaxSpeed</code>.",
     "learn_more_link": "https://create.roblox.com/docs/reference/engine/classes/VehicleSeat#Torque",
     "code_sample": ""
   },
@@ -85414,10 +84964,10 @@
     "documentation": "A seat object that can be used to control a vehicle."
   },
   "@roblox/globaltype/VehicleSeat.Sit/param/1": {
-    "documentation": "The humanoid being forced to sit in the VehicleSeat."
+    "documentation": "The <code>Humanoid</code> being forced to sit in the <code>VehicleSeat</code>."
   },
   "@roblox/globaltype/VehicleSeat.Sit": {
-    "documentation": "Forces the character with the specified <code>Humanoid</code> to sit in the VehicleSeat.",
+    "documentation": "Forces the character with the specified <code>Humanoid</code> to sit in the <code>VehicleSeat</code>.",
     "params": [
       {
         "name": "self",
@@ -86468,100 +86018,6 @@
     "documentation": "Container class for the <code>HumanoidController</code> among other classes.",
     "keys": {},
     "learn_more_link": "https://create.roblox.com/docs/reference/engine/classes/ControllerService",
-    "code_sample": ""
-  },
-  "@roblox/globaltype/TerrainReadOperation": {
-    "documentation": "",
-    "keys": {},
-    "learn_more_link": "https://create.roblox.com/docs/reference/engine/classes/TerrainReadOperation",
-    "code_sample": ""
-  },
-  "@roblox/globaltype/TerrainReadOperation.Ready.Connect/param/0": {
-    "documentation": "An object that runs connected functions upon a specific occurrence."
-  },
-  "@roblox/globaltype/TerrainReadOperation.Ready.Connect/param/1": {
-    "documentation": ""
-  },
-  "@roblox/globaltype/TerrainReadOperation.Ready.Connect": {
-    "documentation": "Connects the given function to the event and returns an <code>RBXScriptConnection</code> that represents it.",
-    "learn_more_link": "https://create.roblox.com/docs/reference/engine/datatypes/RBXScriptSignal#Connect",
-    "params": [
-      {
-        "name": "self",
-        "documentation": "@roblox/globaltype/TerrainReadOperation.Ready.Connect/param/0"
-      },
-      {
-        "name": "func",
-        "documentation": "@roblox/globaltype/TerrainReadOperation.Ready.Connect/param/1"
-      }
-    ],
-    "returns": []
-  },
-  "@roblox/globaltype/TerrainReadOperation.Ready.ConnectParallel/param/0": {
-    "documentation": "An object that runs connected functions upon a specific occurrence."
-  },
-  "@roblox/globaltype/TerrainReadOperation.Ready.ConnectParallel/param/1": {
-    "documentation": ""
-  },
-  "@roblox/globaltype/TerrainReadOperation.Ready.ConnectParallel": {
-    "documentation": "Connects the given function to the event and returns an <code>RBXScriptConnection</code> that represents it.",
-    "learn_more_link": "https://create.roblox.com/docs/reference/engine/datatypes/RBXScriptSignal#ConnectParallel",
-    "params": [
-      {
-        "name": "self",
-        "documentation": "@roblox/globaltype/TerrainReadOperation.Ready.ConnectParallel/param/0"
-      },
-      {
-        "name": "func",
-        "documentation": "@roblox/globaltype/TerrainReadOperation.Ready.ConnectParallel/param/1"
-      }
-    ],
-    "returns": []
-  },
-  "@roblox/globaltype/TerrainReadOperation.Ready.Once/param/0": {
-    "documentation": "An object that runs connected functions upon a specific occurrence."
-  },
-  "@roblox/globaltype/TerrainReadOperation.Ready.Once/param/1": {
-    "documentation": ""
-  },
-  "@roblox/globaltype/TerrainReadOperation.Ready.Once": {
-    "documentation": "Connects the given function to the event (for a single invocation) and returns an <code>RBXScriptConnection</code> that represents it.",
-    "learn_more_link": "https://create.roblox.com/docs/reference/engine/datatypes/RBXScriptSignal#Once",
-    "params": [
-      {
-        "name": "self",
-        "documentation": "@roblox/globaltype/TerrainReadOperation.Ready.Once/param/0"
-      },
-      {
-        "name": "func",
-        "documentation": "@roblox/globaltype/TerrainReadOperation.Ready.Once/param/1"
-      }
-    ],
-    "returns": []
-  },
-  "@roblox/globaltype/TerrainReadOperation.Ready.Wait/param/0": {
-    "documentation": "An object that runs connected functions upon a specific occurrence."
-  },
-  "@roblox/globaltype/TerrainReadOperation.Ready.Wait": {
-    "documentation": "Yields the current thread until the signal fires and returns the arguments provided by the signal.",
-    "learn_more_link": "https://create.roblox.com/docs/reference/engine/datatypes/RBXScriptSignal#Wait",
-    "params": [
-      {
-        "name": "self",
-        "documentation": "@roblox/globaltype/TerrainReadOperation.Ready.Wait/param/0"
-      }
-    ],
-    "returns": []
-  },
-  "@roblox/globaltype/TerrainReadOperation.Ready": {
-    "documentation": "",
-    "keys": {
-      "Connect": "@roblox/globaltype/TerrainReadOperation.Ready.Connect",
-      "ConnectParallel": "@roblox/globaltype/TerrainReadOperation.Ready.ConnectParallel",
-      "Once": "@roblox/globaltype/TerrainReadOperation.Ready.Once",
-      "Wait": "@roblox/globaltype/TerrainReadOperation.Ready.Wait"
-    },
-    "learn_more_link": "https://create.roblox.com/docs/reference/engine/classes/TerrainReadOperation#Ready",
     "code_sample": ""
   },
   "@roblox/globaltype/InventoryPages": {
@@ -88727,6 +88183,12 @@
   "@roblox/globaltype/AvatarEditorService.PromptCreateOutfit/param/2": {
     "documentation": "The <code>RigType</code> that the outfit will be created for if the player confirms the prompt."
   },
+  "@roblox/globaltype/AvatarEditorService.PromptCreateOutfit/param/3": {
+    "documentation": "Reserved for future options. Must be empty or omitted."
+  },
+  "@roblox/globaltype/AvatarEditorService.PromptCreateOutfit/param/4": {
+    "documentation": "Optional <code>OutfitType</code>. Only <code>Avatar</code> and <code>Makeup</code> values are accepted. When omitted, the type is inferred from the description."
+  },
   "@roblox/globaltype/AvatarEditorService.PromptCreateOutfit": {
     "documentation": "Prompts the <code>Players.LocalPlayer</code> to save the given <code>HumanoidDescription</code> as an outfit.",
     "params": [
@@ -88741,6 +88203,14 @@
       {
         "name": "rigType",
         "documentation": "@roblox/globaltype/AvatarEditorService.PromptCreateOutfit/param/2"
+      },
+      {
+        "name": "outfitOptions",
+        "documentation": "@roblox/globaltype/AvatarEditorService.PromptCreateOutfit/param/3"
+      },
+      {
+        "name": "outfitType",
+        "documentation": "@roblox/globaltype/AvatarEditorService.PromptCreateOutfit/param/4"
       }
     ],
     "returns": [],
@@ -94862,7 +94332,7 @@
     "documentation": "A string previewId"
   },
   "@roblox/globaltype/AvatarCreationService.GenerateAvatar2DPreviewAsync": {
-    "documentation": "Creates a 2D avatar preview and returns a previewId.",
+    "documentation": "Creates a 2D avatar preview and returns a <code>previewId</code>.",
     "params": [
       {
         "name": "self",
@@ -95988,7 +95458,7 @@
     "code_sample": ""
   },
   "@roblox/globaltype/VirtualInput": {
-    "documentation": "Allows Studio plugins to simulate mouse, keyboard, and pointer input as if it were performed by a real player.",
+    "documentation": "Simulates mouse, keyboard, and pointer input as if it were performed by a real player.",
     "keys": {
       "SendKey": "@roblox/globaltype/VirtualInput.SendKey",
       "SendMouseButton": "@roblox/globaltype/VirtualInput.SendMouseButton",
@@ -96001,7 +95471,7 @@
     "code_sample": ""
   },
   "@roblox/globaltype/VirtualInput.SendKey/param/0": {
-    "documentation": "Allows Studio plugins to simulate mouse, keyboard, and pointer input as if it were performed by a real player."
+    "documentation": "Simulates mouse, keyboard, and pointer input as if it were performed by a real player."
   },
   "@roblox/globaltype/VirtualInput.SendKey/param/1": {
     "documentation": "Whether to simulate a key press (<code>true</code>) or a key release (<code>false</code>)."
@@ -96037,7 +95507,7 @@
     "code_sample": ""
   },
   "@roblox/globaltype/VirtualInput.SendMouseButton/param/0": {
-    "documentation": "Allows Studio plugins to simulate mouse, keyboard, and pointer input as if it were performed by a real player."
+    "documentation": "Simulates mouse, keyboard, and pointer input as if it were performed by a real player."
   },
   "@roblox/globaltype/VirtualInput.SendMouseButton/param/1": {
     "documentation": "The screen-space position in pixels at which to inject the event."
@@ -96080,7 +95550,7 @@
     "code_sample": ""
   },
   "@roblox/globaltype/VirtualInput.SendMouseDelta/param/0": {
-    "documentation": "Allows Studio plugins to simulate mouse, keyboard, and pointer input as if it were performed by a real player."
+    "documentation": "Simulates mouse, keyboard, and pointer input as if it were performed by a real player."
   },
   "@roblox/globaltype/VirtualInput.SendMouseDelta/param/1": {
     "documentation": "The relative mouse movement in pixels along each axis."
@@ -96102,7 +95572,7 @@
     "code_sample": ""
   },
   "@roblox/globaltype/VirtualInput.SendMousePosition/param/0": {
-    "documentation": "Allows Studio plugins to simulate mouse, keyboard, and pointer input as if it were performed by a real player."
+    "documentation": "Simulates mouse, keyboard, and pointer input as if it were performed by a real player."
   },
   "@roblox/globaltype/VirtualInput.SendMousePosition/param/1": {
     "documentation": "The target screen-space position in pixels."
@@ -96124,7 +95594,7 @@
     "code_sample": ""
   },
   "@roblox/globaltype/VirtualInput.SendPointerAction/param/0": {
-    "documentation": "Allows Studio plugins to simulate mouse, keyboard, and pointer input as if it were performed by a real player."
+    "documentation": "Simulates mouse, keyboard, and pointer input as if it were performed by a real player."
   },
   "@roblox/globaltype/VirtualInput.SendPointerAction/param/1": {
     "documentation": "The screen-space position in pixels at which to inject the event."
@@ -96153,7 +95623,7 @@
     "code_sample": ""
   },
   "@roblox/globaltype/VirtualInput.SendTextInput/param/0": {
-    "documentation": "Allows Studio plugins to simulate mouse, keyboard, and pointer input as if it were performed by a real player."
+    "documentation": "Simulates mouse, keyboard, and pointer input as if it were performed by a real player."
   },
   "@roblox/globaltype/VirtualInput.SendTextInput/param/1": {
     "documentation": "The string to inject as text input."
@@ -99932,10 +99402,10 @@
     "documentation": ""
   },
   "@roblox/globaltype/HumanoidRigDescription.GetJointFromName/param/1": {
-    "documentation": ""
+    "documentation": "string"
   },
   "@roblox/globaltype/HumanoidRigDescription.GetJointFromName/return/0": {
-    "documentation": ""
+    "documentation": "Instance"
   },
   "@roblox/globaltype/HumanoidRigDescription.GetJointFromName": {
     "documentation": "",
@@ -99959,7 +99429,7 @@
     "documentation": ""
   },
   "@roblox/globaltype/HumanoidRigDescription.GetJointNames/return/0": {
-    "documentation": ""
+    "documentation": "Array"
   },
   "@roblox/globaltype/HumanoidRigDescription.GetJointNames": {
     "documentation": "",
@@ -99979,7 +99449,7 @@
     "documentation": ""
   },
   "@roblox/globaltype/HumanoidRigDescription.GetR15JointNames/return/0": {
-    "documentation": ""
+    "documentation": "Array"
   },
   "@roblox/globaltype/HumanoidRigDescription.GetR15JointNames": {
     "documentation": "",
@@ -99999,7 +99469,7 @@
     "documentation": ""
   },
   "@roblox/globaltype/HumanoidRigDescription.GetR6JointNames/return/0": {
-    "documentation": ""
+    "documentation": "Array"
   },
   "@roblox/globaltype/HumanoidRigDescription.GetR6JointNames": {
     "documentation": "",
@@ -100124,7 +99594,7 @@
     "documentation": "A service that contains presently connected <code>Player</code> objects."
   },
   "@roblox/globaltype/Players.BanAsync/param/1": {
-    "documentation": "<ul> <li> <code>UserIds</code> (required; array) — Array of <code>UserIds</code>   of players to be banned. Max size is <code>50</code>. </li> <li> <code>ApplyToUniverse</code> (optional; boolean) — Whether ban propagates to   all places within the experience universe. Default is <code>true</code>. </li> <li> <code>Duration</code> (required; integer) — Duration of the ban, in seconds.   Permanent bans should have a value of <code>-1</code>. <code>0</code> and all other   negative values are invalid. </li> <li> <code>DisplayReason</code> (required; string) — The message that will be   displayed to users when they attempt to and fail to join an   experience. Maximum string length is <code>400</code>. </li> <li> <code>PrivateReason</code> (required; string) — Internal messaging that will be   returned when querying the user's ban history. Maximum string length   is <code>1000</code>. </li> <li> <code>ExcludeAltAccounts</code> (optional; boolean) — When <code>true</code>, Roblox does   not attempt to ban alt accounts. Default is <code>false</code>. </li> </ul>"
+    "documentation": "<ul> <li> <code>UserIds</code> (required; array) — Array of <code>UserIds</code>   of players to be banned. Max size is <code>50</code>. </li> <li> <code>ApplyToUniverse</code> (optional; boolean) — Whether ban propagates to   all places within the experience universe. Default is <code>true</code>. </li> <li> <code>Duration</code> (required; integer) — Duration of the ban, in seconds.   Permanent bans should have a value of <code>-1</code>. <code>0</code> and all other   negative values are invalid. </li> <li> <code>DisplayReason</code> (required; string) — The message that will be   displayed to users when they attempt to and fail to join an   experience. Maximum string length is <code>400</code>. </li> <li> <code>PrivateReason</code> (required; string) — Internal messaging that will be   returned when querying the user's ban history. Maximum string length   is <code>1000</code>. </li> <li> <code>ExcludeAltAccounts</code> (optional; boolean) — When <code>true</code>, Roblox does   not attempt to ban alternate accounts. Default is <code>false</code>. </li> <li> <code>ApplyDeviceBlock</code> (optional; boolean) — When <code>true</code>, Roblox will   block banned users' devices from rejoining the experience for 24   hours after the ban is applied. Default is <code>false</code>. </li> </ul>"
   },
   "@roblox/globaltype/Players.BanAsync": {
     "documentation": "Bans users from your experience, with options to specify duration, reason, whether the ban applies to the entire universe or just the current place, and more. This method is enabled and disabled by the <code>Players.BanningEnabled</code> property, which you can toggle in Studio.",
@@ -102740,6 +102210,7 @@
     "keys": {
       "IsLoaded": "@roblox/globaltype/VideoFrame.IsLoaded",
       "Looped": "@roblox/globaltype/VideoFrame.Looped",
+      "MaximumResolution": "@roblox/globaltype/VideoFrame.MaximumResolution",
       "Playing": "@roblox/globaltype/VideoFrame.Playing",
       "Resolution": "@roblox/globaltype/VideoFrame.Resolution",
       "RollOffMaxDistance": "@roblox/globaltype/VideoFrame.RollOffMaxDistance",
@@ -102764,6 +102235,11 @@
   "@roblox/globaltype/VideoFrame.Looped": {
     "documentation": "Sets whether or not the <code>VideoFrame.Video</code> repeats once it has finished when it is playing.",
     "learn_more_link": "https://create.roblox.com/docs/reference/engine/classes/VideoFrame#Looped",
+    "code_sample": ""
+  },
+  "@roblox/globaltype/VideoFrame.MaximumResolution": {
+    "documentation": "",
+    "learn_more_link": "https://create.roblox.com/docs/reference/engine/classes/VideoFrame#MaximumResolution",
     "code_sample": ""
   },
   "@roblox/globaltype/VideoFrame.Playing": {
@@ -104227,12 +103703,19 @@
   "@roblox/globaltype/SocialService.PromptFeedbackSubmissionAsync/param/0": {
     "documentation": "Facilitates social functions that impact relationships made on the Roblox platform."
   },
+  "@roblox/globaltype/SocialService.PromptFeedbackSubmissionAsync/param/1": {
+    "documentation": "Optional <code>Dictionary</code> configuring the prompt. Supported keys: - <code>FeedbackType</code> (<code>FeedbackType</code>). Selects which feedback flow to display. Defaults to <code>FeedbackType.Feedback</code>."
+  },
   "@roblox/globaltype/SocialService.PromptFeedbackSubmissionAsync": {
     "documentation": "Prompts the player to submit feedback about the current experience.",
     "params": [
       {
         "name": "self",
         "documentation": "@roblox/globaltype/SocialService.PromptFeedbackSubmissionAsync/param/0"
+      },
+      {
+        "name": "options",
+        "documentation": "@roblox/globaltype/SocialService.PromptFeedbackSubmissionAsync/param/1"
       }
     ],
     "returns": [],
@@ -106657,7 +106140,7 @@
     "code_sample": ""
   },
   "@roblox/enum/GroupMembershipStatus.JoinRequestPending": {
-    "documentation": "The player submitted a request to join the group.",
+    "documentation": "The player submitted a request to join the group, or already had a pending join request prior to prompting.",
     "keys": {
       "Name": "@roblox/globaltype/EnumItem.Name",
       "Value": "@roblox/globaltype/EnumItem.Value",
@@ -112219,7 +111702,7 @@
     "code_sample": ""
   },
   "@roblox/enum/RecommendationPreferenceTargetType.User": {
-    "documentation": "",
+    "documentation": "The target is another Roblox user. The <code>targetId</code> is the user key.",
     "keys": {
       "Name": "@roblox/globaltype/EnumItem.Name",
       "Value": "@roblox/globaltype/EnumItem.Value",
@@ -112229,7 +111712,7 @@
     "code_sample": ""
   },
   "@roblox/enum/RecommendationPreferenceTargetType.Universe": {
-    "documentation": "",
+    "documentation": "The target is a universe. The <code>targetId</code> is the universe ID as a string.",
     "keys": {
       "Name": "@roblox/globaltype/EnumItem.Name",
       "Value": "@roblox/globaltype/EnumItem.Value",
@@ -112239,7 +111722,7 @@
     "code_sample": ""
   },
   "@roblox/enum/RecommendationPreferenceTargetType.CustomTag": {
-    "documentation": "",
+    "documentation": "The target is a custom content tag. The <code>targetId</code> is the tag string.",
     "keys": {
       "Name": "@roblox/globaltype/EnumItem.Name",
       "Value": "@roblox/globaltype/EnumItem.Value",
@@ -115509,6 +114992,16 @@
     "learn_more_link": "https://create.roblox.com/docs/reference/engine/enums/ConnectionError#PlacelaunchUserPrivacyUnauthorized",
     "code_sample": ""
   },
+  "@roblox/enum/ConnectionError.PlacelaunchVipOwnerNotPresent": {
+    "documentation": "",
+    "keys": {
+      "Name": "@roblox/globaltype/EnumItem.Name",
+      "Value": "@roblox/globaltype/EnumItem.Value",
+      "EnumType": "@roblox/globaltype/EnumItem.EnumType"
+    },
+    "learn_more_link": "https://create.roblox.com/docs/reference/engine/enums/ConnectionError#PlacelaunchVipOwnerNotPresent",
+    "code_sample": ""
+  },
   "@roblox/enum/ConnectionError.PlacelaunchAgeVerificationRequired": {
     "documentation": "",
     "keys": {
@@ -115744,6 +115237,7 @@
       "PlacelaunchPartyCannotFit": "@roblox/enum/ConnectionError.PlacelaunchPartyCannotFit",
       "PlacelaunchHttpError": "@roblox/enum/ConnectionError.PlacelaunchHttpError",
       "PlacelaunchUserPrivacyUnauthorized": "@roblox/enum/ConnectionError.PlacelaunchUserPrivacyUnauthorized",
+      "PlacelaunchVipOwnerNotPresent": "@roblox/enum/ConnectionError.PlacelaunchVipOwnerNotPresent",
       "PlacelaunchAgeVerificationRequired": "@roblox/enum/ConnectionError.PlacelaunchAgeVerificationRequired",
       "PlacelaunchParentalApprovalRequired": "@roblox/enum/ConnectionError.PlacelaunchParentalApprovalRequired",
       "PlacelaunchCoreGated": "@roblox/enum/ConnectionError.PlacelaunchCoreGated",
@@ -121203,7 +120697,7 @@
     "code_sample": ""
   },
   "@roblox/enum/ReceiptType.RobuxTransferSender": {
-    "documentation": "Used for processing receipts for the user who initiated a Robux transfer. The receipt's <code>PlayerId</code> is the sender's user ID and includes a <code>TransferRequestId</code> field.",
+    "documentation": "Used for processing receipts for the user who initiated a Robux transfer. The receipt's <code>PlayerId</code> is the sender's user ID and includes a <code>TransferRequestId</code> field. Delivered immediately if no receiver approval was required, otherwise deferred until the sender's next session join.",
     "keys": {
       "Name": "@roblox/globaltype/EnumItem.Name",
       "Value": "@roblox/globaltype/EnumItem.Value",
@@ -121213,7 +120707,7 @@
     "code_sample": ""
   },
   "@roblox/enum/ReceiptType.RobuxTransferReceiver": {
-    "documentation": "Used for processing receipts for the user who received Robux via a transfer. The receipt's <code>PlayerId</code> is the receiver's user ID and includes a <code>TransferRequestId</code> field.",
+    "documentation": "Used for processing receipts for the user who received Robux via a transfer. The receipt's <code>PlayerId</code> is the receiver's user ID and includes a <code>TransferRequestId</code> field. Always deferred until the receiver's next session join.",
     "keys": {
       "Name": "@roblox/globaltype/EnumItem.Name",
       "Value": "@roblox/globaltype/EnumItem.Value",
@@ -134345,7 +133839,7 @@
     "code_sample": ""
   },
   "@roblox/enum/RecommendationPreferenceType.AddFollow": {
-    "documentation": "",
+    "documentation": "The user started following the target.",
     "keys": {
       "Name": "@roblox/globaltype/EnumItem.Name",
       "Value": "@roblox/globaltype/EnumItem.Value",
@@ -134355,7 +133849,7 @@
     "code_sample": ""
   },
   "@roblox/enum/RecommendationPreferenceType.RemoveFollow": {
-    "documentation": "",
+    "documentation": "The user stopped following the target.",
     "keys": {
       "Name": "@roblox/globaltype/EnumItem.Name",
       "Value": "@roblox/globaltype/EnumItem.Value",
@@ -134365,7 +133859,7 @@
     "code_sample": ""
   },
   "@roblox/enum/RecommendationPreferenceType.AddMute": {
-    "documentation": "",
+    "documentation": "The user muted the target.",
     "keys": {
       "Name": "@roblox/globaltype/EnumItem.Name",
       "Value": "@roblox/globaltype/EnumItem.Value",
@@ -134375,7 +133869,7 @@
     "code_sample": ""
   },
   "@roblox/enum/RecommendationPreferenceType.RemoveMute": {
-    "documentation": "",
+    "documentation": "The user unmuted a previously muted target.",
     "keys": {
       "Name": "@roblox/globaltype/EnumItem.Name",
       "Value": "@roblox/globaltype/EnumItem.Value",
@@ -134870,7 +134364,7 @@
     "code_sample": ""
   },
   "@roblox/enum/OutfitType.All": {
-    "documentation": "",
+    "documentation": "Returns outfits of every type, with no filtering applied.",
     "keys": {
       "Name": "@roblox/globaltype/EnumItem.Name",
       "Value": "@roblox/globaltype/EnumItem.Value",
@@ -134880,7 +134374,7 @@
     "code_sample": ""
   },
   "@roblox/enum/OutfitType.Avatar": {
-    "documentation": "",
+    "documentation": "A full-body avatar outfit.",
     "keys": {
       "Name": "@roblox/globaltype/EnumItem.Name",
       "Value": "@roblox/globaltype/EnumItem.Value",
@@ -134890,7 +134384,7 @@
     "code_sample": ""
   },
   "@roblox/enum/OutfitType.DynamicHead": {
-    "documentation": "",
+    "documentation": "An outfit containing a dynamic head.",
     "keys": {
       "Name": "@roblox/globaltype/EnumItem.Name",
       "Value": "@roblox/globaltype/EnumItem.Value",
@@ -134900,7 +134394,7 @@
     "code_sample": ""
   },
   "@roblox/enum/OutfitType.Shoes": {
-    "documentation": "",
+    "documentation": "An outfit consisting of a pair of shoes.",
     "keys": {
       "Name": "@roblox/globaltype/EnumItem.Name",
       "Value": "@roblox/globaltype/EnumItem.Value",
@@ -134909,13 +134403,24 @@
     "learn_more_link": "https://create.roblox.com/docs/reference/engine/enums/OutfitType#Shoes",
     "code_sample": ""
   },
+  "@roblox/enum/OutfitType.Makeup": {
+    "documentation": "An outfit consisting of makeup items applied to the avatar's face.",
+    "keys": {
+      "Name": "@roblox/globaltype/EnumItem.Name",
+      "Value": "@roblox/globaltype/EnumItem.Value",
+      "EnumType": "@roblox/globaltype/EnumItem.EnumType"
+    },
+    "learn_more_link": "https://create.roblox.com/docs/reference/engine/enums/OutfitType#Makeup",
+    "code_sample": ""
+  },
   "@roblox/global/Enum.OutfitType": {
     "documentation": "",
     "keys": {
       "All": "@roblox/enum/OutfitType.All",
       "Avatar": "@roblox/enum/OutfitType.Avatar",
       "DynamicHead": "@roblox/enum/OutfitType.DynamicHead",
-      "Shoes": "@roblox/enum/OutfitType.Shoes"
+      "Shoes": "@roblox/enum/OutfitType.Shoes",
+      "Makeup": "@roblox/enum/OutfitType.Makeup"
     },
     "learn_more_link": "https://create.roblox.com/docs/reference/engine/enums/OutfitType",
     "code_sample": ""
@@ -148944,7 +148449,7 @@
     "documentation": ""
   },
   "@roblox/global/elapsedTime": {
-    "documentation": "Returns the amount of time in seconds that the current instance of Roblox has been running for.",
+    "documentation": "<strong>Deprecated:</strong> <br>Returns the amount of time in seconds that the current instance of Roblox has been running for.",
     "params": [],
     "returns": [
       "@roblox/global/elapsedTime/return/0"
@@ -149078,7 +148583,7 @@
     "documentation": ""
   },
   "@roblox/global/version": {
-    "documentation": "Returns the current version of Roblox as a string, which includes the generation, version, patch and commit.",
+    "documentation": "<strong>Deprecated:</strong> <br>Returns the current version of Roblox as a string, which includes the generation, version, patch and commit.",
     "params": [],
     "returns": [
       "@roblox/global/version/return/0"

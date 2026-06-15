@@ -6,6 +6,17 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ## [Unreleased]
 
+## [1.68.1] - 2026-06-14
+
+### Changed
+
+- Sync to upstream Luau 0.725
+
+### Fixed
+
+- Fixed signature help parameter highlighting when a parameter type references an exported table type from another module inside a union or intersection type ([#1507](https://github.com/JohnnyMorganz/luau-lsp/issues/1507))
+- Updated plugin README to reference the correct setting names `luau-lsp.studioPlugin.enabled` and `luau-lsp.studioPlugin.port` instead of the deprecated `luau-lsp.plugin.enabled` and `luau-lsp.plugin.port` ([#1522](https://github.com/JohnnyMorganz/luau-lsp/issues/1522))
+
 ## [1.68.0] - 2026-05-16
 
 ### Changed
